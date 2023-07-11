@@ -39,3 +39,33 @@ export const vicious_insight = (unit: unit): unit => {
 
   return unit;
 };
+
+export const alpha_warrior = (unit: unit): unit => {
+  if (unit.meleeWeapons) {
+    unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
+      return {
+        ...weapon,
+        leaderAbilities: ['SUSTAINED HITS 1']
+      };
+    });
+  }
+  if (unit.rangedWeapons) {
+    unit.rangedWeapons = unit.rangedWeapons.map((weapon) => {
+      return {
+        ...weapon,
+        leaderAbilities: ['SUSTAINED HITS 1']
+      };
+    });
+  }
+
+  if (unit.possibleLeaders) {
+    unit.possibleLeaders = unit.possibleLeaders.map((leader) =>
+      alpha_warrior(leader)
+    );
+  }
+  if (unit.leader) {
+    unit.leader = alpha_warrior(unit.leader);
+  }
+
+  return unit;
+};

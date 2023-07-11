@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Button,
   Col,
@@ -17,25 +17,89 @@ import {
   faHammer
 } from '@fortawesome/free-solid-svg-icons';
 
-import { unit } from '@/types';
+import { enhancement, unit } from '@/types';
 import styles from './dataCard.module.scss';
+import { CORE_KEYWORDS } from '@/enums';
 
-export const BuildCard: FC<{ unit: unit; hidden: boolean; setLeader: any }> = ({
+export const BuildCard: FC<{
+  unit: unit;
+  hidden: boolean;
+  enhancements: enhancement[];
+  setLeader: any;
+  setUnitComposition: any;
+  applyEnhancement: any;
+}> = ({
   unit,
   hidden,
-  setLeader
+  enhancements,
+  setLeader,
+  setUnitComposition,
+  applyEnhancement
 }) => {
   const [hideContent, setHideContent] = useState(hidden);
   const [leaderDropdownOpen, setLeaderDropdownOpen] = useState(false);
+  const [enhancementDropdownOpen, setEnhancementDropdownOpen] = useState(false);
+
+  const [unitCompositionDropdownOpen, setUnitCompositionDropdownOpen] =
+    useState(false);
+  const [displayEnhancements, setDisplayEnhancement] = useState(false);
+
+  useEffect(() => {
+    const keywords = [...unit.keywords, ...unit.factionKeywords];
+    if (
+      keywords.includes(CORE_KEYWORDS.CHARACTER) &&
+      !keywords.includes(CORE_KEYWORDS.EPIC_HERO)
+    ) {
+      setDisplayEnhancement(true);
+    } else {
+      setDisplayEnhancement(false);
+    }
+  });
 
   return (
     <div
       className={`data-card container ${styles.dataCard} border border-5 border-secondary m-2 rounded-3`}>
       <Row className="p-3">
-        <Col sm="11">
+        <Col xs="12" sm="12" md="6">
           <h1>{unit.name}</h1>
         </Col>
-        <Col sm="1">
+        <Col xs="12" sm="7" md="3">
+          Unit Composition:{' '}
+          {unit.possibleCompositions ? (
+            <Dropdown
+              isOpen={unitCompositionDropdownOpen}
+              toggle={() =>
+                setUnitCompositionDropdownOpen(!unitCompositionDropdownOpen)
+              }
+              className="d-inline">
+              <DropdownToggle caret className="py-0">
+                {unit.unitComposition.modelCount +
+                  ' Model' +
+                  (unit.unitComposition.modelCount > 1 ? 's' : '')}
+              </DropdownToggle>
+              <DropdownMenu>
+                {unit.possibleCompositions.map((combo, index) => (
+                  <DropdownItem
+                    key={index}
+                    onClick={() => setUnitComposition(combo)}>
+                    {combo.modelCount} Model{combo.modelCount > 1 ? 's' : ''}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+          ) : (
+            unit.unitComposition.modelCount +
+            ' Model' +
+            (unit.unitComposition.modelCount > 1 ? 's' : '')
+          )}
+        </Col>
+        <Col xs="11" sm="3" md="2">
+          Cost:{' '}
+          {unit.unitComposition.cost +
+            (unit.enhancement ? unit.enhancement.cost : 0)}{' '}
+          points
+        </Col>
+        <Col xs="1">
           <Button onClick={() => setHideContent(!hideContent)}>
             {hideContent ? (
               <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
@@ -55,7 +119,9 @@ export const BuildCard: FC<{ unit: unit; hidden: boolean; setLeader: any }> = ({
             lg="2">
             <span className={styles.statHeader}>M</span>
             <div className={`${styles.statBox} py-3 rounded-3`}>
-              {unit.move + '"'}
+              {unit.move > 0
+                ? unit.move + (unit.minimumMovement ? '+' : '') + '"'
+                : '-'}
             </div>
           </Col>
           <Col
@@ -119,7 +185,7 @@ export const BuildCard: FC<{ unit: unit; hidden: boolean; setLeader: any }> = ({
               </div>
             </Col>
           ) : null}
-          {unit.fnp || unit?.leadStats?.fnp ? (
+          {unit.fnp || unit?.leadStats?.fnp || unit?.enhancementStats?.fnp ? (
             <Col
               className={`${styles.dataCardHeaderItem} d-flex justify-content-center align-items-center my-1`}
               sm="6"
@@ -129,7 +195,13 @@ export const BuildCard: FC<{ unit: unit; hidden: boolean; setLeader: any }> = ({
                 {unit.fnp ? unit.fnp + '+' : ''}
                 <span
                   className={`${styles.leaderStats} ${styles.leaderChange}`}>
-                  {unit.leadStats?.fnp ? unit.leadStats.fnp + '+' : ''}
+                  {unit.leadStats?.fnp ? ' ' + unit.leadStats.fnp + '+' : ''}
+                </span>
+                <span
+                  className={`${styles.leaderStats} ${styles.enhancementChange}`}>
+                  {unit.enhancementStats?.fnp
+                    ? ' ' + unit.enhancementStats.fnp + '+'
+                    : ''}
                 </span>
               </div>
             </Col>
@@ -296,14 +368,14 @@ export const BuildCard: FC<{ unit: unit; hidden: boolean; setLeader: any }> = ({
               </thead>
               <tbody>
                 {unit.abilities.core ? (
-                  <tr>
+                  <tr className={styles.abilityRow}>
                     <td>
                       CORE: <b>{unit.abilities.core.join(', ')}</b>
                     </td>
                   </tr>
                 ) : null}
                 {unit.abilities.faction ? (
-                  <tr>
+                  <tr className={styles.abilityRow}>
                     <td>
                       FACTION: <b>{unit.abilities.faction.join(', ')}</b>
                     </td>
@@ -311,15 +383,54 @@ export const BuildCard: FC<{ unit: unit; hidden: boolean; setLeader: any }> = ({
                 ) : null}
                 {unit.abilities.other
                   ? unit.abilities.other.map((ability, index) => (
-                      <tr key={index}>
+                      <tr key={index} className={styles.abilityRow}>
                         <td>
                           <b>{ability.title}:</b> {ability.description}
                         </td>
                       </tr>
                     ))
                   : null}
+                {unit.enhancementStats?.abilities?.other
+                  ? unit.enhancementStats.abilities.other.map(
+                      (ability, index) => (
+                        <tr key={index} className={styles.abilityRow}>
+                          <td className={styles.enhancementChange}>
+                            <b>{ability.title}:</b> {ability.description}
+                          </td>
+                        </tr>
+                      )
+                    )
+                  : null}
               </tbody>
             </Table>
+            {unit.damaged ? (
+              <Table className={`${styles.damagedTable}`}>
+                <thead>
+                  <tr className={`${styles.damagedHeader}`}>
+                    <th>DAMAGED: {unit.damaged.range} WOUNDS REMAINING</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{unit.damaged.description}</td>
+                  </tr>
+                </tbody>
+              </Table>
+            ) : null}
+            {unit.transportUnits ? (
+              <Table className={`${styles.damagedTable}`}>
+                <thead>
+                  <tr className={`${styles.damagedHeader}`}>
+                    <th>TRANSPORT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{unit.transportUnits}</td>
+                  </tr>
+                </tbody>
+              </Table>
+            ) : null}
             {unit.possibleLeaders ? (
               <div className={styles.leaderBox}>
                 <p>
@@ -335,6 +446,30 @@ export const BuildCard: FC<{ unit: unit; hidden: boolean; setLeader: any }> = ({
                         key={index}
                         onClick={() => setLeader(leader)}>
                         {leader.name}
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+            ) : null}
+            {displayEnhancements ? (
+              <div className={styles.leaderBox}>
+                <p>
+                  <b>Enhancement:</b>{' '}
+                  {unit.enhancement ? unit.enhancement.name : 'NONE'}
+                </p>
+                <Dropdown
+                  isOpen={enhancementDropdownOpen}
+                  toggle={() =>
+                    setEnhancementDropdownOpen(!enhancementDropdownOpen)
+                  }>
+                  <DropdownToggle caret>Change Enhancement</DropdownToggle>
+                  <DropdownMenu>
+                    {enhancements.map((enhancement, index) => (
+                      <DropdownItem
+                        key={index}
+                        onClick={() => applyEnhancement(enhancement)}>
+                        {enhancement.name}
                       </DropdownItem>
                     ))}
                   </DropdownMenu>

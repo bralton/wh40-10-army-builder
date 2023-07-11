@@ -1,5 +1,5 @@
 import { DataCard } from '@/app/components';
-import { detachment, detachmentRule, unit } from '@/types';
+import { detachment, detachmentRule, enhancement, unit } from '@/types';
 import React, { FC, useEffect, useState } from 'react';
 import {
   Button,
@@ -14,6 +14,7 @@ import { troops } from './data/units';
 import { characters } from './data/characters';
 import { DETACHMENTS } from './data/detachments';
 import { Stratagems } from '@/app/components/Stratagems';
+import { INVASION_FLEET_ENHANCEMENTS } from './data/enhancements';
 
 export const ArmyBuilder: FC<{}> = () => {
   const [unitsInArmy, setUnitsInArmy] = useState<unit[]>([]);
@@ -27,10 +28,37 @@ export const ArmyBuilder: FC<{}> = () => {
   const [fullArmyList, setFullArmyList] = useState<{
     [x: string]: unit;
   }>();
+  const [totalPoints, setTotalPoints] = useState<number>(0);
+  const [availableEnhancements, setAvailableEnhancements] = useState<
+    enhancement[]
+  >([]);
+
+  useEffect(() => {
+    if (unitsInArmy.length > 0) {
+      let pointCount = 0;
+      for (const unit of unitsInArmy) {
+        pointCount = pointCount + unit.unitComposition.cost;
+        if (unit.enhancement) {
+          pointCount = pointCount + unit.enhancement.cost;
+        }
+
+        if (unit.leader) {
+          pointCount = pointCount + unit.leader.unitComposition.cost;
+          if (unit.leader.enhancement) {
+            pointCount = pointCount + unit.leader.enhancement.cost;
+          }
+        }
+      }
+      setTotalPoints(pointCount);
+    } else {
+      setTotalPoints(0);
+    }
+  }, [unitsInArmy]);
 
   useEffect(() => {
     setFullArmyList({ ...characters, ...troops });
-  });
+    setAvailableEnhancements([...INVASION_FLEET_ENHANCEMENTS]);
+  }, []);
 
   useEffect(() => {
     if (detachmentRule && unitToBeAdded) {
@@ -71,6 +99,11 @@ export const ArmyBuilder: FC<{}> = () => {
     tempRoster[index] = unit;
 
     setUnitsInArmy(tempRoster);
+  };
+
+  const updateEnhancements = (newEnhancements: enhancement[]) => {
+    console.log('look here', newEnhancements);
+    setAvailableEnhancements([...newEnhancements]);
   };
 
   return (
@@ -161,7 +194,9 @@ export const ArmyBuilder: FC<{}> = () => {
               <DataCard
                 unit={unitToBeAdded}
                 hidden={false}
+                enhancements={availableEnhancements}
                 updateUnit={updateUnitPreview}
+                updateEnhancements={updateEnhancements}
               />
               <Button onClick={() => addUnitToArmy(unitToBeAdded)}>
                 Add {unitToBeAdded.name} to Army Roster
@@ -170,14 +205,19 @@ export const ArmyBuilder: FC<{}> = () => {
           ) : null}
         </Col>
       </Row>
-      Army Roster:
+      <Row>
+        <Col xs="9">Army Roster:</Col>
+        <Col xs="3">Total Points: {totalPoints}</Col>
+      </Row>
       {unitsInArmy.map((unit, index) => (
         <Row key={index}>
           <Col>
             <DataCard
               unit={unit}
               hidden={true}
-              updateUnit={(unit) => updateUnitInRoster(unit, index)}></DataCard>
+              enhancements={availableEnhancements}
+              updateUnit={(unit) => updateUnitInRoster(unit, index)}
+              updateEnhancements={updateEnhancements}></DataCard>
           </Col>
         </Row>
       ))}

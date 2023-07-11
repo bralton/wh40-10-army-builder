@@ -15,6 +15,10 @@
     color: darkorange;
   }
 
+  .enhancementChange {
+    color: darkgreen;
+  }
+
   .dataCardHeader {
     .dataCardHeaderItem {
       flex-direction: column;
@@ -83,17 +87,27 @@
           background: black;
           border: 0;
         }
-        .abilityRow {
-          border-bottom-style: dotted;
-          border-bottom: 1px;
-          &:nth-child(even) {
-            td {
-              background-color: lightgray;
-            }
-          }
+      }
+      .abilityRow {
+        border-bottom-style: dotted;
+        border-bottom: 1px;
+        &:nth-child(even) {
           td {
-            background: white;
+            background: lightgray;
           }
+        }
+        td {
+          background: white;
+        }
+      }
+    }
+
+    .damagedTable {
+      .damagedHeader {
+        th {
+          color: white;
+          background: black;
+          border: 0;
         }
       }
     }
