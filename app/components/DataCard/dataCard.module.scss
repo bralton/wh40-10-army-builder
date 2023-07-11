@@ -1,0 +1,118 @@
+.attachedUnit {
+  background: lightblue;
+}
+
+.dataCard {
+  background: black;
+  color: white;
+  width: 95%;
+
+  .leaderChange {
+    color: darkred;
+  }
+
+  .detachmentChange {
+    color: darkorange;
+  }
+
+  .dataCardHeader {
+    .dataCardHeaderItem {
+      flex-direction: column;
+      .statHeader {
+        display: block;
+      }
+      .statBox {
+        background: white;
+        color: black;
+        width: 40%;
+        text-align: center;
+      }
+    }
+  }
+  .dataCardBody {
+    background: white;
+
+    .weaponTable {
+      .weaponHeader {
+        th {
+          color: white;
+          background: black;
+          border: 0;
+          width: 5%;
+
+          &:nth-child(2) {
+            width: 55%;
+          }
+
+          &:nth-child(3) {
+            width: 15%;
+          }
+        }
+      }
+      .weaponRow {
+        border-bottom-style: dotted;
+        border-bottom: 1px;
+        &:nth-child(even) {
+          td {
+            background-color: lightgray;
+          }
+        }
+        td {
+          background: white;
+        }
+
+        .weaponAbilities {
+          display: block;
+          font-weight: 700;
+        }
+        .weaponDetachmentAbilities {
+          display: block;
+          font-weight: 700;
+        }
+        .weaponLeaderAbilities {
+          display: block;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .abilityTable {
+      .abilityHeader {
+        th {
+          color: white;
+          background: black;
+          border: 0;
+        }
+        .abilityRow {
+          border-bottom-style: dotted;
+          border-bottom: 1px;
+          &:nth-child(even) {
+            td {
+              background-color: lightgray;
+            }
+          }
+          td {
+            background: white;
+          }
+        }
+      }
+    }
+
+    .leaderBox {
+      color: black;
+    }
+  }
+  .keywordFooter {
+    background: white;
+    color: black;
+
+    .keywords {
+      background: lightgrey;
+    }
+
+    .factionKeywords {
+      background: black;
+      color: white;
+    }
+  }
+}

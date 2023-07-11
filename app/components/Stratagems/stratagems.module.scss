@@ -1,0 +1,16 @@
+.stratagems {
+  background: black;
+  color: white;
+  width: 95%;
+
+  .stratagemBody {
+    background: white;
+    color: black;
+
+    .stratagem {
+      &:nth-child(even) {
+        background-color: lightgray;
+      }
+    }
+  }
+}
