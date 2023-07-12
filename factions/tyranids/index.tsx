@@ -89,15 +89,33 @@ export const ArmyBuilder: FC<{}> = () => {
     }
   };
 
+  const changeUnitToBeAdded = (unit: unit) => {
+    if (unitToBeAdded?.enhancement) {
+      setAvailableEnhancements([
+        ...availableEnhancements,
+        unitToBeAdded.enhancement
+      ]);
+    }
+    if (unitToBeAdded?.leader?.enhancement) {
+      setAvailableEnhancements([
+        ...availableEnhancements,
+        unitToBeAdded.leader.enhancement
+      ]);
+    }
+    setUnitToBeAdded(unit);
+  };
+
   const updateUnitPreview = (unit: unit) => {
     setUnitToBeAdded(unit);
   };
 
-  const updateUnitInRoster = (unit: unit, index: number) => {
-    const tempRoster = unitsInArmy;
-
-    tempRoster[index] = unit;
-
+  const updateUnitInRoster = (unit: unit | undefined, index: number) => {
+    const tempRoster = [...unitsInArmy];
+    if (unit) {
+      tempRoster[index] = unit;
+    } else {
+      tempRoster.splice(index, 1);
+    }
     setUnitsInArmy(tempRoster);
   };
 
@@ -182,7 +200,7 @@ export const ArmyBuilder: FC<{}> = () => {
                 ? Object.keys(fullArmyList).map((key, index) => (
                     <DropdownItem
                       key={index}
-                      onClick={() => setUnitToBeAdded(fullArmyList[key])}>
+                      onClick={() => changeUnitToBeAdded(fullArmyList[key])}>
                       {fullArmyList[key].name}
                     </DropdownItem>
                   ))
@@ -197,6 +215,7 @@ export const ArmyBuilder: FC<{}> = () => {
                 enhancements={availableEnhancements}
                 updateUnit={updateUnitPreview}
                 updateEnhancements={updateEnhancements}
+                removeUnit={(unit) => setUnitToBeAdded(undefined)}
               />
               <Button onClick={() => addUnitToArmy(unitToBeAdded)}>
                 Add {unitToBeAdded.name} to Army Roster
@@ -217,7 +236,10 @@ export const ArmyBuilder: FC<{}> = () => {
               hidden={true}
               enhancements={availableEnhancements}
               updateUnit={(unit) => updateUnitInRoster(unit, index)}
-              updateEnhancements={updateEnhancements}></DataCard>
+              updateEnhancements={updateEnhancements}
+              removeUnit={(unit) => {
+                updateUnitInRoster(undefined, index);
+              }}></DataCard>
           </Col>
         </Row>
       ))}

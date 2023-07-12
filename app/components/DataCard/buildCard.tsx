@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronDown,
   faChevronUp,
+  faCircleXmark,
   faCrosshairs,
   faHammer
 } from '@fortawesome/free-solid-svg-icons';
@@ -28,13 +29,15 @@ export const BuildCard: FC<{
   setLeader: any;
   setUnitComposition: any;
   applyEnhancement: any;
+  removeUnit: any;
 }> = ({
   unit,
   hidden,
   enhancements,
   setLeader,
   setUnitComposition,
-  applyEnhancement
+  applyEnhancement,
+  removeUnit
 }) => {
   const [hideContent, setHideContent] = useState(hidden);
   const [leaderDropdownOpen, setLeaderDropdownOpen] = useState(false);
@@ -60,7 +63,7 @@ export const BuildCard: FC<{
     <div
       className={`data-card container ${styles.dataCard} border border-5 border-secondary m-2 rounded-3`}>
       <Row className="p-3">
-        <Col xs="12" sm="12" md="6">
+        <Col xs="12" sm="12" md="5">
           <h1>{unit.name}</h1>
         </Col>
         <Col xs="12" sm="7" md="3">
@@ -93,13 +96,18 @@ export const BuildCard: FC<{
             (unit.unitComposition.modelCount > 1 ? 's' : '')
           )}
         </Col>
-        <Col xs="11" sm="3" md="2">
+        <Col xs="10" sm="3" md="2">
           Cost:{' '}
           {unit.unitComposition.cost +
             (unit.enhancement ? unit.enhancement.cost : 0)}{' '}
           points
         </Col>
-        <Col xs="1">
+        <Col xs="1" sm="1" md="1">
+          <Button onClick={() => removeUnit()}>
+            <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
+          </Button>
+        </Col>
+        <Col xs="1" sm="1" md="1">
           <Button onClick={() => setHideContent(!hideContent)}>
             {hideContent ? (
               <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>

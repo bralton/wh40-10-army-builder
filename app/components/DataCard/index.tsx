@@ -9,7 +9,15 @@ export const DataCard: FC<{
   enhancements: enhancement[];
   updateUnit: (unit: unit) => void;
   updateEnhancements: (enhancements: enhancement[]) => void;
-}> = ({ unit, hidden, enhancements, updateUnit, updateEnhancements }) => {
+  removeUnit: (unit: unit) => void;
+}> = ({
+  unit,
+  hidden,
+  enhancements,
+  updateUnit,
+  updateEnhancements,
+  removeUnit
+}) => {
   const [leader, setLeader] = useState<unit>();
   const [unitComposition, setUnitComposition] = useState<{
     modelCount: number;
@@ -18,6 +26,10 @@ export const DataCard: FC<{
 
   useEffect(() => {
     if (leader) {
+      if (unit?.leader?.enhancement) {
+        removeEnhancement(unit.leader);
+      }
+
       const tempUnit = { ...unit };
       tempUnit.leader = { ...leader };
       if (tempUnit.leadEffect) {
@@ -50,7 +62,6 @@ export const DataCard: FC<{
     ];
     tempUnit.enhancement = enhancement;
     tempUnit = enhancement.change(tempUnit);
-    console.log('Ben', tempUnit);
 
     const indexOfEnhancement = tempEnhancements.findIndex(
       (enhancementItem) => enhancementItem.name === enhancement.name
@@ -69,6 +80,24 @@ export const DataCard: FC<{
     }
   };
 
+  const removeLeader = () => {
+    const tempUnit = { ...unit };
+
+    if (tempUnit.leader) {
+      removeEnhancement(tempUnit.leader);
+    }
+
+    delete tempUnit.leader;
+    updateUnit(tempUnit);
+  };
+
+  const removeEnhancement = (unit: unit) => {
+    if (unit?.enhancement) {
+      const tempEnhancements = [...enhancements, unit.enhancement];
+      updateEnhancements(tempEnhancements);
+    }
+  };
+
   return (
     <div
       className={`${unit.leader ? styles.attachedUnit : ''} rounded-3 p-3 m-2`}>
@@ -81,6 +110,7 @@ export const DataCard: FC<{
         applyEnhancement={(enhancement: enhancement) =>
           applyEnhancement(enhancement, unit)
         }
+        removeUnit={removeUnit}
       />
       {unit.leader ? (
         <BuildCard
@@ -94,6 +124,7 @@ export const DataCard: FC<{
               ? applyEnhancement(enhancement, unit.leader, unit)
               : null
           }
+          removeUnit={removeLeader}
         />
       ) : null}
     </div>
