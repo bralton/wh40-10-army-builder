@@ -58,7 +58,7 @@ export interface unit extends stats {
   factionKeywords: string[];
   possibleCompositions?: { modelCount: number; cost: number }[];
   unitComposition: { modelCount: number; cost: number };
-  enhancement: enhancement;
+  enhancement?: enhancement;
   leader?: unit;
   possibleLeaders?: unit[];
   leadStats?: stats;
