@@ -1,13 +1,13 @@
 import React, { FC, useState } from 'react';
 
 import styles from './stratagems.module.scss';
-import { stratagem } from '@/types';
+import { Stratagem } from '@/types';
 import { Button, Col, Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 export const Stratagems: FC<{
-  stratagems: stratagem[];
+  stratagems: Stratagem[];
   hidden: boolean;
 }> = ({ stratagems, hidden }) => {
   const [hideContent, setHideContent] = useState(hidden);
