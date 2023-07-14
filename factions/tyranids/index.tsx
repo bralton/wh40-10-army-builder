@@ -1,5 +1,5 @@
 import { DataCard } from '@/app/components';
-import { detachment, detachmentRule, enhancement, unit } from '@/types';
+import { Detachment, DetachmentRule, Enhancement, Unit } from '@/types';
 import React, { FC, useEffect, useState } from 'react';
 import {
   Button,
@@ -17,20 +17,20 @@ import { Stratagems } from '@/app/components/Stratagems';
 import { INVASION_FLEET_ENHANCEMENTS } from './data/enhancements';
 
 export const ArmyBuilder: FC<{}> = () => {
-  const [unitsInArmy, setUnitsInArmy] = useState<unit[]>([]);
+  const [unitsInArmy, setUnitsInArmy] = useState<Unit[]>([]);
   const [unitDropdownOpen, setUnitDropdownOpen] = useState(false);
   const [detachmenDropdownOpen, setDetachmentDropdownOpen] = useState(false);
-  const [detachment, setDetachment] = useState<detachment>();
+  const [detachment, setDetachment] = useState<Detachment>();
   const [detachmentRuleDropdownOpen, setDetachmentRuleDropdownOpen] =
     useState(false);
-  const [detachmentRule, setDetachmentRule] = useState<detachmentRule>();
-  const [unitToBeAdded, setUnitToBeAdded] = useState<unit>();
+  const [detachmentRule, setDetachmentRule] = useState<DetachmentRule>();
+  const [unitToBeAdded, setUnitToBeAdded] = useState<Unit>();
   const [fullArmyList, setFullArmyList] = useState<{
-    [x: string]: unit;
+    [x: string]: Unit;
   }>();
   const [totalPoints, setTotalPoints] = useState<number>(0);
   const [availableEnhancements, setAvailableEnhancements] = useState<
-    enhancement[]
+    Enhancement[]
   >([]);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export const ArmyBuilder: FC<{}> = () => {
   const toggleDetachmentRuleDropdown = () =>
     setDetachmentRuleDropdownOpen((prevState) => !prevState);
 
-  const addUnitToArmy = (unit: unit) => {
+  const addUnitToArmy = (unit: Unit) => {
     if (unit) {
       const newUnitsInArmy = [...unitsInArmy, unit];
       setUnitToBeAdded(undefined);
@@ -79,7 +79,7 @@ export const ArmyBuilder: FC<{}> = () => {
     }
   };
 
-  const changeDetachmentRule = (rule: detachmentRule) => {
+  const changeDetachmentRule = (rule: DetachmentRule) => {
     setDetachmentRule(rule);
     if (unitsInArmy) {
       setUnitsInArmy(unitsInArmy.map((unit) => rule.change(unit)));
@@ -89,7 +89,7 @@ export const ArmyBuilder: FC<{}> = () => {
     }
   };
 
-  const changeUnitToBeAdded = (unit: unit) => {
+  const changeUnitToBeAdded = (unit: Unit) => {
     if (unitToBeAdded?.enhancement) {
       setAvailableEnhancements([
         ...availableEnhancements,
@@ -105,11 +105,11 @@ export const ArmyBuilder: FC<{}> = () => {
     setUnitToBeAdded(unit);
   };
 
-  const updateUnitPreview = (unit: unit) => {
+  const updateUnitPreview = (unit: Unit) => {
     setUnitToBeAdded(unit);
   };
 
-  const updateUnitInRoster = (unit: unit | undefined, index: number) => {
+  const updateUnitInRoster = (unit: Unit | undefined, index: number) => {
     const tempRoster = [...unitsInArmy];
     if (unit) {
       tempRoster[index] = unit;
@@ -119,7 +119,7 @@ export const ArmyBuilder: FC<{}> = () => {
     setUnitsInArmy(tempRoster);
   };
 
-  const updateEnhancements = (newEnhancements: enhancement[]) => {
+  const updateEnhancements = (newEnhancements: Enhancement[]) => {
     console.log('look here', newEnhancements);
     setAvailableEnhancements([...newEnhancements]);
   };

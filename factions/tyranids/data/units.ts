@@ -1,11 +1,11 @@
-import { unit } from '@/types';
+import { Unit } from '@/types';
 import { KEYWORDS } from './keywords';
 import { meleeWeapons, rangedWeapons } from './weapons';
 import { characters } from './characters';
 import { guardianOrganism } from './leader-modifiers';
 import { WEAPON_ABILITIES } from '@/enums';
 
-export const troops: { [key: string]: unit } = {
+export const troops: { [key: string]: Unit } = {
   barbgaunts: {
     name: 'BARBGAUNTS',
     move: 6,

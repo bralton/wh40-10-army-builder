@@ -1,6 +1,6 @@
-import { stratagem } from '@/types';
+import { Stratagem } from '@/types';
 
-export const INVASION_FLEET_STRATAGEMS: stratagem[] = [
+export const INVASION_FLEET_STRATAGEMS: Stratagem[] = [
   {
     name: 'RAPID REGENERATION',
     cost: 1,

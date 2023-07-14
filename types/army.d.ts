@@ -1,4 +1,4 @@
-export interface enhancement {
+export interface Enhancement {
   name: string;
   description: string;
   cost: number;
@@ -6,7 +6,7 @@ export interface enhancement {
   restrictionKeywords?: string[];
 }
 
-export interface stratagem {
+export interface Stratagem {
   name: string;
   cost: number;
   when: string;
@@ -15,20 +15,23 @@ export interface stratagem {
   restrictions?: string;
 }
 
-export interface detachment {
+export interface Detachment {
   name: string;
-  enhancements: enhancement[];
-  stratagems: stratagem[];
-  detachmentRule: { [key: string]: detachmentRule };
+  enhancements: Enhancement[];
+  stratagems: Stratagem[];
+  detachmentRule: { [key: string]: DetachmentRule };
+  units: {
+    [key: string]: Unit;
+  };
 }
 
-export interface detachmentRule {
+export interface DetachmentRule {
   name: string;
   description: string;
-  change: (unit) => unit;
+  change: (unit) => Unit;
 }
 
-export interface weapon {
+export interface Weapon {
   name: string;
   variableAttacks?: string;
   fixedAttacks: number;
@@ -41,29 +44,29 @@ export interface weapon {
   leaderAbilities?: string[];
 }
 
-export interface rangedWeapon extends weapon {
+export interface RangedWeapon extends Weapon {
   range: number;
   ballisticSkill: number;
 }
 
-export interface meleeWeapon extends weapon {
+export interface MeleeWeapon extends Weapon {
   weaponSkill: number;
 }
 
-export interface unit extends stats {
+export interface Unit extends Stats {
   name: string;
-  rangedWeapons?: rangedWeapon[];
-  meleeWeapons?: meleeWeapon[];
+  rangedWeapons?: RangedWeapon[];
+  meleeWeapons?: MeleeWeapon[];
   keywords: string[];
   factionKeywords: string[];
   possibleCompositions?: { modelCount: number; cost: number }[];
   unitComposition: { modelCount: number; cost: number };
-  enhancement?: enhancement;
-  leader?: unit;
-  possibleLeaders?: unit[];
-  leadStats?: stats;
-  enhancementStats?: stats;
-  leadEffect?: (unit: unit) => unit;
+  enhancement?: Enhancement;
+  leader?: Unit;
+  possibleLeaders?: Unit[];
+  leadStats?: Stats;
+  enhancementStats?: Stats;
+  leadEffect?: (unit: Unit) => Unit;
   damaged?: {
     range: string;
     description: string;
@@ -71,7 +74,7 @@ export interface unit extends stats {
   transportUnits?: string;
 }
 
-export interface stats {
+export interface Stats {
   move: number;
   minimumMovement?: boolean;
   toughness: number;
@@ -88,13 +91,13 @@ export interface stats {
   };
 }
 
-export interface faction {
+export interface Faction {
   factionName: string;
   armyRule: string[];
-  detachment: detachment[];
+  detachment: Detachment[];
   weapons: {
-    ranged: rangedWeapon[];
-    melee: meleeWeapon[];
+    ranged: RangedWeapon[];
+    melee: MeleeWeapon[];
   };
-  units: unit[];
+  units: Unit[];
 }

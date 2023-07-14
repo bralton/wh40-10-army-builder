@@ -1,15 +1,15 @@
 import React, { FC, useEffect, useState } from 'react';
-import { enhancement, unit } from '@/types';
+import { Enhancement, Unit } from '@/types';
 import styles from './dataCard.module.scss';
 import { BuildCard } from './buildCard';
 
 export const DataCard: FC<{
-  unit: unit;
+  unit: Unit;
   hidden: boolean;
-  enhancements: enhancement[];
-  updateUnit: (unit: unit) => void;
-  updateEnhancements: (enhancements: enhancement[]) => void;
-  removeUnit: (unit: unit) => void;
+  enhancements: Enhancement[];
+  updateUnit: (unit: Unit) => void;
+  updateEnhancements: (enhancements: Enhancement[]) => void;
+  removeUnit: (unit: Unit) => void;
 }> = ({
   unit,
   hidden,
@@ -18,7 +18,7 @@ export const DataCard: FC<{
   updateEnhancements,
   removeUnit
 }) => {
-  const [leader, setLeader] = useState<unit>();
+  const [leader, setLeader] = useState<Unit>();
   const [unitComposition, setUnitComposition] = useState<{
     modelCount: number;
     cost: number;
@@ -51,9 +51,9 @@ export const DataCard: FC<{
   }, [unitComposition]);
 
   const applyEnhancement = (
-    enhancement: enhancement,
-    unitToUpdate: unit,
-    parentUnit?: unit
+    enhancement: Enhancement,
+    unitToUpdate: Unit,
+    parentUnit?: Unit
   ) => {
     let tempUnit = { ...unitToUpdate };
     let tempEnhancements = [
@@ -91,7 +91,7 @@ export const DataCard: FC<{
     updateUnit(tempUnit);
   };
 
-  const removeEnhancement = (unit: unit) => {
+  const removeEnhancement = (unit: Unit) => {
     if (unit?.enhancement) {
       const tempEnhancements = [...enhancements, unit.enhancement];
       updateEnhancements(tempEnhancements);
@@ -107,7 +107,7 @@ export const DataCard: FC<{
         enhancements={enhancements}
         setLeader={setLeader}
         setUnitComposition={setUnitComposition}
-        applyEnhancement={(enhancement: enhancement) =>
+        applyEnhancement={(enhancement: Enhancement) =>
           applyEnhancement(enhancement, unit)
         }
         removeUnit={removeUnit}
@@ -119,7 +119,7 @@ export const DataCard: FC<{
           enhancements={enhancements}
           setLeader={setLeader}
           setUnitComposition={setUnitComposition}
-          applyEnhancement={(enhancement: enhancement) =>
+          applyEnhancement={(enhancement: Enhancement) =>
             unit.leader
               ? applyEnhancement(enhancement, unit.leader, unit)
               : null

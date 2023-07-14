@@ -1,7 +1,7 @@
 import { STATSBLOCK, WEAPON_ABILITIES } from '@/enums';
-import { unit } from '@/types';
+import { Unit } from '@/types';
 
-export const guardianOrganism = (unit: unit): unit => {
+export const guardianOrganism = (unit: Unit): Unit => {
   if (unit.leader) {
     unit.leader.leadStats = unit?.leader?.leadStats
       ? { ...unit?.leader?.leadStats, fnp: 5 }
@@ -10,7 +10,7 @@ export const guardianOrganism = (unit: unit): unit => {
   return unit;
 };
 
-export const vicious_insight = (unit: unit): unit => {
+export const vicious_insight = (unit: Unit): Unit => {
   if (unit.meleeWeapons) {
     unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
       return {
@@ -40,7 +40,7 @@ export const vicious_insight = (unit: unit): unit => {
   return unit;
 };
 
-export const alpha_warrior = (unit: unit): unit => {
+export const alpha_warrior = (unit: Unit): Unit => {
   if (unit.meleeWeapons) {
     unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
       return {

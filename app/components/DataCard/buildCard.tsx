@@ -18,14 +18,14 @@ import {
   faHammer
 } from '@fortawesome/free-solid-svg-icons';
 
-import { enhancement, unit } from '@/types';
+import { Enhancement, Unit } from '@/types';
 import styles from './dataCard.module.scss';
 import { CORE_KEYWORDS } from '@/enums';
 
 export const BuildCard: FC<{
-  unit: unit;
+  unit: Unit;
   hidden: boolean;
-  enhancements: enhancement[];
+  enhancements: Enhancement[];
   setLeader: any;
   setUnitComposition: any;
   applyEnhancement: any;

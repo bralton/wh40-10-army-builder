@@ -1,6 +1,6 @@
-import { detachmentRule, unit } from '@/types';
+import { DetachmentRule, Unit } from '@/types';
 
-const swarming_instincts = (unit: unit) => {
+const swarming_instincts = (unit: Unit) => {
   if (unit.meleeWeapons) {
     unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
       return {
@@ -30,7 +30,7 @@ const swarming_instincts = (unit: unit) => {
   return unit;
 };
 
-const hyper_agression = (unit: unit) => {
+const hyper_agression = (unit: Unit) => {
   if (unit.meleeWeapons) {
     unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
       return {
@@ -60,7 +60,7 @@ const hyper_agression = (unit: unit) => {
   return unit;
 };
 
-const hive_predators = (unit: unit) => {
+const hive_predators = (unit: Unit) => {
   if (unit.meleeWeapons) {
     unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
       return {
@@ -92,7 +92,7 @@ const hive_predators = (unit: unit) => {
 };
 
 export const INVASION_FLEET_DETACHMENT_RULES: {
-  [key: string]: detachmentRule;
+  [key: string]: DetachmentRule;
 } = {
   SWARMING_INSTINCTS: {
     name: 'SWARMING INSTINCTS',

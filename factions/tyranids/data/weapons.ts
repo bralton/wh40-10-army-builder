@@ -1,7 +1,7 @@
 import { WEAPON_ABILITIES } from '@/enums';
-import { meleeWeapon, rangedWeapon } from '@/types';
+import { MeleeWeapon, RangedWeapon } from '@/types';
 
-export const meleeWeapons: { [key: string]: meleeWeapon } = {
+export const meleeWeapons: { [key: string]: MeleeWeapon } = {
   barbedOvipositor: {
     name: 'Barbed ovipositor',
     fixedAttacks: 1,
@@ -386,7 +386,7 @@ export const meleeWeapons: { [key: string]: meleeWeapon } = {
   }
 };
 
-export const rangedWeapons: { [key: string]: rangedWeapon } = {
+export const rangedWeapons: { [key: string]: RangedWeapon } = {
   acidSpray: {
     name: 'Acid spray',
     range: 18,

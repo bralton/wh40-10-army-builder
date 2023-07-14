@@ -1,7 +1,7 @@
 import { STATSBLOCK } from '@/enums';
-import { enhancement, unit } from '@/types';
+import { Enhancement, Unit } from '@/types';
 
-const alien_cunning = (unit: unit): unit => {
+const alien_cunning = (unit: Unit): Unit => {
   unit.enhancementStats = { ...STATSBLOCK };
 
   unit.enhancementStats.abilities.other = [
@@ -15,7 +15,7 @@ const alien_cunning = (unit: unit): unit => {
   return unit;
 };
 
-const perfectly_adapted = (unit: unit): unit => {
+const perfectly_adapted = (unit: Unit): Unit => {
   unit.enhancementStats = { ...STATSBLOCK };
 
   unit.enhancementStats.abilities.other = [
@@ -29,7 +29,7 @@ const perfectly_adapted = (unit: unit): unit => {
   return unit;
 };
 
-const synaptic_linchpin = (unit: unit): unit => {
+const synaptic_linchpin = (unit: Unit): Unit => {
   unit.enhancementStats = { ...STATSBLOCK };
 
   unit.enhancementStats.abilities.other = [
@@ -43,7 +43,7 @@ const synaptic_linchpin = (unit: unit): unit => {
   return unit;
 };
 
-const adaptive_biology = (unit: unit): unit => {
+const adaptive_biology = (unit: Unit): Unit => {
   unit.enhancementStats = { ...STATSBLOCK };
 
   unit.enhancementStats.abilities.other = [
@@ -58,7 +58,7 @@ const adaptive_biology = (unit: unit): unit => {
   return unit;
 };
 
-export const INVASION_FLEET_ENHANCEMENTS: enhancement[] = [
+export const INVASION_FLEET_ENHANCEMENTS: Enhancement[] = [
   {
     name: 'ALIEN CUNNING',
     description:

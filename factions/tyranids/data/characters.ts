@@ -1,9 +1,9 @@
-import { unit } from '@/types';
+import { Unit } from '@/types';
 import { meleeWeapons, rangedWeapons } from './weapons';
 import { KEYWORDS } from './keywords';
 import { alpha_warrior, vicious_insight } from './leader-modifiers';
 
-export const characters: { [key: string]: unit } = {
+export const characters: { [key: string]: Unit } = {
   broodlord: {
     name: 'BROODLORD',
     move: 8,
