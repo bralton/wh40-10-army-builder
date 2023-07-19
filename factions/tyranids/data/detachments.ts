@@ -12,5 +12,12 @@ export const DETACHMENTS: { [key: string]: Detachment } = {
     stratagems: INVASION_FLEET_STRATAGEMS,
     detachmentRule: INVASION_FLEET_DETACHMENT_RULES,
     units: { ...characters, ...troops }
+  },
+  OTHER_FLEET: {
+    name: 'OTHER FLEET',
+    enhancements: INVASION_FLEET_ENHANCEMENTS,
+    stratagems: INVASION_FLEET_STRATAGEMS,
+    detachmentRule: INVASION_FLEET_DETACHMENT_RULES,
+    units: { ...characters, ...troops }
   }
 };

@@ -15,6 +15,7 @@ import {
   faChevronUp,
   faCircleXmark,
   faCrosshairs,
+  faFlag,
   faHammer
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -239,7 +240,11 @@ export const BuildCard: FC<{
                 <tbody>
                   {unit.rangedWeapons.map((weapon, index) => (
                     <tr key={index} className={`${styles.weaponRow}`}>
-                      <td></td>
+                      <td>
+                        {weapon.profile ? (
+                          <FontAwesomeIcon icon={faFlag} />
+                        ) : null}
+                      </td>
                       <td>
                         {weapon.name}
                         {weapon.abilities ? (
@@ -312,7 +317,11 @@ export const BuildCard: FC<{
                 <tbody>
                   {unit.meleeWeapons.map((weapon, index) => (
                     <tr key={index} className={`${styles.weaponRow}`}>
-                      <td></td>
+                      <td>
+                        {weapon.profile ? (
+                          <FontAwesomeIcon icon={faFlag} />
+                        ) : null}
+                      </td>
                       <td>
                         {weapon.name}
                         {weapon.abilities ? (
@@ -411,6 +420,24 @@ export const BuildCard: FC<{
                   : null}
               </tbody>
             </Table>
+            {unit.wargearAbilities ? (
+              <Table className={`${styles.abilityTable}`}>
+                <thead>
+                  <tr className={`${styles.abilityHeader}`}>
+                    <th>WARGEAR ABILITIES</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {unit.wargearAbilities.map((ability, index) => (
+                    <tr key={index} className={styles.abilityRow}>
+                      <td>
+                        <b>{ability.title}:</b> {ability.description}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            ) : null}
             {unit.damaged ? (
               <Table className={`${styles.damagedTable}`}>
                 <thead>

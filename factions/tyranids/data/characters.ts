@@ -2,6 +2,7 @@ import { Unit } from '@/types';
 import { meleeWeapons, rangedWeapons } from './weapons';
 import { KEYWORDS } from './keywords';
 import { alpha_warrior, vicious_insight } from './leader-modifiers';
+import { ABILITIES } from './abilities';
 
 export const characters: { [key: string]: Unit } = {
   broodlord: {
@@ -14,8 +15,8 @@ export const characters: { [key: string]: Unit } = {
     leadership: 7,
     objectiveControl: 1,
     abilities: {
-      faction: ['Synapse'],
-      core: ['Scouts 8"', 'Leader'],
+      faction: [ABILITIES.SYNAPSE],
+      core: [ABILITIES.SCOUTS_8, ABILITIES.LEADER],
       other: [
         {
           title: 'Vicious Insight',
@@ -51,8 +52,13 @@ export const characters: { [key: string]: Unit } = {
     objectiveControl: 1,
     invulnerable: 4,
     abilities: {
-      faction: ['Synapse'],
-      core: ['Fights First', 'Infiltrators', 'Lone Operative', 'Stealth'],
+      faction: [ABILITIES.SYNAPSE],
+      core: [
+        ABILITIES.FIGHTS_FIRST,
+        ABILITIES.INFILTRATORS,
+        ABILITIES.LONE_OPERATIVE,
+        ABILITIES.STEALTH
+      ],
       other: [
         {
           title: 'Feeder Tendrils',
@@ -86,8 +92,8 @@ export const characters: { [key: string]: Unit } = {
     leadership: 7,
     objectiveControl: 3,
     abilities: {
-      faction: ['Shadow in the warp', 'Synapse'],
-      core: ['Deadly Demise D3', 'Leader'],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.LEADER],
       other: [
         {
           title: 'Will of the Hive Mind',
@@ -130,8 +136,8 @@ export const characters: { [key: string]: Unit } = {
     objectiveControl: 3,
     invulnerable: 4,
     abilities: {
-      faction: ['Synapse', 'Shadow in the Warp'],
-      core: ['Leader'],
+      faction: [ABILITIES.SYNAPSE, ABILITIES.SHADOW_IN_THE_WARP],
+      core: [ABILITIES.LEADER],
       other: [
         {
           title: 'Node Lash [Psychic',
@@ -173,8 +179,8 @@ export const characters: { [key: string]: Unit } = {
     objectiveControl: 3,
     fnp: 5,
     abilities: {
-      faction: ['Synapse'],
-      core: ['Feel No Pain 5+', 'Leader'],
+      faction: [ABILITIES.SYNAPSE],
+      core: [ABILITIES.FEEL_NO_PAIN_5, ABILITIES.LEADER],
       other: [
         {
           title: 'Alpha Leader',
@@ -210,8 +216,12 @@ export const characters: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      faction: ['Synapse'],
-      core: ['Deep Strike', 'Lone Operative', 'Stealth'],
+      faction: [ABILITIES.SYNAPSE],
+      core: [
+        ABILITIES.DEEP_STRIKE,
+        ABILITIES.LONE_OPERATIVE,
+        ABILITIES.STEALTH
+      ],
       other: [
         {
           title: 'Parasitic Infection',
@@ -245,8 +255,8 @@ export const characters: { [key: string]: Unit } = {
     leadership: 7,
     objectiveControl: 3,
     abilities: {
-      faction: ['Shadow in the warp', 'Synapse'],
-      core: ['Deadly Demise D3', 'Leader'],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.LEADER],
       other: [
         {
           title: 'Hive Commander',
@@ -288,8 +298,8 @@ export const characters: { [key: string]: Unit } = {
     leadership: 7,
     objectiveControl: 5,
     abilities: {
-      core: ['Deadly Demise D6'],
-      faction: ['Shadow in the Warp', 'Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D6],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Spawn Termagants',
@@ -338,8 +348,8 @@ export const characters: { [key: string]: Unit } = {
     leadership: 7,
     objectiveControl: 3,
     abilities: {
-      faction: ['Shadow in the warp', 'Synapse'],
-      core: ['Deadly Demise D3', 'Deep Strike'],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.DEEP_STRIKE],
       other: [
         {
           title: 'Will of the Hive Mind',
@@ -383,8 +393,8 @@ export const characters: { [key: string]: Unit } = {
     leadership: 7,
     objectiveControl: 1,
     abilities: {
-      faction: ['Shadow in the Warp', 'Synapse'],
-      core: ['Deep Strike', 'Leader'],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
+      core: [ABILITIES.DEEP_STRIKE, ABILITIES.LEADER],
       other: [
         {
           title: 'Alpha Warrior',

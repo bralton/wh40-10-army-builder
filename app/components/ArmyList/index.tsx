@@ -1,6 +1,7 @@
-import { DataCard } from '@/app/components';
-import { Detachment, DetachmentRule, Enhancement, Unit } from '@/types';
 import React, { FC, useEffect, useState } from 'react';
+
+import styles from './armylist.module.scss';
+import { Detachment, DetachmentRule, Enhancement, Unit } from '@/types';
 import {
   Button,
   Col,
@@ -10,28 +11,36 @@ import {
   DropdownToggle,
   Row
 } from 'reactstrap';
-import { troops } from './data/units';
-import { characters } from './data/characters';
-import { DETACHMENTS } from './data/detachments';
-import { Stratagems } from '@/app/components/Stratagems';
-import { INVASION_FLEET_ENHANCEMENTS } from './data/enhancements';
+import { DataCard } from '../DataCard';
 
-export const ArmyBuilder: FC<{}> = () => {
-  const [unitsInArmy, setUnitsInArmy] = useState<Unit[]>([]);
-  const [unitDropdownOpen, setUnitDropdownOpen] = useState(false);
-  const [detachmenDropdownOpen, setDetachmentDropdownOpen] = useState(false);
-  const [detachment, setDetachment] = useState<Detachment>();
-  const [detachmentRuleDropdownOpen, setDetachmentRuleDropdownOpen] =
-    useState(false);
+export const ArmyList: FC<{
+  detachment: Detachment;
+  selectedDetachmentRule: DetachmentRule;
+}> = ({ detachment, selectedDetachmentRule }) => {
+  const [detachmentName, setDetachmentName] = useState<string>();
   const [detachmentRule, setDetachmentRule] = useState<DetachmentRule>();
-  const [unitToBeAdded, setUnitToBeAdded] = useState<Unit>();
   const [fullArmyList, setFullArmyList] = useState<{
     [x: string]: Unit;
   }>();
-  const [totalPoints, setTotalPoints] = useState<number>(0);
   const [availableEnhancements, setAvailableEnhancements] = useState<
     Enhancement[]
   >([]);
+  const [unitsInArmy, setUnitsInArmy] = useState<Unit[]>([]);
+  const [unitToBeAdded, setUnitToBeAdded] = useState<Unit>();
+  const [unitDropdownOpen, setUnitDropdownOpen] = useState(false);
+  const [totalPoints, setTotalPoints] = useState<number>(0);
+
+  if (!detachmentName || detachment.name !== detachmentName) {
+    setDetachmentName(detachment.name);
+    setUnitsInArmy([]);
+    setUnitDropdownOpen(false);
+    setUnitToBeAdded(undefined);
+    setFullArmyList({ ...detachment.units });
+    setAvailableEnhancements([...detachment.enhancements]);
+  }
+  if (detachmentRule?.name !== selectedDetachmentRule.name) {
+    setDetachmentRule(selectedDetachmentRule);
+  }
 
   useEffect(() => {
     if (unitsInArmy.length > 0) {
@@ -56,36 +65,26 @@ export const ArmyBuilder: FC<{}> = () => {
   }, [unitsInArmy]);
 
   useEffect(() => {
-    setFullArmyList({ ...characters, ...troops });
-    setAvailableEnhancements([...INVASION_FLEET_ENHANCEMENTS]);
-  }, []);
-
-  useEffect(() => {
     if (detachmentRule && unitToBeAdded) {
       setUnitToBeAdded(detachmentRule.change(unitToBeAdded));
     }
   }, [unitToBeAdded, detachmentRule]);
 
+  useEffect(() => {
+    if (detachmentRule && unitsInArmy) {
+      const units = unitsInArmy.map((unit) => detachmentRule.change(unit));
+      setUnitsInArmy(units);
+    }
+  }, [detachmentRule, unitsInArmy]);
+
   const toggleUnitDropdown = () =>
     setUnitDropdownOpen((prevState) => !prevState);
-  const toggleDetachmentRuleDropdown = () =>
-    setDetachmentRuleDropdownOpen((prevState) => !prevState);
 
   const addUnitToArmy = (unit: Unit) => {
     if (unit) {
       const newUnitsInArmy = [...unitsInArmy, unit];
       setUnitToBeAdded(undefined);
       setUnitsInArmy(newUnitsInArmy);
-    }
-  };
-
-  const changeDetachmentRule = (rule: DetachmentRule) => {
-    setDetachmentRule(rule);
-    if (unitsInArmy) {
-      setUnitsInArmy(unitsInArmy.map((unit) => rule.change(unit)));
-    }
-    if (unitToBeAdded) {
-      setUnitToBeAdded(rule.change(unitToBeAdded));
     }
   };
 
@@ -120,77 +119,11 @@ export const ArmyBuilder: FC<{}> = () => {
   };
 
   const updateEnhancements = (newEnhancements: Enhancement[]) => {
-    console.log('look here', newEnhancements);
     setAvailableEnhancements([...newEnhancements]);
   };
 
   return (
-    <div className="container">
-      <Row>
-        <Col>
-          Tyranids -{' '}
-          <Dropdown
-            isOpen={detachmenDropdownOpen}
-            toggle={() => setDetachmentDropdownOpen(!detachmenDropdownOpen)}
-            className="d-inline">
-            <DropdownToggle caret>
-              {detachment ? detachment.name : 'Detachment'}
-            </DropdownToggle>
-            <DropdownMenu>
-              {DETACHMENTS
-                ? Object.keys(DETACHMENTS).map((key, index) => (
-                    <DropdownItem
-                      key={index}
-                      onClick={() => setDetachment(DETACHMENTS[key])}>
-                      {DETACHMENTS[key].name}
-                    </DropdownItem>
-                  ))
-                : null}
-            </DropdownMenu>
-          </Dropdown>
-        </Col>
-      </Row>
-      {detachment ? (
-        <Row>
-          <Col sm="3">
-            Detachment Rule:{' '}
-            <Dropdown
-              isOpen={detachmentRuleDropdownOpen}
-              toggle={toggleDetachmentRuleDropdown}
-              className="d-inline">
-              <DropdownToggle caret>Detachment Rule</DropdownToggle>
-              <DropdownMenu>
-                {Object.keys(detachment.detachmentRule).map((key, index) => (
-                  <DropdownItem
-                    key={index}
-                    onClick={() =>
-                      changeDetachmentRule(detachment.detachmentRule[key])
-                    }>
-                    {detachment.detachmentRule[key].name}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          </Col>
-          <Col sm="9">
-            {detachmentRule ? (
-              <>
-                <p>
-                  <b>{detachmentRule.name}</b>
-                </p>
-                <p>{detachmentRule.description}</p>
-              </>
-            ) : null}
-          </Col>
-        </Row>
-      ) : null}
-      {detachment ? (
-        <Row>
-          <Col>
-            <Stratagems hidden={true} stratagems={detachment.stratagems} />
-          </Col>
-        </Row>
-      ) : null}
+    <div>
       <Row>
         <Col>
           <Dropdown isOpen={unitDropdownOpen} toggle={toggleUnitDropdown}>

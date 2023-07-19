@@ -12,6 +12,21 @@ export enum CORE_KEYWORDS {
   DEDICATED_TRANSPORT = 'DEDICATED TRANSPORT'
 }
 
+export enum CORE_ABILITIES {
+  SCOUTS_8 = 'Scouts 8"',
+  LEADER = 'Leader',
+  FIGHTS_FIRST = 'Fights First',
+  INFILTRATORS = 'Infiltrators',
+  LONE_OPERATIVE = 'Lone Operative',
+  STEALTH = 'Stealth',
+  DEADLY_DEMISE_1 = 'Deadly Demise 1',
+  DEADLY_DEMISE_D3 = 'Deadly Demise D3',
+  DEADLY_DEMISE_D6 = 'Deadly Demise D6',
+  FEEL_NO_PAIN_5 = 'Feel No Pain 5+',
+  DEEP_STRIKE = 'Deep Strike',
+  HOVER = 'Hover'
+}
+
 export enum WEAPON_ABILITIES {
   ASSAULT = 'ASSAULT',
   RAPID_FIRE = 'RAPID FIRE',

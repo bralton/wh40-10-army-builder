@@ -42,6 +42,7 @@ export interface Weapon {
   abilities?: string[];
   detachmentAbilities?: string[];
   leaderAbilities?: string[];
+  profile?: boolean;
 }
 
 export interface RangedWeapon extends Weapon {
@@ -55,6 +56,7 @@ export interface MeleeWeapon extends Weapon {
 
 export interface Unit extends Stats {
   name: string;
+  wargearAbilities?: { title: string; description: string }[];
   rangedWeapons?: RangedWeapon[];
   meleeWeapons?: MeleeWeapon[];
   keywords: string[];
@@ -93,11 +95,6 @@ export interface Stats {
 
 export interface Faction {
   factionName: string;
-  armyRule: string[];
-  detachment: Detachment[];
-  weapons: {
-    ranged: RangedWeapon[];
-    melee: MeleeWeapon[];
-  };
-  units: Unit[];
+  armyRule: string;
+  detachments: { [key: string]: Detachment };
 }

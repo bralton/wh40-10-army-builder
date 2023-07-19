@@ -151,7 +151,8 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     strength: 9,
     armourPiercing: -2,
     variableDamage: 'D6',
-    fixedDamage: 1
+    fixedDamage: 1,
+    profile: true
   },
   maleceptorMassiveScythingTalonsSweep: {
     name: 'Massive scything talons - sweep',
@@ -159,7 +160,8 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     weaponSkill: 3,
     strength: 7,
     armourPiercing: -1,
-    fixedDamage: 2
+    fixedDamage: 2,
+    profile: true
   },
   mawlocScythingTalons: {
     name: 'Mawloc scything talons',
@@ -185,7 +187,8 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     strength: 9,
     armourPiercing: -2,
     variableDamage: 'D6',
-    fixedDamage: 0
+    fixedDamage: 0,
+    profile: true
   },
   massiveScythingTalonsSweep: {
     name: 'Massive scything talons - sweep',
@@ -193,7 +196,8 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     weaponSkill: 3,
     strength: 7,
     armourPiercing: -1,
-    fixedDamage: 2
+    fixedDamage: 2,
+    profile: true
   },
   massiveToxicLashes: {
     name: 'Massive toxic lashes',
@@ -237,7 +241,8 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     strength: 14,
     armourPiercing: -3,
     variableDamage: 'D6',
-    fixedDamage: 1
+    fixedDamage: 1,
+    profile: true
   },
   oldOneEyeClawsAndTalonsSweep: {
     name: `Old One Eye's claws and talons - sweep`,
@@ -245,7 +250,8 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     weaponSkill: 3,
     strength: 6,
     armourPiercing: -1,
-    fixedDamage: 1
+    fixedDamage: 1,
+    profile: true
   },
   powerfulLimbs: {
     name: 'Powerful limbs',
@@ -836,7 +842,8 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     armourPiercing: -2,
     variableDamage: 'D3',
     fixedDamage: 0,
-    abilities: [WEAPON_ABILITIES.BLAST, WEAPON_ABILITIES.PSYCHIC]
+    abilities: [WEAPON_ABILITIES.BLAST, WEAPON_ABILITIES.PSYCHIC],
+    profile: true
   },
   warpBlastFocusedWitchfire: {
     name: 'Warp Blast - focused witchfire',
@@ -847,6 +854,7 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     armourPiercing: -3,
     variableDamage: 'D6',
     fixedDamage: 1,
-    abilities: [WEAPON_ABILITIES.LETHAL_HITS, WEAPON_ABILITIES.PSYCHIC]
+    abilities: [WEAPON_ABILITIES.LETHAL_HITS, WEAPON_ABILITIES.PSYCHIC],
+    profile: true
   }
 };

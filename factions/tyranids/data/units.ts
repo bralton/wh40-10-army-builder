@@ -4,6 +4,7 @@ import { meleeWeapons, rangedWeapons } from './weapons';
 import { characters } from './characters';
 import { guardianOrganism } from './leader-modifiers';
 import { WEAPON_ABILITIES } from '@/enums';
+import { ABILITIES } from './abilities';
 
 export const troops: { [key: string]: Unit } = {
   barbgaunts: {
@@ -15,7 +16,7 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      faction: ['Synapse'],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Disruption Bombardment',
@@ -53,8 +54,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      core: ['Deadly Demise 1'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_1],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Seed Spore Mines',
@@ -89,8 +90,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 3,
     abilities: {
-      core: ['Deadly Demise 1'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_1],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Blistering Assault',
@@ -139,8 +140,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 4,
     abilities: {
-      core: ['Deadly Demise D3'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D3],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Symbiotic Targeting',
@@ -172,8 +173,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 2,
     abilities: {
-      core: ['Deep Strike'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Winged Swarm',
@@ -211,8 +212,8 @@ export const troops: { [key: string]: Unit } = {
     invulnerable: 5,
     objectiveControl: 1,
     abilities: {
-      core: ['Scouts 8"'],
-      faction: ['Synapse'],
+      core: [ABILITIES.SCOUTS_8],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Vanguard Predator',
@@ -244,8 +245,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 0,
     abilities: {
-      core: ['Deadly Demise D3', 'Hover'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.HOVER],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Spore Mine Cysts',
@@ -288,8 +289,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 4,
     abilities: {
-      core: ['Deadly Demise D3'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D3],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Grisly Spectacle',
@@ -321,8 +322,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 0,
     abilities: {
-      core: ['Deadly Demise D3', 'Hover'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.HOVER],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Airborne Predator',
@@ -363,7 +364,7 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      faction: ['Synapse'],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Defensive Stance',
@@ -401,7 +402,7 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 2,
     abilities: {
-      faction: ['Synapse'],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Bounding Leap',
@@ -437,8 +438,13 @@ export const troops: { [key: string]: Unit } = {
     objectiveControl: 1,
     invulnerable: 5,
     abilities: {
-      core: ['Fights First', 'Infiltrators', 'Lone Operative', 'Stealth'],
-      faction: ['Synapse'],
+      core: [
+        ABILITIES.FIGHTS_FIRST,
+        ABILITIES.INFILTRATORS,
+        ABILITIES.LONE_OPERATIVE,
+        ABILITIES.STEALTH
+      ],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Feeder Tendrils',
@@ -470,8 +476,8 @@ export const troops: { [key: string]: Unit } = {
     invulnerable: 4,
     objectiveControl: 4,
     abilities: {
-      core: ['Deadly Demise D3'],
-      faction: ['Shadow in the Warp', 'Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D3],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Encephalic Diffusion (Aura, Psychic)',
@@ -511,8 +517,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 4,
     abilities: {
-      core: ['Deep Strike'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Terror From The Deep',
@@ -546,8 +552,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 0,
     abilities: {
-      core: ['Deep Strike'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Bio-minefield',
@@ -583,7 +589,7 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      faction: ['Synapse'],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Neurocytes',
@@ -626,8 +632,8 @@ export const troops: { [key: string]: Unit } = {
     objectiveControl: 3,
     fnp: 5,
     abilities: {
-      core: ['Deadly Demise 1'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_1],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Bio-stimulus (Aura)',
@@ -659,8 +665,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      core: ['Deadly Demise 1'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_1],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Burning Spray',
@@ -692,8 +698,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      core: ['Deep Strike'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Death From Below',
@@ -723,8 +729,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 0,
     abilities: {
-      core: ['Deep Strike'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Chitinous Horrors (Aura)',
@@ -760,8 +766,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 3,
     abilities: {
-      core: ['Deadly Demise 1'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_1],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Death Scream',
@@ -787,8 +793,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 0,
     abilities: {
-      core: ['Deep Strike'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Bio-minefield',
@@ -830,8 +836,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 0,
     abilities: {
-      core: ['Deadly Demise D3'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D3],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Seed Mucolids',
@@ -863,7 +869,7 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 2,
     abilities: {
-      faction: ['Synapse'],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Skulking Horrors',
@@ -909,8 +915,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 4,
     abilities: {
-      core: ['Deadly Demise D3'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D3],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Grasping Tendrils',
@@ -947,8 +953,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 4,
     abilities: {
-      core: ['Deep Strike'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Subterranean Tunnels',
@@ -980,8 +986,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 2,
     abilities: {
-      core: ['Deadly Demise D3', 'Deep Strike'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Aerial Seeding',
@@ -1017,8 +1023,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 5,
     abilities: {
-      core: ['Deadly Demise D6'],
-      faction: ['Synapse'],
+      core: [ABILITIES.DEADLY_DEMISE_D6],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Resilient Organism',
@@ -1054,7 +1060,7 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      faction: ['Synapse'],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Guardian Organism',
@@ -1094,8 +1100,8 @@ export const troops: { [key: string]: Unit } = {
     leadership: 8,
     objectiveControl: 1,
     abilities: {
-      core: ['Stealth'],
-      faction: ['Synapse'],
+      core: [ABILITIES.STEALTH],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Foul Spores (Aura)',
@@ -1131,8 +1137,8 @@ export const troops: { [key: string]: Unit } = {
     objectiveControl: 1,
     invulnerable: 6,
     abilities: {
-      core: ['Fights First', 'Infiltrators', 'Stealth'],
-      faction: ['Synapse'],
+      core: [ABILITIES.FIGHTS_FIRST, ABILITIES.INFILTRATORS, ABILITIES.STEALTH],
+      faction: [ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Pouncing Leap',
@@ -1169,7 +1175,7 @@ export const troops: { [key: string]: Unit } = {
     leadership: 7,
     objectiveControl: 2,
     abilities: {
-      faction: ['Shadow in the Warp', 'Synapse'],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Adrenalised Onslaught',
@@ -1212,7 +1218,7 @@ export const troops: { [key: string]: Unit } = {
     leadership: 7,
     objectiveControl: 2,
     abilities: {
-      faction: ['Shadow in the Warp', 'Synapse'],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Adaptable Predators',
@@ -1258,7 +1264,7 @@ export const troops: { [key: string]: Unit } = {
     invulnerable: 4,
     objectiveControl: 1,
     abilities: {
-      faction: ['Shadow in the Warp', 'Synapse'],
+      faction: [ABILITIES.SHADOW_IN_THE_WARP, ABILITIES.SYNAPSE],
       other: [
         {
           title: 'Spirit Leech [Aura, Psychic]',
