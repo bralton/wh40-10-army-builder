@@ -43,10 +43,11 @@ export const BuildCard: FC<{
   const [hideContent, setHideContent] = useState(hidden);
   const [leaderDropdownOpen, setLeaderDropdownOpen] = useState(false);
   const [enhancementDropdownOpen, setEnhancementDropdownOpen] = useState(false);
-
   const [unitCompositionDropdownOpen, setUnitCompositionDropdownOpen] =
     useState(false);
   const [displayEnhancements, setDisplayEnhancement] = useState(false);
+  const [availableEnhancements, setAvailableEnhancements] =
+    useState<Enhancement[]>();
 
   useEffect(() => {
     const keywords = [...unit.keywords, ...unit.factionKeywords];
@@ -58,6 +59,16 @@ export const BuildCard: FC<{
     } else {
       setDisplayEnhancement(false);
     }
+
+    const tempEnhancements = enhancements.filter((enhancement) => {
+      return enhancement.restrictionKeywords
+        ? enhancement.restrictionKeywords.every(
+            (e) => keywords.includes(e) || unit.name.includes(e)
+          )
+        : true;
+    });
+
+    setAvailableEnhancements(tempEnhancements);
   });
 
   return (
@@ -500,13 +511,15 @@ export const BuildCard: FC<{
                   }>
                   <DropdownToggle caret>Change Enhancement</DropdownToggle>
                   <DropdownMenu>
-                    {enhancements.map((enhancement, index) => (
-                      <DropdownItem
-                        key={index}
-                        onClick={() => applyEnhancement(enhancement)}>
-                        {enhancement.name}
-                      </DropdownItem>
-                    ))}
+                    {availableEnhancements
+                      ? availableEnhancements.map((enhancement, index) => (
+                          <DropdownItem
+                            key={index}
+                            onClick={() => applyEnhancement(enhancement)}>
+                            {enhancement.name}
+                          </DropdownItem>
+                        ))
+                      : null}
                   </DropdownMenu>
                 </Dropdown>
               </div>

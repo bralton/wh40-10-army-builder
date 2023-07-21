@@ -32,7 +32,7 @@ export const characters: { [key: string]: Unit } = {
       rangedWeapons.absolverBoltPistol,
       rangedWeapons.reductorPistol
     ],
-    meleeWeapons: [meleeWeapons.closeCombatWeapon],
+    meleeWeapons: [{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 4 }],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.CHARACTER,
@@ -43,6 +43,62 @@ export const characters: { [key: string]: Unit } = {
     ],
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 55 }
+  },
+  primaris_captain: {
+    name: 'PRIMARIS CAPTAIN',
+    move: 6,
+    toughness: 4,
+    save: 3,
+    wounds: 5,
+    leadership: 6,
+    objectiveControl: 1,
+    invulnerable: 4,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      core: [ABILITIES.LEADER],
+      other: [
+        {
+          title: 'Rites of Battle',
+          description:
+            'Once per battle round, one unit from your army with this ability can be targeted by a Stratagem for 0CP, even if another unit from your army has already been targeted by that Stratagem this phase.'
+        },
+        {
+          title: 'Finest Hour',
+          description:
+            'Once per battle, at the start of the Fight phase, this model can use this ability. If it does, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and those weapons have the [DEVASTATING WOUNDS] ability'
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Relic Shield',
+        description: 'The bearer has a Wounds characteristic of 6.'
+      }
+    ],
+    rangedWeapons: [
+      { ...rangedWeapons.boltPistol, ballisticSkill: 2 },
+      rangedWeapons.heavyBoltPistol,
+      rangedWeapons.masterCraftedBoltRifle,
+      rangedWeapons.neoVolkitePistol,
+      { ...rangedWeapons.plasmaPistolStandard, ballisticSkill: 2 },
+      { ...rangedWeapons.plasmaPistolSupercharge, ballisticSkill: 2 }
+    ],
+    meleeWeapons: [
+      { ...meleeWeapons.closeCombatWeapon, fixedAttacks: 6, weaponSkill: 2 },
+      { ...meleeWeapons.masterCraftedPowerSword, fixedAttacks: 6 },
+      { ...meleeWeapons.powerFist, fixedAttacks: 5 }
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.CHARACTER,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.TACTICUS,
+      'PRIMARIS',
+      'CAPTAIN'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 1, cost: 80 }
   },
   primaris_lieutenant: {
     name: 'PRIMARIS LIEUTENANT',
@@ -74,12 +130,12 @@ export const characters: { [key: string]: Unit } = {
       }
     ],
     rangedWeapons: [
-      rangedWeapons.boltPistol,
+      { ...rangedWeapons.boltPistol, ballisticSkill: 2 },
       rangedWeapons.heavyBoltPistol,
       rangedWeapons.masterCraftedBoltRifle,
       rangedWeapons.neoVolkitePistol,
-      rangedWeapons.plasmaPistolStandard,
-      rangedWeapons.plasmaPistolSupercharge
+      { ...rangedWeapons.plasmaPistolStandard, ballisticSkill: 2 },
+      { ...rangedWeapons.plasmaPistolSupercharge, ballisticSkill: 2 }
     ],
     meleeWeapons: [
       { ...meleeWeapons.closeCombatWeapon, fixedAttacks: 5, weaponSkill: 2 },

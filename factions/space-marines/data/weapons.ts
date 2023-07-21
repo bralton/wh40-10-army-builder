@@ -4,7 +4,7 @@ import { MeleeWeapon, RangedWeapon } from '@/types';
 export const meleeWeapons: { [key: string]: MeleeWeapon } = {
   closeCombatWeapon: {
     name: 'Close combat weapon',
-    fixedAttacks: 4,
+    fixedAttacks: 3,
     weaponSkill: 3,
     strength: 4,
     armourPiercing: 0,
@@ -43,7 +43,7 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     name: 'Bolt pistol',
     range: 12,
     fixedAttacks: 1,
-    ballisticSkill: 2,
+    ballisticSkill: 3,
     strength: 4,
     armourPiercing: 0,
     fixedDamage: 1,
@@ -78,11 +78,37 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     fixedDamage: 2,
     abilities: [WEAPON_ABILITIES.PISTOL, WEAPON_ABILITIES.DEVASTATING_WOUNDS]
   },
+  plasmaIncineratorStandard: {
+    name: 'Plasma incinerator - standard',
+    range: 24,
+    fixedAttacks: 2,
+    ballisticSkill: 3,
+    strength: 7,
+    armourPiercing: -2,
+    fixedDamage: 1,
+    abilities: [WEAPON_ABILITIES.ASSAULT, WEAPON_ABILITIES.HEAVY],
+    profile: true
+  },
+  plasmaIncineratorSupercharge: {
+    name: 'Plasma incinerator - supercharge',
+    range: 24,
+    fixedAttacks: 2,
+    ballisticSkill: 3,
+    strength: 8,
+    armourPiercing: -3,
+    fixedDamage: 2,
+    abilities: [
+      WEAPON_ABILITIES.ASSAULT,
+      WEAPON_ABILITIES.HEAVY,
+      WEAPON_ABILITIES.HAZARDOUS
+    ],
+    profile: true
+  },
   plasmaPistolStandard: {
     name: 'Plasma pistol - standard',
     range: 12,
     fixedAttacks: 1,
-    ballisticSkill: 2,
+    ballisticSkill: 3,
     strength: 7,
     armourPiercing: -2,
     fixedDamage: 1,
@@ -93,7 +119,7 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     name: 'Plasma pistol - supercharge',
     range: 12,
     fixedAttacks: 1,
-    ballisticSkill: 2,
+    ballisticSkill: 3,
     strength: 8,
     armourPiercing: -3,
     fixedDamage: 2,

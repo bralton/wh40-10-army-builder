@@ -65,7 +65,9 @@ export interface Unit extends Stats {
   unitComposition: { modelCount: number; cost: number };
   enhancement?: Enhancement;
   leader?: Unit;
+  secondLeader?: Unit;
   possibleLeaders?: Unit[];
+  possibleSecondLeaders?: Unit[];
   leadStats?: Stats;
   enhancementStats?: Stats;
   leadEffect?: (unit: Unit) => Unit;
