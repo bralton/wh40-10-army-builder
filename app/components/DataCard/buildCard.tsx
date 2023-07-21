@@ -31,6 +31,7 @@ export const BuildCard: FC<{
   setUnitComposition: any;
   applyEnhancement: any;
   removeUnit: any;
+  secondLeaders?: Unit[];
 }> = ({
   unit,
   hidden,
@@ -38,10 +39,13 @@ export const BuildCard: FC<{
   setLeader,
   setUnitComposition,
   applyEnhancement,
-  removeUnit
+  removeUnit,
+  secondLeaders
 }) => {
   const [hideContent, setHideContent] = useState(hidden);
   const [leaderDropdownOpen, setLeaderDropdownOpen] = useState(false);
+  const [secondaryLeaderDropdownOpen, setSecondaryLeaderDropdownOpen] =
+    useState(false);
   const [enhancementDropdownOpen, setEnhancementDropdownOpen] = useState(false);
   const [unitCompositionDropdownOpen, setUnitCompositionDropdownOpen] =
     useState(false);
@@ -281,6 +285,40 @@ export const BuildCard: FC<{
                         ) : (
                           ''
                         )}
+                        {weapon.secondLeaderAbilities ? (
+                          <span
+                            className={`${styles.weaponLeaderAbilities} ${styles.secondLeaderChange}`}>
+                            [{weapon.secondLeaderAbilities.join(', ')}]
+                          </span>
+                        ) : (
+                          ''
+                        )}
+                        {weapon.enhancementAbilities ? (
+                          <span
+                            className={`${styles.weaponEnhancementAbilities} ${styles.enhancementChange}`}>
+                            [{weapon.enhancementAbilities.join(', ')}]
+                          </span>
+                        ) : (
+                          ''
+                        )}
+                        {weapon.leaderEnhancementAbilities ? (
+                          <span
+                            className={`${styles.weaponEnhancementAbilities} ${styles.leaderChange}`}>
+                            [{weapon.leaderEnhancementAbilities.join(', ')}]
+                          </span>
+                        ) : (
+                          ''
+                        )}
+                        {weapon.secondLeaderEnhancementAbilities ? (
+                          <span
+                            className={`${styles.weaponEnhancementAbilities} ${styles.secondLeaderChange}`}>
+                            [
+                            {weapon.secondLeaderEnhancementAbilities.join(', ')}
+                            ]
+                          </span>
+                        ) : (
+                          ''
+                        )}
                       </td>
                       <td>{weapon.range + '"'}</td>
                       <td>
@@ -354,6 +392,40 @@ export const BuildCard: FC<{
                           <span
                             className={`${styles.weaponLeaderAbilities} ${styles.leaderChange}`}>
                             [{weapon.leaderAbilities.join(', ')}]
+                          </span>
+                        ) : (
+                          ''
+                        )}
+                        {weapon.secondLeaderAbilities ? (
+                          <span
+                            className={`${styles.weaponLeaderAbilities} ${styles.secondLeaderChange}`}>
+                            [{weapon.secondLeaderAbilities.join(', ')}]
+                          </span>
+                        ) : (
+                          ''
+                        )}
+                        {weapon.enhancementAbilities ? (
+                          <span
+                            className={`${styles.weaponEnhancementAbilities} ${styles.enhancementChange}`}>
+                            [{weapon.enhancementAbilities.join(', ')}]
+                          </span>
+                        ) : (
+                          ''
+                        )}
+                        {weapon.leaderEnhancementAbilities ? (
+                          <span
+                            className={`${styles.weaponEnhancementAbilities} ${styles.leaderChange}`}>
+                            [{weapon.leaderEnhancementAbilities.join(', ')}]
+                          </span>
+                        ) : (
+                          ''
+                        )}
+                        {weapon.secondLeaderEnhancementAbilities ? (
+                          <span
+                            className={`${styles.weaponEnhancementAbilities} ${styles.secondLeaderChange}`}>
+                            [
+                            {weapon.secondLeaderEnhancementAbilities.join(', ')}
+                            ]
                           </span>
                         ) : (
                           ''
@@ -491,6 +563,30 @@ export const BuildCard: FC<{
                       <DropdownItem
                         key={index}
                         onClick={() => setLeader(leader)}>
+                        {leader.character.name}
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+            ) : null}
+            {secondLeaders ? (
+              <div className={styles.leaderBox}>
+                <p>
+                  <b>Second Leader:</b>{' '}
+                  {unit.secondLeader ? unit.secondLeader.name : 'NONE'}
+                </p>
+                <Dropdown
+                  isOpen={secondaryLeaderDropdownOpen}
+                  toggle={() =>
+                    setSecondaryLeaderDropdownOpen(!secondaryLeaderDropdownOpen)
+                  }>
+                  <DropdownToggle caret>Change Second Leader</DropdownToggle>
+                  <DropdownMenu>
+                    {secondLeaders.map((leader, index) => (
+                      <DropdownItem
+                        key={index}
+                        onClick={() => setLeader({ character: leader }, false)}>
                         {leader.name}
                       </DropdownItem>
                     ))}

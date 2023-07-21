@@ -45,8 +45,14 @@ export const troops: { [key: string]: Unit } = {
       { modelCount: 10, cost: 250 }
     ],
     possibleLeaders: [
-      characters.primaris_apothecary,
-      characters.primaris_lieutenant
+      {
+        character: characters.primaris_apothecary,
+        secondLeader: [characters.primaris_lieutenant]
+      },
+      {
+        character: characters.primaris_lieutenant,
+        secondLeader: [characters.primaris_apothecary]
+      }
     ]
   }
 };

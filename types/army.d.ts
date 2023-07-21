@@ -2,8 +2,9 @@ export interface Enhancement {
   name: string;
   description: string;
   cost: number;
-  change: (unit) => unit;
+  change: (unit: Unit, primary?: boolean) => unit;
   restrictionKeywords?: string[];
+  effectsParent?: boolean;
 }
 
 export interface Stratagem {
@@ -42,6 +43,10 @@ export interface Weapon {
   abilities?: string[];
   detachmentAbilities?: string[];
   leaderAbilities?: string[];
+  enhancementAbilities?: string[];
+  leaderEnhancementAbilities?: string[];
+  secondLeaderEnhancementAbilities?: string[];
+  secondLeaderAbilities?: string[];
   profile?: boolean;
 }
 
@@ -61,16 +66,20 @@ export interface Unit extends Stats {
   meleeWeapons?: MeleeWeapon[];
   keywords: string[];
   factionKeywords: string[];
-  possibleCompositions?: { modelCount: number; cost: number }[];
+  possibleCompositions?: {
+    modelCount: number;
+    cost: number;
+    description?: string;
+  }[];
   unitComposition: { modelCount: number; cost: number };
   enhancement?: Enhancement;
   leader?: Unit;
   secondLeader?: Unit;
-  possibleLeaders?: Unit[];
-  possibleSecondLeaders?: Unit[];
+  possibleLeaders?: { character: Unit; secondLeader?: Unit[] }[];
   leadStats?: Stats;
+  secondLeadStats?: Stats;
   enhancementStats?: Stats;
-  leadEffect?: (unit: Unit) => Unit;
+  leadEffect?: (unit: Unit, primary?: boolean) => Unit;
   damaged?: {
     range: string;
     description: string;

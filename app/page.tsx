@@ -1,6 +1,6 @@
 'use client';
-import { ArmyBuilder } from '@/factions';
+import { ArmySheet } from './components/ArmySheet';
 
 export default function Home() {
-  return <ArmyBuilder />;
+  return <ArmySheet />;
 }

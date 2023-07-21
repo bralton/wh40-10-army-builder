@@ -14,7 +14,7 @@ import { SPACE_MARINES } from '@/factions/space-marines';
 
 import styles from './armysheet.module.scss';
 
-export const ArmyBuilder: FC<{}> = () => {
+export const ArmySheet: FC<{}> = () => {
   const [army, setArmy] = useState<Faction>();
   const [showDetachmentOptions, setShowDetachmentOptions] =
     useState<boolean>(false);

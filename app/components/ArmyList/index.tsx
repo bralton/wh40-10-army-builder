@@ -57,6 +57,13 @@ export const ArmyList: FC<{
             pointCount = pointCount + unit.leader.enhancement.cost;
           }
         }
+
+        if (unit.secondLeader) {
+          pointCount = pointCount + unit.secondLeader.unitComposition.cost;
+          if (unit.secondLeader.enhancement) {
+            pointCount = pointCount + unit.secondLeader.enhancement.cost;
+          }
+        }
       }
       setTotalPoints(pointCount);
     } else {

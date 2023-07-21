@@ -11,6 +11,10 @@
     color: darkred;
   }
 
+  .secondLeaderChange {
+    color: blue;
+  }
+
   .detachmentChange {
     color: darkorange;
   }
@@ -74,6 +78,10 @@
           font-weight: 700;
         }
         .weaponLeaderAbilities {
+          display: block;
+          font-weight: 700;
+        }
+        .weaponEnhancementAbilities {
           display: block;
           font-weight: 700;
         }
