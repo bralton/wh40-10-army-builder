@@ -1,6 +1,6 @@
 'use client';
-import { ArmySheet } from './components/ArmySheet';
+import { ArmySheet } from '../components/ArmySheet';
 
 export default function Home() {
-  return <ArmySheet />;
+  return <div>IT WORKS</div>;
 }

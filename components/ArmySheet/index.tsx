@@ -8,13 +8,12 @@ import {
   Row
 } from 'reactstrap';
 import { Detachment, DetachmentRule, Faction } from '@/types';
-import { Stratagems } from '@/app/components/Stratagems';
-import { ArmyList } from '@/app/components/ArmyList';
-import { SPACE_MARINES } from '@/factions/space-marines';
+import { Stratagems } from '@/components/Stratagems';
+import { ArmyList } from '@/components/ArmyList';
 
 import styles from './armysheet.module.scss';
 
-export const ArmyBuilder: FC<{}> = () => {
+export const ArmySheet: FC<{ faction: Faction }> = ({ faction }) => {
   const [army, setArmy] = useState<Faction>();
   const [showDetachmentOptions, setShowDetachmentOptions] =
     useState<boolean>(false);
@@ -36,10 +35,10 @@ export const ArmyBuilder: FC<{}> = () => {
   }, [detachment]);
 
   useEffect(() => {
-    if (SPACE_MARINES) {
-      setArmy(SPACE_MARINES);
+    if (faction) {
+      setArmy(faction);
     }
-  }, [SPACE_MARINES]);
+  }, [faction]);
 
   const toggleDetachmentRuleDropdown = () =>
     setDetachmentRuleDropdownOpen((prevState) => !prevState);

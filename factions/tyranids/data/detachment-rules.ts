@@ -2,29 +2,30 @@ import { DetachmentRule, Unit } from '@/types';
 
 const swarming_instincts = (unit: Unit) => {
   if (unit.meleeWeapons) {
-    unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
-      return {
-        ...weapon,
-        detachmentAbilities: ['INFANTRY/SWARM SUSTAINED-HITS 1']
-      };
+    unit.meleeWeapons = unit.meleeWeapons.map((weapons) => {
+      return weapons.map((weapon) => {
+        return {
+          ...weapon,
+          detachmentAbilities: ['INFANTRY/SWARM SUSTAINED-HITS 1']
+        };
+      });
     });
   }
   if (unit.rangedWeapons) {
-    unit.rangedWeapons = unit.rangedWeapons.map((weapon) => {
-      return {
-        ...weapon,
-        detachmentAbilities: ['INFANTRY/SWARM SUSTAINED-HITS 1']
-      };
+    unit.rangedWeapons = unit.rangedWeapons.map((weapons) => {
+      return weapons.map((weapon) => {
+        return {
+          ...weapon,
+          detachmentAbilities: ['INFANTRY/SWARM SUSTAINED-HITS 1']
+        };
+      });
     });
-  }
-
-  if (unit.possibleLeaders) {
-    unit.possibleLeaders = unit.possibleLeaders.map((leader) =>
-      swarming_instincts(leader)
-    );
   }
   if (unit.leader) {
     unit.leader = swarming_instincts(unit.leader);
+  }
+  if (unit.secondLeader) {
+    unit.secondLeader = swarming_instincts(unit.secondLeader);
   }
 
   return unit;
@@ -32,29 +33,31 @@ const swarming_instincts = (unit: Unit) => {
 
 const hyper_agression = (unit: Unit) => {
   if (unit.meleeWeapons) {
-    unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
-      return {
-        ...weapon,
-        detachmentAbilities: ['MONSTER/VEHICLE LETHAL HITS']
-      };
+    unit.meleeWeapons = unit.meleeWeapons.map((weapons) => {
+      return weapons.map((weapon) => {
+        return {
+          ...weapon,
+          detachmentAbilities: ['MONSTER/VEHICLE LETHAL HITS']
+        };
+      });
     });
   }
   if (unit.rangedWeapons) {
-    unit.rangedWeapons = unit.rangedWeapons.map((weapon) => {
-      return {
-        ...weapon,
-        detachmentAbilities: ['MONSTER/VEHICLE LETHAL HITS']
-      };
+    unit.rangedWeapons = unit.rangedWeapons.map((weapons) => {
+      return weapons.map((weapon) => {
+        return {
+          ...weapon,
+          detachmentAbilities: ['MONSTER/VEHICLE LETHAL HITS']
+        };
+      });
     });
   }
 
-  if (unit.possibleLeaders) {
-    unit.possibleLeaders = unit.possibleLeaders.map((leader) =>
-      hyper_agression(leader)
-    );
-  }
   if (unit.leader) {
     unit.leader = hyper_agression(unit.leader);
+  }
+  if (unit.secondLeader) {
+    unit.secondLeader = hyper_agression(unit.secondLeader);
   }
 
   return unit;
@@ -62,30 +65,32 @@ const hyper_agression = (unit: Unit) => {
 
 const hive_predators = (unit: Unit) => {
   if (unit.meleeWeapons) {
-    unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
-      return {
-        ...weapon,
-        detachmentAbilities: ['CHARACTER PRECISION']
-      };
+    unit.meleeWeapons = unit.meleeWeapons.map((weapons) => {
+      return weapons.map((weapon) => {
+        return {
+          ...weapon,
+          detachmentAbilities: ['CHARACTER PRECISION']
+        };
+      });
     });
   }
 
   if (unit.rangedWeapons) {
-    unit.rangedWeapons = unit.rangedWeapons.map((weapon) => {
-      return {
-        ...weapon,
-        detachmentAbilities: ['CHARACTER PRECISION']
-      };
+    unit.rangedWeapons = unit.rangedWeapons.map((weapons) => {
+      return weapons.map((weapon) => {
+        return {
+          ...weapon,
+          detachmentAbilities: ['CHARACTER PRECISION']
+        };
+      });
     });
   }
 
-  if (unit.possibleLeaders) {
-    unit.possibleLeaders = unit.possibleLeaders.map((leader) =>
-      hive_predators(leader)
-    );
-  }
   if (unit.leader) {
     unit.leader = hive_predators(unit.leader);
+  }
+  if (unit.secondLeader) {
+    unit.secondLeader = hive_predators(unit.secondLeader);
   }
 
   return unit;
