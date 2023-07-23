@@ -27,6 +27,19 @@ export const DataCard: FC<{
   }>();
 
   useEffect(() => {
+    if (unit.leader && unit.possibleLeaders) {
+      unit.possibleLeaders.find((leaderObject) => {
+        if (
+          leaderObject.character.name === unit.leader?.name &&
+          leaderObject.secondLeader
+        ) {
+          setSecondaryLeaders(leaderObject.secondLeader);
+        }
+      });
+    }
+  });
+
+  useEffect(() => {
     if (leader) {
       if (unit?.leader?.enhancement) {
         removeEnhancement(unit.leader);
@@ -105,18 +118,22 @@ export const DataCard: FC<{
 
     delete tempUnit.enhancementStats;
     if (tempUnit.meleeWeapons) {
-      tempUnit.meleeWeapons = tempUnit.meleeWeapons.map((weapon) => {
-        const tempWeapon = { ...weapon };
-        delete tempWeapon.enhancementAbilities;
-        return tempWeapon;
-      });
+      tempUnit.meleeWeapons = tempUnit.meleeWeapons.map((weapons) =>
+        weapons.map((weapon) => {
+          const tempWeapon = { ...weapon };
+          delete tempWeapon.enhancementAbilities;
+          return tempWeapon;
+        })
+      );
     }
     if (tempUnit.rangedWeapons) {
-      tempUnit.rangedWeapons = tempUnit.rangedWeapons.map((weapon) => {
-        const tempWeapon = { ...weapon };
-        delete tempWeapon.enhancementAbilities;
-        return tempWeapon;
-      });
+      tempUnit.rangedWeapons = tempUnit.rangedWeapons.map((weapons) =>
+        weapons.map((weapon) => {
+          const tempWeapon = { ...weapon };
+          delete tempWeapon.enhancementAbilities;
+          return tempWeapon;
+        })
+      );
     }
 
     if (parentUnit) {
@@ -130,53 +147,59 @@ export const DataCard: FC<{
       if (oldEnhancement?.effectsParent) {
         if (tempParentUnit.meleeWeapons) {
           tempParentUnit.meleeWeapons = tempParentUnit.meleeWeapons.map(
-            (weapon) => {
-              const tempWeapon = { ...weapon };
-              if (primary) {
-                delete tempWeapon.leaderEnhancementAbilities;
-              } else {
-                delete tempWeapon.secondLeaderEnhancementAbilities;
-              }
-              return tempWeapon;
-            }
+            (weapons) =>
+              weapons.map((weapon) => {
+                const tempWeapon = { ...weapon };
+                if (primary) {
+                  delete tempWeapon.leaderEnhancementAbilities;
+                } else {
+                  delete tempWeapon.secondLeaderEnhancementAbilities;
+                }
+                return tempWeapon;
+              })
           );
         }
         if (tempParentUnit.rangedWeapons) {
           tempParentUnit.rangedWeapons = tempParentUnit.rangedWeapons.map(
-            (weapon) => {
-              const tempWeapon = { ...weapon };
-              if (primary) {
-                delete tempWeapon.leaderEnhancementAbilities;
-              } else {
-                delete tempWeapon.secondLeaderEnhancementAbilities;
-              }
-              return tempWeapon;
-            }
+            (weapons) =>
+              weapons.map((weapon) => {
+                const tempWeapon = { ...weapon };
+                if (primary) {
+                  delete tempWeapon.leaderEnhancementAbilities;
+                } else {
+                  delete tempWeapon.secondLeaderEnhancementAbilities;
+                }
+                return tempWeapon;
+              })
           );
         }
         if (tempParentUnit?.secondLeader?.meleeWeapons) {
           tempParentUnit.secondLeader.meleeWeapons =
-            tempParentUnit.secondLeader.meleeWeapons.map((weapon) => {
-              const tempWeapon = { ...weapon };
-              if (primary) {
-                delete tempWeapon.leaderEnhancementAbilities;
-              } else {
-                delete tempWeapon.secondLeaderEnhancementAbilities;
-              }
-              return tempWeapon;
-            });
+            tempParentUnit.secondLeader.meleeWeapons.map((weapons) =>
+              weapons.map((weapon) => {
+                const tempWeapon = { ...weapon };
+                if (primary) {
+                  delete tempWeapon.leaderEnhancementAbilities;
+                } else {
+                  delete tempWeapon.secondLeaderEnhancementAbilities;
+                }
+                return tempWeapon;
+              })
+            );
         }
         if (tempParentUnit?.secondLeader?.rangedWeapons) {
           tempParentUnit.secondLeader.rangedWeapons =
-            tempParentUnit.secondLeader.rangedWeapons.map((weapon) => {
-              const tempWeapon = { ...weapon };
-              if (primary) {
-                delete tempWeapon.leaderEnhancementAbilities;
-              } else {
-                delete tempWeapon.secondLeaderEnhancementAbilities;
-              }
-              return tempWeapon;
-            });
+            tempParentUnit.secondLeader.rangedWeapons.map((weapons) =>
+              weapons.map((weapon) => {
+                const tempWeapon = { ...weapon };
+                if (primary) {
+                  delete tempWeapon.leaderEnhancementAbilities;
+                } else {
+                  delete tempWeapon.secondLeaderEnhancementAbilities;
+                }
+                return tempWeapon;
+              })
+            );
         }
       }
 
@@ -216,24 +239,28 @@ export const DataCard: FC<{
     delete tempUnit.leadStats;
     delete tempUnit.secondLeadStats;
     if (tempUnit.meleeWeapons) {
-      tempUnit.meleeWeapons = tempUnit.meleeWeapons.map((weapon) => {
-        const tempWeapon = { ...weapon };
-        delete tempWeapon.leaderAbilities;
-        delete tempWeapon.secondLeaderAbilities;
-        delete tempWeapon.leaderEnhancementAbilities;
-        delete tempWeapon.secondLeaderEnhancementAbilities;
-        return tempWeapon;
-      });
+      tempUnit.meleeWeapons = tempUnit.meleeWeapons.map((weapons) =>
+        weapons.map((weapon) => {
+          const tempWeapon = { ...weapon };
+          delete tempWeapon.leaderAbilities;
+          delete tempWeapon.secondLeaderAbilities;
+          delete tempWeapon.leaderEnhancementAbilities;
+          delete tempWeapon.secondLeaderEnhancementAbilities;
+          return tempWeapon;
+        })
+      );
     }
     if (tempUnit.rangedWeapons) {
-      tempUnit.rangedWeapons = tempUnit.rangedWeapons.map((weapon) => {
-        const tempWeapon = { ...weapon };
-        delete tempWeapon.leaderAbilities;
-        delete tempWeapon.secondLeaderAbilities;
-        delete tempWeapon.leaderEnhancementAbilities;
-        delete tempWeapon.secondLeaderEnhancementAbilities;
-        return tempWeapon;
-      });
+      tempUnit.rangedWeapons = tempUnit.rangedWeapons.map((weapons) =>
+        weapons.map((weapon) => {
+          const tempWeapon = { ...weapon };
+          delete tempWeapon.leaderAbilities;
+          delete tempWeapon.secondLeaderAbilities;
+          delete tempWeapon.leaderEnhancementAbilities;
+          delete tempWeapon.secondLeaderEnhancementAbilities;
+          return tempWeapon;
+        })
+      );
     }
 
     delete tempUnit.leader;
@@ -254,39 +281,45 @@ export const DataCard: FC<{
     delete tempUnit.secondLeadStats;
     delete tempUnit.leader?.secondLeadStats;
     if (tempUnit.meleeWeapons) {
-      tempUnit.meleeWeapons = tempUnit.meleeWeapons.map((weapon) => {
-        const tempWeapon = { ...weapon };
-        delete tempWeapon.secondLeaderAbilities;
-        delete tempWeapon.secondLeaderEnhancementAbilities;
-        return tempWeapon;
-      });
-    }
-    if (tempUnit.rangedWeapons) {
-      tempUnit.rangedWeapons = tempUnit.rangedWeapons.map((weapon) => {
-        const tempWeapon = { ...weapon };
-        delete tempWeapon.secondLeaderAbilities;
-        delete tempWeapon.secondLeaderEnhancementAbilities;
-        return tempWeapon;
-      });
-    }
-    if (tempUnit.leader?.meleeWeapons) {
-      tempUnit.leader.meleeWeapons = tempUnit.leader.meleeWeapons.map(
-        (weapon) => {
+      tempUnit.meleeWeapons = tempUnit.meleeWeapons.map((weapons) =>
+        weapons.map((weapon) => {
           const tempWeapon = { ...weapon };
           delete tempWeapon.secondLeaderAbilities;
           delete tempWeapon.secondLeaderEnhancementAbilities;
           return tempWeapon;
-        }
+        })
+      );
+    }
+    if (tempUnit.rangedWeapons) {
+      tempUnit.rangedWeapons = tempUnit.rangedWeapons.map((weapons) =>
+        weapons.map((weapon) => {
+          const tempWeapon = { ...weapon };
+          delete tempWeapon.secondLeaderAbilities;
+          delete tempWeapon.secondLeaderEnhancementAbilities;
+          return tempWeapon;
+        })
+      );
+    }
+    if (tempUnit.leader?.meleeWeapons) {
+      tempUnit.leader.meleeWeapons = tempUnit.leader.meleeWeapons.map(
+        (weapons) =>
+          weapons.map((weapon) => {
+            const tempWeapon = { ...weapon };
+            delete tempWeapon.secondLeaderAbilities;
+            delete tempWeapon.secondLeaderEnhancementAbilities;
+            return tempWeapon;
+          })
       );
     }
     if (tempUnit.leader?.rangedWeapons) {
       tempUnit.leader.rangedWeapons = tempUnit.leader?.rangedWeapons.map(
-        (weapon) => {
-          const tempWeapon = { ...weapon };
-          delete tempWeapon.secondLeaderAbilities;
-          delete tempWeapon.secondLeaderEnhancementAbilities;
-          return tempWeapon;
-        }
+        (weapons) =>
+          weapons.map((weapon) => {
+            const tempWeapon = { ...weapon };
+            delete tempWeapon.secondLeaderAbilities;
+            delete tempWeapon.secondLeaderEnhancementAbilities;
+            return tempWeapon;
+          })
       );
     }
 
@@ -312,7 +345,6 @@ export const DataCard: FC<{
     },
     primary = true
   ) => {
-    console.log('look here', character);
     if (primary) {
       setLeader(character);
       setSecondaryLeaders(secondLeader);

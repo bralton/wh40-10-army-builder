@@ -30,7 +30,7 @@ export const characters: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.broodlordClawsAndTalons],
+    meleeWeapons: [[meleeWeapons.broodlordClawsAndTalons]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.CHARACTER,
@@ -71,7 +71,7 @@ export const characters: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.lictorClawsAndTalons],
+    meleeWeapons: [[meleeWeapons.lictorClawsAndTalons]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.CHARACTER,
@@ -108,12 +108,12 @@ export const characters: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.heavyVenomCannon,
-      rangedWeapons.stranglethornCannon
+      [rangedWeapons.heavyVenomCannon],
+      [rangedWeapons.stranglethornCannon]
     ],
     meleeWeapons: [
-      meleeWeapons.monstrousBoneswordAndLashWhip,
-      meleeWeapons.monstrousScythingTalons
+      [meleeWeapons.monstrousBoneswordAndLashWhip],
+      [meleeWeapons.monstrousScythingTalons]
     ],
     keywords: [
       KEYWORDS.MONSTER,
@@ -155,8 +155,8 @@ export const characters: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.psychicScream],
-    meleeWeapons: [meleeWeapons.neurotyrantClawsAndLashes],
+    rangedWeapons: [[rangedWeapons.psychicScream]],
+    meleeWeapons: [[meleeWeapons.neurotyrantClawsAndLashes]],
     keywords: [
       KEYWORDS.MONSTER,
       KEYWORDS.CHARACTER,
@@ -194,8 +194,10 @@ export const characters: { [key: string]: Unit } = {
       ]
     },
     meleeWeapons: [
-      meleeWeapons.oldOneEyeClawsAndTalonsStrike,
-      meleeWeapons.oldOneEyeClawsAndTalonsSweep
+      [
+        meleeWeapons.oldOneEyeClawsAndTalonsStrike,
+        meleeWeapons.oldOneEyeClawsAndTalonsSweep
+      ]
     ],
     keywords: [
       KEYWORDS.MONSTER,
@@ -234,7 +236,7 @@ export const characters: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.barbedOvipositor, meleeWeapons.clawedLimbs],
+    meleeWeapons: [[meleeWeapons.barbedOvipositor], [meleeWeapons.clawedLimbs]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.CHARACTER,
@@ -275,8 +277,8 @@ export const characters: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.synapticPulse],
-    meleeWeapons: [meleeWeapons.boneSabres],
+    rangedWeapons: [[rangedWeapons.synapticPulse]],
+    meleeWeapons: [[meleeWeapons.boneSabres]],
     keywords: [
       KEYWORDS.MONSTER,
       KEYWORDS.CHARACTER,
@@ -313,11 +315,11 @@ export const characters: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.stingerSalvoes],
+    rangedWeapons: [[rangedWeapons.stingerSalvoes]],
     meleeWeapons: [
-      meleeWeapons.massiveCrushingClaws,
-      meleeWeapons.massiveScythingTalonsStrike,
-      meleeWeapons.massiveScythingTalonsSweep
+      [meleeWeapons.massiveCrushingClaws],
+      [meleeWeapons.massiveScythingTalonsStrike],
+      [meleeWeapons.massiveScythingTalonsSweep]
     ],
     keywords: [
       KEYWORDS.MONSTER,
@@ -364,13 +366,13 @@ export const characters: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.heavyVenomCannon,
-      rangedWeapons.stranglethornCannon
+      [rangedWeapons.heavyVenomCannon],
+      [rangedWeapons.stranglethornCannon]
     ],
     meleeWeapons: [
-      meleeWeapons.monstrousBoneswordAndLashWhip,
-      meleeWeapons.monstrousScythingTalons,
-      meleeWeapons.tyrantTalons
+      [meleeWeapons.monstrousBoneswordAndLashWhip],
+      [meleeWeapons.monstrousScythingTalons],
+      [meleeWeapons.tyrantTalons]
     ],
     keywords: [
       KEYWORDS.MONSTER,
@@ -407,7 +409,7 @@ export const characters: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.primeTalons],
+    meleeWeapons: [[meleeWeapons.primeTalons]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.CHARACTER,

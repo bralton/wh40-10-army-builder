@@ -253,97 +253,111 @@ export const BuildCard: FC<{
                   </tr>
                 </thead>
                 <tbody>
-                  {unit.rangedWeapons.map((weapon, index) => (
-                    <tr key={index} className={`${styles.weaponRow}`}>
-                      <td>
-                        {weapon.profile ? (
-                          <FontAwesomeIcon icon={faFlag} />
-                        ) : null}
-                      </td>
-                      <td>
-                        {weapon.name}
-                        {weapon.abilities ? (
-                          <span className={`${styles.weaponAbilities}`}>
-                            [{weapon.abilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.detachmentAbilities ? (
-                          <span
-                            className={`${styles.weaponDetachmentAbilities} ${styles.detachmentChange}`}>
-                            [{weapon.detachmentAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.leaderAbilities ? (
-                          <span
-                            className={`${styles.weaponLeaderAbilities} ${styles.leaderChange}`}>
-                            [{weapon.leaderAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.secondLeaderAbilities ? (
-                          <span
-                            className={`${styles.weaponLeaderAbilities} ${styles.secondLeaderChange}`}>
-                            [{weapon.secondLeaderAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.enhancementAbilities ? (
-                          <span
-                            className={`${styles.weaponEnhancementAbilities} ${styles.enhancementChange}`}>
-                            [{weapon.enhancementAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.leaderEnhancementAbilities ? (
-                          <span
-                            className={`${styles.weaponEnhancementAbilities} ${styles.leaderChange}`}>
-                            [{weapon.leaderEnhancementAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.secondLeaderEnhancementAbilities ? (
-                          <span
-                            className={`${styles.weaponEnhancementAbilities} ${styles.secondLeaderChange}`}>
-                            [
-                            {weapon.secondLeaderEnhancementAbilities.join(', ')}
-                            ]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                      </td>
-                      <td>{weapon.range + '"'}</td>
-                      <td>
-                        {weapon.variableAttacks ? weapon.variableAttacks : ''}
-                        {weapon.variableAttacks && weapon.fixedAttacks > 0
-                          ? '+'
-                          : ''}
-                        {weapon.fixedAttacks > 0 ? weapon.fixedAttacks : ''}
-                      </td>
-                      <td>
-                        {weapon.ballisticSkill > 1
-                          ? weapon.ballisticSkill + '+'
-                          : 'N/A'}
-                      </td>
-                      <td>{weapon.strength}</td>
-                      <td>{weapon.armourPiercing}</td>
-                      <td>
-                        {weapon.variableDamage ? weapon.variableDamage : ''}
-                        {weapon.variableDamage && weapon.fixedDamage > 0
-                          ? '+'
-                          : ''}
-                        {weapon.fixedDamage > 0 ? weapon.fixedDamage : ''}
-                      </td>
-                    </tr>
-                  ))}
+                  {unit.rangedWeapons.map((weapons, index) =>
+                    weapons.map((weapon, key) => (
+                      <tr
+                        key={index}
+                        className={`${styles.weaponRow} ${
+                          weapons.length - 1 === key
+                            ? `${styles.weaponGroupEnd}`
+                            : ''
+                        } ${
+                          index % 2 === 0
+                            ? `${styles.evenWeaponGroup}`
+                            : `${styles.oddWeaponGroup}`
+                        }`}>
+                        <td>
+                          {weapon.profile ? (
+                            <FontAwesomeIcon icon={faFlag} />
+                          ) : null}
+                        </td>
+                        <td>
+                          {weapon.name}
+                          {weapon.abilities ? (
+                            <span className={`${styles.weaponAbilities}`}>
+                              [{weapon.abilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.detachmentAbilities ? (
+                            <span
+                              className={`${styles.weaponDetachmentAbilities} ${styles.detachmentChange}`}>
+                              [{weapon.detachmentAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.leaderAbilities ? (
+                            <span
+                              className={`${styles.weaponLeaderAbilities} ${styles.leaderChange}`}>
+                              [{weapon.leaderAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.secondLeaderAbilities ? (
+                            <span
+                              className={`${styles.weaponLeaderAbilities} ${styles.secondLeaderChange}`}>
+                              [{weapon.secondLeaderAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.enhancementAbilities ? (
+                            <span
+                              className={`${styles.weaponEnhancementAbilities} ${styles.enhancementChange}`}>
+                              [{weapon.enhancementAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.leaderEnhancementAbilities ? (
+                            <span
+                              className={`${styles.weaponEnhancementAbilities} ${styles.leaderChange}`}>
+                              [{weapon.leaderEnhancementAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.secondLeaderEnhancementAbilities ? (
+                            <span
+                              className={`${styles.weaponEnhancementAbilities} ${styles.secondLeaderChange}`}>
+                              [
+                              {weapon.secondLeaderEnhancementAbilities.join(
+                                ', '
+                              )}
+                              ]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                        </td>
+                        <td>{weapon.range + '"'}</td>
+                        <td>
+                          {weapon.variableAttacks ? weapon.variableAttacks : ''}
+                          {weapon.variableAttacks && weapon.fixedAttacks > 0
+                            ? '+'
+                            : ''}
+                          {weapon.fixedAttacks > 0 ? weapon.fixedAttacks : ''}
+                        </td>
+                        <td>
+                          {weapon.ballisticSkill > 1
+                            ? weapon.ballisticSkill + '+'
+                            : 'N/A'}
+                        </td>
+                        <td>{weapon.strength}</td>
+                        <td>{weapon.armourPiercing}</td>
+                        <td>
+                          {weapon.variableDamage ? weapon.variableDamage : ''}
+                          {weapon.variableDamage && weapon.fixedDamage > 0
+                            ? '+'
+                            : ''}
+                          {weapon.fixedDamage > 0 ? weapon.fixedDamage : ''}
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </Table>
             ) : null}
@@ -364,97 +378,111 @@ export const BuildCard: FC<{
                   </tr>
                 </thead>
                 <tbody>
-                  {unit.meleeWeapons.map((weapon, index) => (
-                    <tr key={index} className={`${styles.weaponRow}`}>
-                      <td>
-                        {weapon.profile ? (
-                          <FontAwesomeIcon icon={faFlag} />
-                        ) : null}
-                      </td>
-                      <td>
-                        {weapon.name}
-                        {weapon.abilities ? (
-                          <span className={`${styles.weaponAbilities}`}>
-                            [{weapon.abilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.detachmentAbilities ? (
-                          <span
-                            className={`${styles.weaponDetachmentAbilities} ${styles.detachmentChange}`}>
-                            [{weapon.detachmentAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.leaderAbilities ? (
-                          <span
-                            className={`${styles.weaponLeaderAbilities} ${styles.leaderChange}`}>
-                            [{weapon.leaderAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.secondLeaderAbilities ? (
-                          <span
-                            className={`${styles.weaponLeaderAbilities} ${styles.secondLeaderChange}`}>
-                            [{weapon.secondLeaderAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.enhancementAbilities ? (
-                          <span
-                            className={`${styles.weaponEnhancementAbilities} ${styles.enhancementChange}`}>
-                            [{weapon.enhancementAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.leaderEnhancementAbilities ? (
-                          <span
-                            className={`${styles.weaponEnhancementAbilities} ${styles.leaderChange}`}>
-                            [{weapon.leaderEnhancementAbilities.join(', ')}]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                        {weapon.secondLeaderEnhancementAbilities ? (
-                          <span
-                            className={`${styles.weaponEnhancementAbilities} ${styles.secondLeaderChange}`}>
-                            [
-                            {weapon.secondLeaderEnhancementAbilities.join(', ')}
-                            ]
-                          </span>
-                        ) : (
-                          ''
-                        )}
-                      </td>
-                      <td>Melee</td>
-                      <td>
-                        {weapon.variableAttacks ? weapon.variableAttacks : ''}
-                        {weapon.variableAttacks && weapon.fixedAttacks > 0
-                          ? '+'
-                          : ''}
-                        {weapon.fixedAttacks > 0 ? weapon.fixedAttacks : ''}
-                      </td>
-                      <td>
-                        {weapon.weaponSkill > 1
-                          ? weapon.weaponSkill + '+'
-                          : 'N/A'}
-                      </td>
-                      <td>{weapon.strength}</td>
-                      <td>{weapon.armourPiercing}</td>
-                      <td>
-                        {weapon.variableDamage ? weapon.variableDamage : ''}
-                        {weapon.variableDamage && weapon.fixedDamage > 0
-                          ? '+'
-                          : ''}
-                        {weapon.fixedDamage > 0 ? weapon.fixedDamage : ''}
-                      </td>
-                    </tr>
-                  ))}
+                  {unit.meleeWeapons.map((weapons, index) =>
+                    weapons.map((weapon, key) => (
+                      <tr
+                        key={index}
+                        className={`${styles.weaponRow} ${
+                          weapons.length - 1 === key
+                            ? `${styles.weaponGroupEnd}`
+                            : ''
+                        } ${
+                          index % 2 === 0
+                            ? `${styles.evenWeaponGroup}`
+                            : `${styles.oddWeaponGroup}`
+                        }`}>
+                        <td>
+                          {weapon.profile ? (
+                            <FontAwesomeIcon icon={faFlag} />
+                          ) : null}
+                        </td>
+                        <td>
+                          {weapon.name}
+                          {weapon.abilities ? (
+                            <span className={`${styles.weaponAbilities}`}>
+                              [{weapon.abilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.detachmentAbilities ? (
+                            <span
+                              className={`${styles.weaponDetachmentAbilities} ${styles.detachmentChange}`}>
+                              [{weapon.detachmentAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.leaderAbilities ? (
+                            <span
+                              className={`${styles.weaponLeaderAbilities} ${styles.leaderChange}`}>
+                              [{weapon.leaderAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.secondLeaderAbilities ? (
+                            <span
+                              className={`${styles.weaponLeaderAbilities} ${styles.secondLeaderChange}`}>
+                              [{weapon.secondLeaderAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.enhancementAbilities ? (
+                            <span
+                              className={`${styles.weaponEnhancementAbilities} ${styles.enhancementChange}`}>
+                              [{weapon.enhancementAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.leaderEnhancementAbilities ? (
+                            <span
+                              className={`${styles.weaponEnhancementAbilities} ${styles.leaderChange}`}>
+                              [{weapon.leaderEnhancementAbilities.join(', ')}]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                          {weapon.secondLeaderEnhancementAbilities ? (
+                            <span
+                              className={`${styles.weaponEnhancementAbilities} ${styles.secondLeaderChange}`}>
+                              [
+                              {weapon.secondLeaderEnhancementAbilities.join(
+                                ', '
+                              )}
+                              ]
+                            </span>
+                          ) : (
+                            ''
+                          )}
+                        </td>
+                        <td>Melee</td>
+                        <td>
+                          {weapon.variableAttacks ? weapon.variableAttacks : ''}
+                          {weapon.variableAttacks && weapon.fixedAttacks > 0
+                            ? '+'
+                            : ''}
+                          {weapon.fixedAttacks > 0 ? weapon.fixedAttacks : ''}
+                        </td>
+                        <td>
+                          {weapon.weaponSkill > 1
+                            ? weapon.weaponSkill + '+'
+                            : 'N/A'}
+                        </td>
+                        <td>{weapon.strength}</td>
+                        <td>{weapon.armourPiercing}</td>
+                        <td>
+                          {weapon.variableDamage ? weapon.variableDamage : ''}
+                          {weapon.variableDamage && weapon.fixedDamage > 0
+                            ? '+'
+                            : ''}
+                          {weapon.fixedDamage > 0 ? weapon.fixedDamage : ''}
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </Table>
             ) : null}

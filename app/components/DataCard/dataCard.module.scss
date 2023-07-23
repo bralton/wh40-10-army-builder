@@ -58,17 +58,9 @@
         }
       }
       .weaponRow {
-        border-bottom-style: dotted;
-        border-bottom: 1px;
-        &:nth-child(even) {
-          td {
-            background-color: lightgray;
-          }
-        }
         td {
-          background: white;
+          border-bottom-width: 0;
         }
-
         .weaponAbilities {
           display: block;
           font-weight: 700;
@@ -85,6 +77,21 @@
           display: block;
           font-weight: 700;
         }
+      }
+      .oddWeaponGroup {
+        td {
+          background: white;
+        }
+      }
+      .evenWeaponGroup {
+        td {
+          background-color: lightgray;
+        }
+      }
+      .weaponGroupEnd {
+        border-bottom-width: 2px;
+        border-bottom-color: black;
+        border-bottom-style: dotted;
       }
     }
 

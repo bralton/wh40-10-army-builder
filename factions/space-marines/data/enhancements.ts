@@ -51,40 +51,44 @@ const bolterDisciplineAbilityChange = (
   owner: boolean
 ): Unit => {
   if (unit.meleeWeapons) {
-    unit.meleeWeapons = unit.meleeWeapons?.map((weapon) => {
-      return {
-        ...weapon,
-        enhancementAbilities: owner
-          ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
-          : undefined,
-        leaderEnhancementAbilities:
-          !owner && primary
+    unit.meleeWeapons = unit.meleeWeapons?.map((weapons) =>
+      weapons.map((weapon) => {
+        return {
+          ...weapon,
+          enhancementAbilities: owner
             ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
             : undefined,
-        secondLeaderEnhancementAbilities:
-          !owner && !primary
-            ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
-            : undefined
-      };
-    });
+          leaderEnhancementAbilities:
+            !owner && primary
+              ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
+              : undefined,
+          secondLeaderEnhancementAbilities:
+            !owner && !primary
+              ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
+              : undefined
+        };
+      })
+    );
   }
   if (unit.rangedWeapons) {
-    unit.rangedWeapons = unit.rangedWeapons?.map((weapon) => {
-      return {
-        ...weapon,
-        enhancementAbilities: owner
-          ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
-          : undefined,
-        leaderEnhancementAbilities:
-          !owner && primary
+    unit.rangedWeapons = unit.rangedWeapons?.map((weapons) =>
+      weapons.map((weapon) => {
+        return {
+          ...weapon,
+          enhancementAbilities: owner
             ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
             : undefined,
-        secondLeaderEnhancementAbilities:
-          !owner && !primary
-            ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
-            : undefined
-      };
-    });
+          leaderEnhancementAbilities:
+            !owner && primary
+              ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
+              : undefined,
+          secondLeaderEnhancementAbilities:
+            !owner && !primary
+              ? [WEAPON_ABILITIES.SUSTAINED_HITS + ' 1']
+              : undefined
+        };
+      })
+    );
   }
 
   return unit;

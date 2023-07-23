@@ -62,8 +62,8 @@ export interface MeleeWeapon extends Weapon {
 export interface Unit extends Stats {
   name: string;
   wargearAbilities?: { title: string; description: string }[];
-  rangedWeapons?: RangedWeapon[];
-  meleeWeapons?: MeleeWeapon[];
+  rangedWeapons?: RangedWeapon[][];
+  meleeWeapons?: MeleeWeapon[][];
   keywords: string[];
   factionKeywords: string[];
   possibleCompositions?: {
@@ -93,7 +93,10 @@ export interface Stats {
   toughness: number;
   save: number;
   invulnerable?: number;
+  invulnerableMelee?: number;
+  invulnerableRange?: number;
   fnp?: number | string;
+  fnpMortal?: number | string;
   wounds: number;
   leadership: number;
   objectiveControl: number;

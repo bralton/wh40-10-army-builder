@@ -120,6 +120,20 @@ export const ArmyList: FC<{
     if (unit) {
       tempRoster[index] = unit;
     } else {
+      const tempUnit = { ...tempRoster[index] };
+
+      const enhancementsToReturn = [...availableEnhancements];
+      if (tempUnit.enhancement) {
+        enhancementsToReturn.push(tempUnit.enhancement);
+      }
+      if (tempUnit?.leader?.enhancement) {
+        enhancementsToReturn.push(tempUnit.leader.enhancement);
+      }
+      if (tempUnit?.secondLeader?.enhancement) {
+        enhancementsToReturn.push(tempUnit.secondLeader.enhancement);
+      }
+      setAvailableEnhancements(enhancementsToReturn);
+
       tempRoster.splice(index, 1);
     }
     setUnitsInArmy(tempRoster);

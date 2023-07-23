@@ -25,14 +25,16 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.bioCannon],
+    rangedWeapons: [[rangedWeapons.bioCannon]],
     meleeWeapons: [
-      {
-        ...meleeWeapons.xenosClawsAndTeeth,
-        strength: 4,
-        fixedAttacks: 1,
-        weaponSkill: 4
-      }
+      [
+        {
+          ...meleeWeapons.xenosClawsAndTeeth,
+          strength: 4,
+          fixedAttacks: 1,
+          weaponSkill: 4
+        }
+      ]
     ],
     keywords: [KEYWORDS.INFANTRY, KEYWORDS.GREAT_DEVOURER, 'BARBGAUNTS'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
@@ -64,8 +66,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.sporeMineLauncher],
-    meleeWeapons: [meleeWeapons.chitinBarbedLimbs],
+    rangedWeapons: [[rangedWeapons.sporeMineLauncher]],
+    meleeWeapons: [[meleeWeapons.chitinBarbedLimbs]],
     keywords: [KEYWORDS.INFANTRY, KEYWORDS.GREAT_DEVOURER, 'BIOVORES'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: { modelCount: 1, cost: 65 },
@@ -101,23 +103,25 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.bioPlasma,
-      rangedWeapons.deathspitterWithSlimerMaggots,
-      rangedWeapons.devourersWithBrainleechWorms,
-      { ...rangedWeapons.heavyVenomCannon, ballisticSkill: 4 },
-      rangedWeapons.spineBanks,
-      { ...rangedWeapons.stranglethornCannon, ballisticSkill: 4 }
+      [rangedWeapons.bioPlasma],
+      [rangedWeapons.deathspitterWithSlimerMaggots],
+      [rangedWeapons.devourersWithBrainleechWorms],
+      [{ ...rangedWeapons.heavyVenomCannon, ballisticSkill: 4 }],
+      [rangedWeapons.spineBanks],
+      [{ ...rangedWeapons.stranglethornCannon, ballisticSkill: 4 }]
     ],
     meleeWeapons: [
-      meleeWeapons.carnifexCrushingClaws,
-      meleeWeapons.carnifexExtraScythingTalons,
-      meleeWeapons.carnifexScythingTalons,
-      {
-        ...meleeWeapons.xenosClawsAndTeeth,
-        strength: 6,
-        fixedAttacks: 4,
-        weaponSkill: 4
-      }
+      [meleeWeapons.carnifexCrushingClaws],
+      [meleeWeapons.carnifexExtraScythingTalons],
+      [meleeWeapons.carnifexScythingTalons],
+      [
+        {
+          ...meleeWeapons.xenosClawsAndTeeth,
+          strength: 6,
+          fixedAttacks: 4,
+          weaponSkill: 4
+        }
+      ]
     ],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'CARNIFEXES'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
@@ -128,7 +132,7 @@ export const troops: { [key: string]: Unit } = {
       },
       { modelCount: 2, cost: 250 }
     ],
-    possibleLeaders: [characters.oldOneEye],
+    possibleLeaders: [{ character: characters.oldOneEye }],
     unitComposition: { modelCount: 1, cost: 125 }
   },
   exocrine: {
@@ -150,8 +154,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.bioPlasmicCannon],
-    meleeWeapons: [meleeWeapons.powerfulLimbs],
+    rangedWeapons: [[rangedWeapons.bioPlasmicCannon]],
+    meleeWeapons: [[meleeWeapons.powerfulLimbs]],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'EXOCRINE'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: {
@@ -182,8 +186,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.fleshBorer],
-    meleeWeapons: [meleeWeapons.blindingVenom],
+    rangedWeapons: [[rangedWeapons.fleshBorer]],
+    meleeWeapons: [[meleeWeapons.blindingVenom]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.FLY,
@@ -199,7 +203,7 @@ export const troops: { [key: string]: Unit } = {
       },
       { modelCount: 20, cost: 160 }
     ],
-    possibleLeaders: [characters.wingedTyranidPrime],
+    possibleLeaders: [{ character: characters.wingedTyranidPrime }],
     unitComposition: { modelCount: 10, cost: 75 }
   },
   genestealers: {
@@ -222,7 +226,7 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.genestealerClawsAndTalons],
+    meleeWeapons: [[meleeWeapons.genestealerClawsAndTalons]],
     keywords: [KEYWORDS.INFANTRY, KEYWORDS.GREAT_DEVOURER, 'GENESTEALERS'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     possibleCompositions: [
@@ -232,7 +236,7 @@ export const troops: { [key: string]: Unit } = {
       },
       { modelCount: 10, cost: 180 }
     ],
-    possibleLeaders: [characters.broodlord],
+    possibleLeaders: [{ character: characters.broodlord }],
     unitComposition: { modelCount: 5, cost: 90 }
   },
   harpy: {
@@ -257,11 +261,11 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.stingerSalvoes,
-      rangedWeapons.twinHeavyVenomCannon,
-      rangedWeapons.twinStranglethornCannon
+      [rangedWeapons.stingerSalvoes],
+      [rangedWeapons.twinHeavyVenomCannon],
+      [rangedWeapons.twinStranglethornCannon]
     ],
-    meleeWeapons: [meleeWeapons.scythingWings],
+    meleeWeapons: [[meleeWeapons.scythingWings]],
     keywords: [
       KEYWORDS.MONSTER,
       KEYWORDS.FLY,
@@ -298,8 +302,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.graspingTongue],
-    meleeWeapons: [meleeWeapons.ravenousMaw, meleeWeapons.shovellingClaws],
+    rangedWeapons: [[rangedWeapons.graspingTongue]],
+    meleeWeapons: [[meleeWeapons.ravenousMaw], [meleeWeapons.shovellingClaws]],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'HARUSPEX'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: {
@@ -332,11 +336,11 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.droolCannon,
-      rangedWeapons.stingerSalvoes,
-      rangedWeapons.tentaclids
+      [rangedWeapons.droolCannon],
+      [rangedWeapons.stingerSalvoes],
+      [rangedWeapons.tentaclids]
     ],
-    meleeWeapons: [meleeWeapons.scythingWings, meleeWeapons.thoraxSpur],
+    meleeWeapons: [[meleeWeapons.scythingWings], [meleeWeapons.thoraxSpur]],
     keywords: [
       KEYWORDS.MONSTER,
       KEYWORDS.FLY,
@@ -373,14 +377,16 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.impalerCannon, rangedWeapons.shockCannon],
+    rangedWeapons: [[rangedWeapons.impalerCannon], [rangedWeapons.shockCannon]],
     meleeWeapons: [
-      {
-        ...meleeWeapons.xenosClawsAndTeeth,
-        strength: 5,
-        weaponSkill: 4,
-        fixedAttacks: 3
-      }
+      [
+        {
+          ...meleeWeapons.xenosClawsAndTeeth,
+          strength: 5,
+          weaponSkill: 4,
+          fixedAttacks: 3
+        }
+      ]
     ],
     keywords: [KEYWORDS.INFANTRY, KEYWORDS.GREAT_DEVOURER, 'HIVE GUARD'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
@@ -411,7 +417,7 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.hormagauntTalons],
+    meleeWeapons: [[meleeWeapons.hormagauntTalons]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.GREAT_DEVOURER,
@@ -458,7 +464,7 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.lictorClawsAndTalons],
+    meleeWeapons: [[meleeWeapons.lictorClawsAndTalons]],
     keywords: [KEYWORDS.INFANTRY, KEYWORDS.GREAT_DEVOURER, 'LICTOR'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: {
@@ -487,8 +493,10 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     meleeWeapons: [
-      meleeWeapons.maleceptorMassiveScythingTalonsStrike,
-      meleeWeapons.maleceptorMassiveScythingTalonsSweep
+      [
+        meleeWeapons.maleceptorMassiveScythingTalonsStrike,
+        meleeWeapons.maleceptorMassiveScythingTalonsSweep
+      ]
     ],
     keywords: [
       KEYWORDS.MONSTER,
@@ -528,8 +536,8 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     meleeWeapons: [
-      meleeWeapons.distensibleJaw,
-      meleeWeapons.mawlocScythingTalons
+      [meleeWeapons.distensibleJaw],
+      [meleeWeapons.mawlocScythingTalons]
     ],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'MAWLOC'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
@@ -599,11 +607,13 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     meleeWeapons: [
-      {
-        ...meleeWeapons.xenosClawsAndTeeth,
-        fixedAttacks: 1,
-        weaponSkill: 4
-      }
+      [
+        {
+          ...meleeWeapons.xenosClawsAndTeeth,
+          fixedAttacks: 1,
+          weaponSkill: 4
+        }
+      ]
     ],
     keywords: [
       KEYWORDS.INFANTRY,
@@ -619,7 +629,7 @@ export const troops: { [key: string]: Unit } = {
       },
       { modelCount: 22, cost: 90 }
     ],
-    possibleLeaders: [characters.neuroTyrant],
+    possibleLeaders: [{ character: characters.neuroTyrant }],
     unitComposition: { modelCount: 11, cost: 45 }
   },
   psychophage: {
@@ -647,8 +657,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.psychoclasticTorrent],
-    meleeWeapons: [meleeWeapons.talonsAndBetentacledMaw],
+    rangedWeapons: [[rangedWeapons.psychoclasticTorrent]],
+    meleeWeapons: [[meleeWeapons.talonsAndBetentacledMaw]],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'PSYCHOPHAGE'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: {
@@ -675,8 +685,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.flamespurt],
-    meleeWeapons: [meleeWeapons.chitinBarbedLimbs],
+    rangedWeapons: [[rangedWeapons.flamespurt]],
+    meleeWeapons: [[meleeWeapons.chitinBarbedLimbs]],
     keywords: [KEYWORDS.INFANTRY, KEYWORDS.GREAT_DEVOURER, 'PYROVORES'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     possibleCompositions: [
@@ -707,8 +717,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.thoracicBioWeapon],
-    meleeWeapons: [meleeWeapons.ravenerClawsAndTalons],
+    rangedWeapons: [[rangedWeapons.thoracicBioWeapon]],
+    meleeWeapons: [[meleeWeapons.ravenerClawsAndTalons]],
     keywords: [KEYWORDS.INFANTRY, KEYWORDS.GREAT_DEVOURER, 'RAVENERS'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     possibleCompositions: [
@@ -738,13 +748,15 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.spinemaws],
+    rangedWeapons: [[rangedWeapons.spinemaws]],
     meleeWeapons: [
-      {
-        ...meleeWeapons.xenosClawsAndTeeth,
-        fixedAttacks: 6,
-        strength: 2
-      }
+      [
+        {
+          ...meleeWeapons.xenosClawsAndTeeth,
+          fixedAttacks: 6,
+          strength: 2
+        }
+      ]
     ],
     keywords: [KEYWORDS.SWARM, KEYWORDS.GREAT_DEVOURER, 'RIPPER SWARMS'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
@@ -775,8 +787,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.bioPlasmicScream],
-    meleeWeapons: [meleeWeapons.screamerKillerTalons],
+    rangedWeapons: [[rangedWeapons.bioPlasmicScream]],
+    meleeWeapons: [[meleeWeapons.screamerKillerTalons]],
     keywords: [KEYWORDS.SWARM, KEYWORDS.GREAT_DEVOURER, 'SCREAMER-KILLER'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: {
@@ -851,8 +863,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.sporocystBioWeapons],
-    meleeWeapons: [{ ...meleeWeapons.flensingWhips, fixedDamage: 1 }],
+    rangedWeapons: [[rangedWeapons.sporocystBioWeapons]],
+    meleeWeapons: [[{ ...meleeWeapons.flensingWhips, fixedDamage: 1 }]],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'SPOROCYST'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: {
@@ -879,16 +891,18 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.fleshBorer,
-      rangedWeapons.termagantSpinefists,
-      rangedWeapons.termagantDevourer
+      [rangedWeapons.fleshBorer],
+      [rangedWeapons.termagantSpinefists],
+      [rangedWeapons.termagantDevourer]
     ],
     meleeWeapons: [
-      {
-        ...meleeWeapons.xenosClawsAndTeeth,
-        fixedAttacks: 1,
-        weaponSkill: 4
-      }
+      [
+        {
+          ...meleeWeapons.xenosClawsAndTeeth,
+          fixedAttacks: 1,
+          weaponSkill: 4
+        }
+      ]
     ],
     keywords: [
       KEYWORDS.INFANTRY,
@@ -930,8 +944,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.massiveToxicLashes],
-    meleeWeapons: [meleeWeapons.massiveToxicLashes],
+    rangedWeapons: [[rangedWeapons.massiveToxicLashes]],
+    meleeWeapons: [[meleeWeapons.massiveToxicLashes]],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'TOXICRENE'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: {
@@ -963,8 +977,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.bioElectricPulse],
-    meleeWeapons: [meleeWeapons.trygonScythingTalons],
+    rangedWeapons: [[rangedWeapons.bioElectricPulse]],
+    meleeWeapons: [[meleeWeapons.trygonScythingTalons]],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'TRYGON'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
     unitComposition: {
@@ -996,8 +1010,8 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    rangedWeapons: [rangedWeapons.tyrannocyteBioWeapons],
-    meleeWeapons: [meleeWeapons.flensingWhips],
+    rangedWeapons: [[rangedWeapons.tyrannocyteBioWeapons]],
+    meleeWeapons: [[meleeWeapons.flensingWhips]],
     keywords: [
       KEYWORDS.MONSTER,
       KEYWORDS.FLY,
@@ -1034,13 +1048,13 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.acidSpray,
-      rangedWeapons.fleshBorerHive,
-      rangedWeapons.ruptureCannon,
-      rangedWeapons.stingerSalvoes
+      [rangedWeapons.acidSpray],
+      [rangedWeapons.fleshBorerHive],
+      [rangedWeapons.ruptureCannon],
+      [rangedWeapons.stingerSalvoes]
     ],
     meleeWeapons: [
-      { ...meleeWeapons.powerfulLimbs, fixedAttacks: 4, strength: 8 }
+      [{ ...meleeWeapons.powerfulLimbs, fixedAttacks: 4, strength: 8 }]
     ],
     keywords: [KEYWORDS.MONSTER, KEYWORDS.GREAT_DEVOURER, 'TYRANNOFEX'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
@@ -1070,9 +1084,9 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     meleeWeapons: [
-      meleeWeapons.tyrantGuardCleaver,
-      meleeWeapons.tyrantGuardCrushingClaws,
-      meleeWeapons.tyrantGuardSythingTalons
+      [meleeWeapons.tyrantGuardCleaver],
+      [meleeWeapons.tyrantGuardCrushingClaws],
+      [meleeWeapons.tyrantGuardSythingTalons]
     ],
     keywords: [KEYWORDS.INFANTRY, KEYWORDS.GREAT_DEVOURER, 'TYRANT GUARD'],
     factionKeywords: [KEYWORDS.FACTION.TYRANIDS],
@@ -1084,9 +1098,9 @@ export const troops: { [key: string]: Unit } = {
       { modelCount: 6, cost: 190 }
     ],
     possibleLeaders: [
-      characters.swarmlord,
-      characters.hiveTyrant,
-      characters.neuroTyrant
+      { character: characters.swarmlord },
+      { character: characters.hiveTyrant },
+      { character: characters.neuroTyrant }
     ],
     leadEffect: guardianOrganism,
     unitComposition: { modelCount: 3, cost: 95 }
@@ -1110,7 +1124,7 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.toxicLashes],
+    meleeWeapons: [[meleeWeapons.toxicLashes]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.FLY,
@@ -1147,7 +1161,7 @@ export const troops: { [key: string]: Unit } = {
         }
       ]
     },
-    meleeWeapons: [meleeWeapons.leapersTalons],
+    meleeWeapons: [[meleeWeapons.leapersTalons]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.GREAT_DEVOURER,
@@ -1186,12 +1200,14 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     meleeWeapons: [
-      {
-        ...meleeWeapons.bioWeapons,
-        abilities: [WEAPON_ABILITIES.TWIN_LINKED],
-        fixedAttacks: 6,
-        armourPiercing: -2
-      }
+      [
+        {
+          ...meleeWeapons.bioWeapons,
+          abilities: [WEAPON_ABILITIES.TWIN_LINKED],
+          fixedAttacks: 6,
+          armourPiercing: -2
+        }
+      ]
     ],
     keywords: [
       KEYWORDS.INFANTRY,
@@ -1206,7 +1222,7 @@ export const troops: { [key: string]: Unit } = {
       },
       { modelCount: 6, cost: 180 }
     ],
-    possibleLeaders: [characters.wingedTyranidPrime],
+    possibleLeaders: [{ character: characters.wingedTyranidPrime }],
     unitComposition: { modelCount: 3, cost: 90 }
   },
   warriorsWithRangedBioWeapons: {
@@ -1228,13 +1244,13 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.barbedStrangler,
-      rangedWeapons.deathspitter,
-      rangedWeapons.devourer,
-      rangedWeapons.spinefists,
-      rangedWeapons.venomCannon
+      [rangedWeapons.barbedStrangler],
+      [rangedWeapons.deathspitter],
+      [rangedWeapons.devourer],
+      [rangedWeapons.spinefists],
+      [rangedWeapons.venomCannon]
     ],
-    meleeWeapons: [meleeWeapons.bioWeapons],
+    meleeWeapons: [[meleeWeapons.bioWeapons]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.SYNAPSE,
@@ -1252,7 +1268,7 @@ export const troops: { [key: string]: Unit } = {
         cost: 140
       }
     ],
-    possibleLeaders: [characters.wingedTyranidPrime]
+    possibleLeaders: [{ character: characters.wingedTyranidPrime }]
   },
   zoanthropes: {
     name: 'ZOANTHROPES',
@@ -1279,10 +1295,12 @@ export const troops: { [key: string]: Unit } = {
       ]
     },
     rangedWeapons: [
-      rangedWeapons.warpBlastWitchfire,
-      rangedWeapons.warpBlastFocusedWitchfire
+      [
+        rangedWeapons.warpBlastWitchfire,
+        rangedWeapons.warpBlastFocusedWitchfire
+      ]
     ],
-    meleeWeapons: [meleeWeapons.xenosClawsAndTeeth],
+    meleeWeapons: [[meleeWeapons.xenosClawsAndTeeth]],
     keywords: [
       KEYWORDS.INFANTRY,
       KEYWORDS.PSYKER,

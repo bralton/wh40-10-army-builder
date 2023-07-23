@@ -3,26 +3,30 @@ import { Unit } from '@/types';
 
 export const tactical_precision = (unit: Unit, primary = true): Unit => {
   if (unit.meleeWeapons) {
-    unit.meleeWeapons = unit.meleeWeapons.map((weapon) => {
-      return {
-        ...weapon,
-        leaderAbilities: primary ? [WEAPON_ABILITIES.LETHAL_HITS] : undefined,
-        secondLeaderAbilities: !primary
-          ? [WEAPON_ABILITIES.LETHAL_HITS]
-          : undefined
-      };
-    });
+    unit.meleeWeapons = unit.meleeWeapons.map((weapons) =>
+      weapons.map((weapon) => {
+        return {
+          ...weapon,
+          leaderAbilities: primary ? [WEAPON_ABILITIES.LETHAL_HITS] : undefined,
+          secondLeaderAbilities: !primary
+            ? [WEAPON_ABILITIES.LETHAL_HITS]
+            : undefined
+        };
+      })
+    );
   }
   if (unit.rangedWeapons) {
-    unit.rangedWeapons = unit.rangedWeapons.map((weapon) => {
-      return {
-        ...weapon,
-        leaderAbilities: primary ? [WEAPON_ABILITIES.LETHAL_HITS] : undefined,
-        secondLeaderAbilities: !primary
-          ? [WEAPON_ABILITIES.LETHAL_HITS]
-          : undefined
-      };
-    });
+    unit.rangedWeapons = unit.rangedWeapons.map((weapons) =>
+      weapons.map((weapon) => {
+        return {
+          ...weapon,
+          leaderAbilities: primary ? [WEAPON_ABILITIES.LETHAL_HITS] : undefined,
+          secondLeaderAbilities: !primary
+            ? [WEAPON_ABILITIES.LETHAL_HITS]
+            : undefined
+        };
+      })
+    );
   }
 
   if (unit.leader) {
