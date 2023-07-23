@@ -5,7 +5,123 @@ import { characters } from './characters';
 import { WEAPON_ABILITIES } from '@/enums';
 import { ABILITIES } from './abilities';
 
+const invader_atv: Unit = {
+  name: 'INVADER ATV',
+  move: 12,
+  toughness: 5,
+  save: 3,
+  wounds: 8,
+  leadership: 6,
+  objectiveControl: 2,
+  abilities: {
+    faction: [ABILITIES.OATHS]
+  },
+  rangedWeapons: [
+    [rangedWeapons.heavyBoltPistol],
+    [rangedWeapons.multiMelta],
+    [rangedWeapons.onslaughtGatlingCannon],
+    [rangedWeapons.twinBoltRifle]
+  ],
+  meleeWeapons: [[{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 5 }]],
+  keywords: [
+    KEYWORDS.MOUNTED,
+    KEYWORDS.GRENADES,
+    KEYWORDS.IMPERIUM,
+    'INVADER ATV'
+  ],
+  factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+  unitComposition: { modelCount: 1, cost: 80 }
+};
+const attack_bike_squad: Unit = {
+  name: 'ATTACK BIKE SQUAD',
+  move: 12,
+  toughness: 5,
+  save: 3,
+  wounds: 5,
+  leadership: 6,
+  objectiveControl: 2,
+  abilities: {
+    faction: [ABILITIES.OATHS]
+  },
+  rangedWeapons: [
+    [rangedWeapons.boltPistol],
+    [
+      {
+        ...rangedWeapons.heavyBolter,
+        ballisticSkill: 3,
+        abilities: [WEAPON_ABILITIES.SUSTAINED_HITS_1]
+      }
+    ],
+    [rangedWeapons.multiMelta],
+    [{ ...rangedWeapons.twinBoltgun, ballisticSkill: 3 }]
+  ],
+  meleeWeapons: [[{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 3 }]],
+  keywords: [
+    KEYWORDS.MOUNTED,
+    KEYWORDS.GRENADES,
+    KEYWORDS.IMPERIUM,
+    'ATTACK BIKE SQUAD'
+  ],
+  factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+  unitComposition: { modelCount: 1, cost: 55 }
+};
+
 export const troops: { [key: string]: Unit } = {
+  aggressor_squad: {
+    name: 'AGGRESSOR SQUAD',
+    move: 5,
+    toughness: 6,
+    save: 3,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Close-quarters Firepower',
+          description: `Each time a model in this unit makes a ranged attack that targets the closes eligible target, improve the Armour Penetration characteristic of that attck by 1.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.autoBoltstormGauntlets],
+      [rangedWeapons.flamestormGauntlets],
+      [rangedWeapons.fragstormGrenadeLauncher]
+    ],
+    meleeWeapons: [
+      [
+        {
+          ...meleeWeapons.powerFist,
+          fixedAttacks: 3,
+          weaponSkill: 4,
+          abilities: [WEAPON_ABILITIES.TWIN_LINKED]
+        }
+      ]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.GRAVIS,
+      'AGGRESSOR SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 3, cost: 110 },
+    possibleCompositions: [
+      { modelCount: 3, cost: 110 },
+      { modelCount: 6, cost: 220 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain_in_gravis_armour,
+        secondLeader: [characters.apothecary_biologis]
+      },
+      {
+        character: characters.apothecary_biologis,
+        secondLeader: [characters.captain_in_gravis_armour]
+      }
+    ]
+  },
   assault_intercessor_squad: {
     name: 'ASSAULT INTERCESSOR SQUAD',
     move: 6,
@@ -89,6 +205,218 @@ export const troops: { [key: string]: Unit } = {
       { character: characters.judiciar }
     ]
   },
+  assault_squad: {
+    name: 'ASSAULT SQUAD',
+    move: 6,
+    toughness: 4,
+    save: 3,
+    wounds: 2,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Chainsword Doctrines',
+          description: `Each time thi unit is selected to fight, select one of the following abilities to apply to all Astartes chainswords equipped by models in this unit until the end of the phase: [SUSTAINED HITS 1]; [LETHAL HITS]; [LANCE]`
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Astartes shield',
+        description: 'The bearer has a 4+ invulnerable save.'
+      }
+    ],
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.flamer],
+      [rangedWeapons.meltagun],
+      [rangedWeapons.plasmaGunStandard, rangedWeapons.plasmaGunSupercharge],
+      [
+        rangedWeapons.plasmaPistolStandard,
+        rangedWeapons.plasmaPistolSupercharge
+      ]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.astartesChainsword, fixedAttacks: 4, weaponSkill: 3 }],
+      [meleeWeapons.eviscerator],
+      [{ ...meleeWeapons.powerFist, fixedAttacks: 3, weaponSkill: 3 }],
+      [{ ...meleeWeapons.powerWeapon, fixedAttacks: 4, weaponSkill: 3 }],
+      [{ ...meleeWeapons.thunderHammer, fixedAttacks: 3, weaponSkill: 4 }],
+      [
+        {
+          ...meleeWeapons.twinLightningClaws,
+          fixedAttacks: 5,
+          weaponSkill: 3,
+          strength: 4
+        }
+      ]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      'ASSAULT SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 95 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 95 },
+      { modelCount: 10, cost: 190 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain,
+        secondLeader: [characters.lieutenant]
+      },
+      { character: characters.lieutenant, secondLeader: [characters.captain] },
+      { character: characters.librarian },
+      { character: characters.chaplain }
+    ]
+  },
+  assault_squad_with_jump_packs: {
+    name: 'ASSAULT SQUAD WITH JUMP PACKS',
+    move: 12,
+    toughness: 4,
+    save: 3,
+    wounds: 2,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Hammer of Wrath',
+          description: `Each time thi unit ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6 for each model in this unit: for each 4+, that enemy unit suffers 1 mortal wound.`
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Astartes shield',
+        description: 'The bearer has a 4+ invulnerable save.'
+      }
+    ],
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.flamer],
+      [rangedWeapons.meltagun],
+      [rangedWeapons.plasmaGunStandard, rangedWeapons.plasmaGunSupercharge],
+      [
+        rangedWeapons.plasmaPistolStandard,
+        rangedWeapons.plasmaPistolSupercharge
+      ]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.astartesChainsword, fixedAttacks: 4, weaponSkill: 3 }],
+      [meleeWeapons.eviscerator],
+      [{ ...meleeWeapons.powerFist, fixedAttacks: 3, weaponSkill: 3 }],
+      [{ ...meleeWeapons.powerWeapon, fixedAttacks: 4, weaponSkill: 3 }],
+      [{ ...meleeWeapons.thunderHammer, fixedAttacks: 3, weaponSkill: 4 }],
+      [
+        {
+          ...meleeWeapons.twinLightningClaws,
+          fixedAttacks: 5,
+          weaponSkill: 3,
+          strength: 4
+        }
+      ]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.JUMP_PACK,
+      KEYWORDS.FLY,
+      KEYWORDS.IMPERIUM,
+      'ASSAULT SQUAD WITH JUMP PACKS'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 115 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 115 },
+      { modelCount: 10, cost: 230 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain_with_jump_pack
+      },
+      { character: characters.librarian_with_jump_pack },
+      { character: characters.chaplain_with_jump_pack }
+    ]
+  },
+  astartes_servitors: {
+    name: 'ASTARTES SERVITORS',
+    move: 6,
+    toughness: 4,
+    save: 4,
+    wounds: 1,
+    leadership: 8,
+    objectiveControl: 0,
+    invulnerable: 6,
+    abilities: {
+      other: [
+        {
+          title: 'Mindlock',
+          description: `While a TECHMARINE model is leading this unit, improve the Ballistic skill and Weapon skill characteristics of ranged and melee weapons equipped by ASTARTES SERVITOR models in this unit by 1.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [
+        {
+          ...rangedWeapons.heavyBolter,
+          abilities: [WEAPON_ABILITIES.HEAVY, WEAPON_ABILITIES.SUSTAINED_HITS_1]
+        }
+      ],
+      [
+        {
+          ...rangedWeapons.multiMelta,
+          ballisticSkill: 4,
+          abilities: [WEAPON_ABILITIES.HEAVY, WEAPON_ABILITIES.MELTA_2]
+        }
+      ],
+      [
+        rangedWeapons.plasmaCannonStandard,
+        rangedWeapons.plasmaCannonSupercharge
+      ]
+    ],
+    meleeWeapons: [
+      [
+        {
+          ...meleeWeapons.closeCombatWeapon,
+          fixedAttacks: 1,
+          weaponSkill: 5,
+          strength: 3
+        }
+      ],
+      [meleeWeapons.servitorServoArm]
+    ],
+    keywords: [KEYWORDS.INFANTRY, KEYWORDS.IMPERIUM, 'ASTARTES SERVITORS'],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 4, cost: 55 },
+    possibleLeaders: [
+      { character: characters.techmarine },
+      { character: characters.primaris_techmarine }
+    ]
+  },
+  attack_bike_squad: {
+    ...attack_bike_squad,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Outrider Escort',
+          description: `Once per turn, in your opponent's Shooting phase, when a friendly ADEPTUS ASTARTES MOUNTED unit within 6" of this model is selected as the target of an attack, this model can use this ability. If it does, after that enemy unit has finished making its attacks, this model can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target).`
+        }
+      ]
+    },
+    possibleCompositions: [
+      { modelCount: 1, cost: 55 },
+      { modelCount: 2, cost: 110 },
+      { modelCount: 3, cost: 165 }
+    ]
+  },
   ballistus_dreadnought: {
     name: 'BALLISTUS DREADNOUGHT',
     move: 8,
@@ -129,6 +457,150 @@ export const troops: { [key: string]: Unit } = {
     ],
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 170 }
+  },
+  bike_squad: {
+    name: 'BIKE SQUAD',
+    move: 12,
+    toughness: 5,
+    save: 3,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 2,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Turbo-boost',
+          description: `Each time this unit Advances, do not make an Advance roll for it. Instead, until the end of the phase, add 6" to the Move characteristic of models in this unit.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [{ ...rangedWeapons.gravPistol, fixedDamage: 2 }],
+      [rangedWeapons.handFlamer],
+      [rangedWeapons.infernoPistol],
+      [
+        rangedWeapons.plasmaPistolStandard,
+        rangedWeapons.plasmaPistolSupercharge
+      ],
+      [{ ...rangedWeapons.twinBoltgun, ballisticSkill: 3 }]
+    ],
+    meleeWeapons: [
+      [
+        {
+          ...meleeWeapons.astartesChainsword,
+          fixedAttacks: 3,
+          weaponSkill: 3
+        }
+      ],
+      [{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 2 }],
+      [{ ...meleeWeapons.powerFist, fixedAttacks: 2, weaponSkill: 3 }],
+      [{ ...meleeWeapons.powerWeapon, fixedAttacks: 3, weaponSkill: 2 }],
+      [{ ...meleeWeapons.thunderHammer, fixedAttacks: 2, weaponSkill: 4 }]
+    ],
+    keywords: [
+      KEYWORDS.MOUNTED,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      'BIKE SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 3, cost: 80 },
+    possibleCompositions: [{ modelCount: 3, cost: 160 }],
+    possibleLeaders: [
+      {
+        character: attack_bike_squad,
+        secondLeader: [characters.captain_on_bike, characters.chaplain_on_bike]
+      },
+      {
+        character: characters.captain_on_bike,
+        secondLeader: [attack_bike_squad]
+      },
+      {
+        character: characters.chaplain_on_bike,
+        secondLeader: [attack_bike_squad]
+      }
+    ]
+  },
+  bladeguard_veteran_squad: {
+    name: 'BLADEGUARD VETERAN SQUAD',
+    move: 6,
+    toughness: 4,
+    save: 3,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 1,
+    invulnerable: 4,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Bladeguard',
+          description: `At the start of the Fight phase, you can select one of the following abilities to apply to models in this unit until the end of the phase: Swords of the Imperium; Shields of the Imperium.`
+        },
+        {
+          title: 'Swords of the Imperium',
+          description:
+            'Each time a model in this unit makes a melee attack, re-roll a Hit roll of 1.'
+        },
+        {
+          title: 'Shields of the Imperium',
+          description:
+            'Each time an invulnerable saving throw is made for a model in this unit, re-roll a saving throw of 1.'
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.heavyBoltPistol],
+      [{ ...rangedWeapons.neoVolkitePistol, ballisticSkill: 3 }],
+      [
+        rangedWeapons.plasmaPistolStandard,
+        rangedWeapons.plasmaPistolSupercharge
+      ]
+    ],
+    meleeWeapons: [
+      [
+        {
+          ...meleeWeapons.masterCraftedPowerWeapon,
+          fixedAttacks: 4,
+          weaponSkill: 3
+        }
+      ]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.TACTICUS,
+      'BLADEGUARD VETERAN SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 100 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 100 },
+      { modelCount: 10, cost: 200 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.primaris_captain,
+        secondLeader: [
+          characters.primaris_lieutenant,
+          characters.bladeguard_ancient
+        ]
+      },
+      {
+        character: characters.primaris_lieutenant,
+        secondLeader: [
+          characters.primaris_captain,
+          characters.bladeguard_ancient
+        ]
+      },
+      { character: characters.primaris_company_champion },
+      { character: characters.primaris_chaplain },
+      { character: characters.bladeguard_ancient },
+      { character: characters.judiciar }
+    ]
   },
   brutalis_dreadnought: {
     name: 'BRUTALIS DREADNOUGHT',
@@ -173,6 +645,161 @@ export const troops: { [key: string]: Unit } = {
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 220 }
   },
+  centurion_assault_squad: {
+    name: 'CENTURION ASSAULT SQUAD',
+    move: 4,
+    toughness: 7,
+    save: 2,
+    wounds: 4,
+    leadership: 6,
+    objectiveControl: 2,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Annihilator Protocols',
+          description: `Melee weapons equipped by models in this unit have the [SUSTAINED HITS 2] ability when targeting MONSTER, VEHICLE or FORTIFICATION units.`
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Centurion Assault Launcher',
+        description: 'The bearer has the GRENADES keyword.'
+      }
+    ],
+    rangedWeapons: [
+      [rangedWeapons.centurionBolters],
+      [rangedWeapons.twinFlamer],
+      [rangedWeapons.twinMeltagun]
+    ],
+    meleeWeapons: [[meleeWeapons.siegeDrills]],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.IMPERIUM,
+      'CENTURION',
+      'CENTURION ASSAULT SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 3, cost: 175 },
+    possibleCompositions: [
+      { modelCount: 3, cost: 175 },
+      { modelCount: 6, cost: 350 }
+    ]
+  },
+  centurion_devastator_squad: {
+    name: 'CENTURION DEVASTATOR SQUAD',
+    move: 4,
+    toughness: 7,
+    save: 2,
+    wounds: 4,
+    leadership: 6,
+    objectiveControl: 2,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Decimator Protocols',
+          description: `Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If the target of that attack is an enemy unit within range of an objective marker, you can re-roll the Hit roll instead.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.centurionBolters],
+      [rangedWeapons.centurionMissileLauncher],
+      [rangedWeapons.gravCannon],
+      [rangedWeapons.twinHeavyBolter],
+      [rangedWeapons.twinLascannon]
+    ],
+    meleeWeapons: [[meleeWeapons.centurionFists]],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.IMPERIUM,
+      'CENTURION',
+      'CENTURION DEVASTATOR SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 3, cost: 175 },
+    possibleCompositions: [
+      { modelCount: 3, cost: 205 },
+      { modelCount: 6, cost: 410 }
+    ]
+  },
+  command_squad: {
+    name: 'COMMAND SQUAD',
+    move: 6,
+    toughness: 4,
+    save: 3,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Narthecium',
+          description: `While this unit contains an Apothecary, in your Command phase, you can return 1 destroyed model (excluding CHARACTER models) to this unit.`
+        },
+        {
+          title: 'Astartes Banner',
+          description:
+            'While this unit contains a Company Ansient, add 1 to the Objective Control characteristic of models in this unit.'
+        },
+        {
+          title: 'Honour or Death',
+          description:
+            'While this unit contains a Company Champion, add 1 to Advance and Charge rolls made for this unit and you can target this unit with the Heroic Intervention Stratagem for 0CP, even if you have already used that Stratagem on a different unit this phase.'
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Astartes Shield',
+        description: 'The bearer has a 4+ invulnerable save.'
+      }
+    ],
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.boltgun],
+      [rangedWeapons.flamer],
+      [{ ...rangedWeapons.gravGun, fixedDamage: 1 }],
+      [rangedWeapons.meltagun],
+      [rangedWeapons.plasmaGunStandard, rangedWeapons.plasmaGunSupercharge]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.astartesChainsword, fixedAttacks: 4, weaponSkill: 3 }],
+      [meleeWeapons.closeCombatWeapon],
+      [meleeWeapons.championsBlade],
+      [{ ...meleeWeapons.powerFist, fixedAttacks: 2, weaponSkill: 3 }],
+      [{ ...meleeWeapons.powerWeapon, fixedAttacks: 3, weaponSkill: 3 }],
+      [{ ...meleeWeapons.thunderHammer, fixedAttacks: 2, weaponSkill: 4 }],
+      [
+        {
+          ...meleeWeapons.twinLightningClaws,
+          fixedAttacks: 4,
+          weaponSkill: 3,
+          strength: 4
+        }
+      ]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      'COMMAND SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 165 },
+    possibleLeaders: [
+      {
+        character: characters.captain,
+        secondLeader: [characters.lieutenant]
+      },
+      { character: characters.lieutenant, secondLeader: [characters.captain] },
+      { character: characters.librarian },
+      { character: characters.chaplain }
+    ]
+  },
   contemptor_dreadnought: {
     name: 'CONTEMPTOR DREADNOUGHT',
     move: 6,
@@ -206,6 +833,131 @@ export const troops: { [key: string]: Unit } = {
     ],
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 170 }
+  },
+  desolation_squad: {
+    name: 'DESOLATION SQUAD',
+    move: 6,
+    toughness: 4,
+    save: 3,
+    wounds: 2,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Targeter Optics',
+          description: `Each time this unit Remains Stationary, until the start of your next Movement phase, ranged weapons equipped by models in this unit have the [IGNORES COVER] ability and can ignore the penalty to their Hit rolls when making attacks with Indirect Fire weapons against targets that are not visible to them.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.superfragRocketLaumcher],
+      [rangedWeapons.superkrakRocketLaumcher],
+      [rangedWeapons.vengorLauncher]
+    ],
+    meleeWeapons: [[meleeWeapons.closeCombatWeapon]],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.TACTICUS,
+      'DESOLATION SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 170 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 170 },
+      { modelCount: 10, cost: 340 }
+    ],
+    possibleLeaders: [
+      { character: characters.primaris_librarian },
+      { character: characters.primaris_apothecary },
+      { character: characters.primaris_ancient }
+    ]
+  },
+  devastator_squad: {
+    name: 'DEVASTATOR SQUAD',
+    move: 6,
+    toughness: 4,
+    save: 3,
+    wounds: 2,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Signum',
+          description: `Each time this unit Remains Stationary, until the start of your next Movement phase, ranged weapons equipped by models in this unit have the [IGNORES COVER] ability.`
+        },
+        {
+          title: 'Armorium Cherub',
+          description:
+            'Once per battle, after making a Hit roll for a model in this unit, you can change that roll to an unmodified 6.'
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.boltgun],
+      [
+        {
+          ...rangedWeapons.gravCannon,
+          ballisticSkill: 4,
+          abilities: [WEAPON_ABILITIES.ANTI_VEHICLE_2, WEAPON_ABILITIES.HEAVY]
+        }
+      ],
+      [
+        {
+          ...rangedWeapons.heavyBolter,
+          abilities: [WEAPON_ABILITIES.HEAVY, WEAPON_ABILITIES.SUSTAINED_HITS_1]
+        }
+      ],
+      [
+        {
+          ...rangedWeapons.lascannon,
+          ballisticSkill: 4,
+          abilities: [WEAPON_ABILITIES.HEAVY]
+        }
+      ],
+      [rangedWeapons.missileLauncherFrag, rangedWeapons.missileLauncherKrak],
+      [
+        {
+          ...rangedWeapons.multiMelta,
+          ballisticSkill: 4,
+          abilities: [WEAPON_ABILITIES.HEAVY, WEAPON_ABILITIES.MELTA_2]
+        }
+      ]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.astartesChainsword, fixedAttacks: 4, weaponSkill: 3 }],
+      [{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 2 }],
+      [{ ...meleeWeapons.powerFist, fixedAttacks: 2, weaponSkill: 3 }],
+      [{ ...meleeWeapons.powerWeapon, fixedAttacks: 3, weaponSkill: 3 }],
+      [{ ...meleeWeapons.thunderHammer, fixedAttacks: 2, weaponSkill: 4 }],
+      [
+        {
+          ...meleeWeapons.twinLightningClaws,
+          fixedAttacks: 4,
+          weaponSkill: 3,
+          strength: 4
+        }
+      ]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      'DEVASTATOR SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 120 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 120 },
+      { modelCount: 10, cost: 200 }
+    ]
   },
   dreadnought: {
     name: 'DREADNOUGHT',
@@ -337,6 +1089,59 @@ export const troops: { [key: string]: Unit } = {
         character: characters.captain_in_phobos_armour
       },
       { character: characters.librarian_in_phobos_armour }
+    ]
+  },
+  eradicator_squad: {
+    name: 'ERADICATOR SQUAD',
+    move: 4,
+    toughness: 6,
+    save: 3,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Total Obliteration',
+          description: `Each time a ranged attack made by a model in this unit targets a MONSTER or VEHICLE model, you can re-roll the Hit roll, you can re-roll the Wound roll and you can re-roll the Damage roll.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.meltaRifle],
+      [
+        {
+          ...rangedWeapons.multiMelta,
+          ballisticSkill: 4,
+          abilities: [WEAPON_ABILITIES.HEAVY, WEAPON_ABILITIES.MELTA_2]
+        }
+      ]
+    ],
+    meleeWeapons: [[meleeWeapons.closeCombatWeapon]],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.GRAVIS,
+      'ERADICATOR SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 3, cost: 95 },
+    possibleCompositions: [
+      { modelCount: 3, cost: 95 },
+      { modelCount: 6, cost: 190 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain_in_gravis_armour,
+        secondLeader: [characters.apothecary_biologis]
+      },
+      {
+        character: characters.apothecary_biologis,
+        secondLeader: [characters.captain_in_gravis_armour]
+      }
     ]
   },
   firestrike_servo_turrets: {
@@ -1083,6 +1888,18 @@ export const troops: { [key: string]: Unit } = {
       { character: characters.judiciar }
     ]
   },
+  invader_atv: {
+    ...invader_atv,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Outrider Escort',
+          description: `Once per turn, in your opponent's Shooting phase, when a friendly ADEPTUS ASTARTES MOUNTED unit within 6" of this model is selected as the target of an attack, this model can use this ability. If it does, after that enemy unit has finished making its attacks, this model can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target).`
+        }
+      ]
+    }
+  },
   invictor_tactical_warsuit: {
     name: 'INVICTOR TACTICAL WARSUIT',
     move: 8,
@@ -1565,6 +2382,60 @@ export const troops: { [key: string]: Unit } = {
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 135 }
   },
+  outrider_squad: {
+    name: 'OUTRIDER SQUAD',
+    move: 12,
+    toughness: 5,
+    save: 3,
+    wounds: 4,
+    leadership: 6,
+    objectiveControl: 2,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Turbo-boost',
+          description: `Each time this unit Advances, do not make an Advance roll for it. Instead, until the end of the phase, add 6" to the Move characteristic of models in this unit.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.heavyBoltPistol],
+      [rangedWeapons.twinBoltRifle]
+    ],
+    meleeWeapons: [
+      [
+        {
+          ...meleeWeapons.astartesChainsword,
+          fixedAttacks: 4,
+          weaponSkill: 3
+        }
+      ]
+    ],
+    keywords: [
+      KEYWORDS.MOUNTED,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      'OUTRIDER SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 3, cost: 115 },
+    possibleCompositions: [
+      { modelCount: 3, cost: 115 },
+      { modelCount: 6, cost: 230 }
+    ],
+    possibleLeaders: [
+      {
+        character: invader_atv,
+        secondLeader: [characters.captain_on_bike, characters.chaplain_on_bike]
+      },
+      {
+        character: characters.captain_on_bike,
+        secondLeader: [invader_atv]
+      },
+      { character: characters.chaplain_on_bike, secondLeader: [invader_atv] }
+    ]
+  },
   razorback: {
     name: 'RAZORBACK',
     move: 12,
@@ -1732,6 +2603,72 @@ export const troops: { [key: string]: Unit } = {
       { character: characters.librarian_in_phobos_armour }
     ]
   },
+  relic_terminator_squad: {
+    name: 'RELIC TERMINATOR SQUAD',
+    move: 5,
+    toughness: 5,
+    save: 2,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 1,
+    invulnerable: 4,
+    abilities: {
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Fury of the First',
+          description: `Each time a model in this unit makes an attack, you can ignore any or all modifiers to that attack's Ballistic Skill or Weapon Skill characteristic and/or to the Hit roll. In addition, each time a model in this unit makes an attack that tagets the enemy unit you selected for the Oath of Moment ability this turn, add 1 to the Hit roll.`
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Grenade Harness',
+        description: 'The bearer has the GRENADES keyword.'
+      }
+    ],
+    rangedWeapons: [
+      [rangedWeapons.combiBolter],
+      [rangedWeapons.heavyFlamer],
+      [
+        rangedWeapons.plasmaBlasterStandard,
+        rangedWeapons.plasmaBlasterSupercharge
+      ],
+      [rangedWeapons.reaperAutocannon],
+      [rangedWeapons.volkiteCharger]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.chainFist, fixedAttacks: 3, weaponSkill: 4 }],
+      [{ ...meleeWeapons.powerFist, fixedAttacks: 3, weaponSkill: 3 }],
+      [{ ...meleeWeapons.powerWeapon, fixedAttacks: 4, weaponSkill: 3 }],
+      [{ ...meleeWeapons.twinLightningClaws, fixedAttacks: 5, weaponSkill: 3 }]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.TERMINATOR,
+      'RELIC TERMINATOR SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 200 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 200 },
+      { modelCount: 10, cost: 400 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain_in_terminator_armour,
+        secondLeader: [characters.ancient_in_terminator_armour]
+      },
+      { character: characters.librarian_in_terminator_armour },
+      { character: characters.chaplain_in_terminator_armour },
+      {
+        character: characters.ancient_in_terminator_armour,
+        secondLeader: [characters.captain_in_terminator_armour]
+      }
+    ]
+  },
   repulsor: {
     name: 'REPULSOR',
     move: 10,
@@ -1862,6 +2799,66 @@ export const troops: { [key: string]: Unit } = {
       'This model has a transport capacity of 12 ADEPTUS ASTARTES INFANTRY models. It cannot transport JUMP PACK, WULFEN, TACTICUS, PHOBOS, GRAVIS, CENTURIAN or TERMINATOR models.',
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 85 }
+  },
+  scout_bike_squad: {
+    name: 'SCOUT BIKE SQUAD',
+    move: 12,
+    toughness: 5,
+    save: 4,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 2,
+    abilities: {
+      core: [ABILITIES.SCOUTS_9],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Outflank',
+          description: `When this unit arrives from Strategic Reerves, it can be set up within your opponent's deployment zone (all other restrictions still apply).`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [
+        rangedWeapons.astartesGrenadeLauncherFrag,
+        rangedWeapons.astartesGrenadeLauncherKrak
+      ],
+      [rangedWeapons.astartesShotgun],
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.handFlamer],
+      [rangedWeapons.infernoPistol],
+      [
+        rangedWeapons.plasmaPistolStandard,
+        rangedWeapons.plasmaPistolSupercharge
+      ],
+      [{ ...rangedWeapons.twinBoltgun, ballisticSkill: 3 }]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.astartesChainsword, fixedAttacks: 4, weaponSkill: 3 }],
+      [{ ...meleeWeapons.combatKnife, fixedAttacks: 3, weaponSkill: 3 }],
+      [{ ...meleeWeapons.powerFist, fixedAttacks: 2, weaponSkill: 3 }],
+      [
+        {
+          ...meleeWeapons.powerWeapon,
+          fixedAttacks: 3,
+          weaponSkill: 3
+        }
+      ],
+      [{ ...meleeWeapons.thunderHammer, fixedAttacks: 2, weaponSkill: 4 }]
+    ],
+    keywords: [
+      KEYWORDS.MOUNTED,
+      KEYWORDS.GRENADES,
+      KEYWORDS.SMOKE,
+      KEYWORDS.IMPERIUM,
+      'SCOUT BIKE SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 3, cost: 75 },
+    possibleCompositions: [
+      { modelCount: 3, cost: 75 },
+      { modelCount: 6, cost: 150 }
+    ]
   },
   scout_sniper_squad: {
     name: 'SCOUT SNIPER SQUAD',
@@ -2005,6 +3002,80 @@ export const troops: { [key: string]: Unit } = {
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 140 }
   },
+  sternguard_veteran_squad: {
+    name: 'STERNGUARD VETERAN SQUAD',
+    move: 6,
+    toughness: 4,
+    save: 3,
+    wounds: 2,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Bolter Drill',
+          description: `Once per battle, in your Shooting phase, after this unit has shot, if one or more enemy units were destroyed as a result of those attacks, this unit can shoot again.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.combiWeapon],
+      [rangedWeapons.sternguardBoltPistol],
+      [rangedWeapons.sternguardBoltRifle],
+      [rangedWeapons.sternguardHeavyBolter]
+    ],
+    meleeWeapons: [[{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 4 }]],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.TACTICUS,
+      'STERNGUARD VETERAN SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 105 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 105 },
+      { modelCount: 10, cost: 210 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.primaris_captain,
+        secondLeader: [
+          characters.primaris_lieutenant,
+          characters.primaris_apothecary,
+          characters.primaris_ancient
+        ]
+      },
+      {
+        character: characters.primaris_lieutenant,
+        secondLeader: [
+          characters.primaris_captain,
+          characters.primaris_apothecary,
+          characters.primaris_ancient
+        ]
+      },
+      { character: characters.primaris_librarian },
+      { character: characters.primaris_chaplain },
+      { character: characters.primaris_company_champion },
+      {
+        character: characters.primaris_apothecary,
+        secondLeader: [
+          characters.primaris_captain,
+          characters.primaris_lieutenant
+        ]
+      },
+      {
+        character: characters.primaris_ancient,
+        secondLeader: [
+          characters.primaris_captain,
+          characters.primaris_lieutenant
+        ]
+      },
+      { character: characters.judiciar }
+    ]
+  },
   storm_speeder_hailstrike: {
     name: 'STORM SPEEDER HAILSTRIKE',
     move: 14,
@@ -2104,6 +3175,156 @@ export const troops: { [key: string]: Unit } = {
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 160 }
   },
+  stormhawk_interceptor: {
+    name: 'STORMHAWK INTERCEPTOR',
+    move: 20,
+    minimumMovement: true,
+    toughness: 9,
+    save: 3,
+    wounds: 10,
+    leadership: 6,
+    objectiveControl: 0,
+    abilities: {
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.HOVER],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Interceptor',
+          description: `Each time this model makes a ranged attack that targets a unit that can FLY, add 1 to the Hit roll.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [
+        {
+          ...rangedWeapons.icarusStormcannon,
+          abilities: [WEAPON_ABILITIES.ANTI_FLY_2, WEAPON_ABILITIES.TWIN_LINKED]
+        }
+      ],
+      [rangedWeapons.lasTalon],
+      [
+        {
+          ...rangedWeapons.skyhammerMissileLauncher,
+          abilities: [WEAPON_ABILITIES.ANTI_FLY_2]
+        }
+      ],
+      [rangedWeapons.twinAssaultCannon],
+      [rangedWeapons.twinHeavyBolter],
+      [
+        rangedWeapons.typhoonMissileLauncherFrag,
+        rangedWeapons.typhoonMissileLauncherKrak
+      ]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.armouredHull, fixedAttacks: 3, strength: 6 }]
+    ],
+    keywords: [
+      KEYWORDS.VEHICLE,
+      KEYWORDS.FLY,
+      KEYWORDS.AIRCRAFT,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.SMOKE,
+      'STORMHAWK INTERCEPTOR'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 1, cost: 165 }
+  },
+  stormraven_gunship: {
+    name: 'STORMRAVEN GUNSHIP',
+    move: 20,
+    minimumMovement: true,
+    toughness: 10,
+    save: 3,
+    wounds: 14,
+    leadership: 6,
+    objectiveControl: 0,
+    abilities: {
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.HOVER],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Armoured Resilience',
+          description: `Each time an attack is allocated to this model, subtract 1 from the Damage characteristic of that attack.`
+        }
+      ]
+    },
+    damaged: {
+      range: '1-5',
+      description:
+        'While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.'
+    },
+    rangedWeapons: [
+      [rangedWeapons.hurricaneBolter],
+      [rangedWeapons.stormstrikeMissileLauncher],
+      [rangedWeapons.twinAssaultCannon],
+      [rangedWeapons.twinHeavyBolter],
+      [
+        rangedWeapons.twinHeavyPlasmaCannonStandard,
+        rangedWeapons.twinHeavyPlasmaCannonSupercharge
+      ],
+      [rangedWeapons.twinLascannon],
+      [rangedWeapons.twinMultiMelta],
+      [
+        rangedWeapons.typhoonMissileLauncherFrag,
+        rangedWeapons.typhoonMissileLauncherKrak
+      ]
+    ],
+    meleeWeapons: [[meleeWeapons.armouredHull]],
+    keywords: [
+      KEYWORDS.VEHICLE,
+      KEYWORDS.FLY,
+      KEYWORDS.AIRCRAFT,
+      KEYWORDS.TRANSPORT,
+      KEYWORDS.IMPERIUM,
+      'STORMRAVEN GUNSHIP'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 1, cost: 255 },
+    transportUnits:
+      'This model has a transport capacity of 12 ADEPTUS ASTARTES INFANTRY models and 1 DREADNOUGHT model. Each JUMP PACL, WULFEN, GRAVIS or TERMINATOR model takes up the space of 2 models and each CENTURION modoel takes up the space of 3 models.'
+  },
+  stormtalon_gunship: {
+    name: 'STORMTALON GUNSHIP',
+    move: 20,
+    minimumMovement: true,
+    toughness: 8,
+    save: 3,
+    wounds: 10,
+    leadership: 6,
+    objectiveControl: 0,
+    abilities: {
+      core: [ABILITIES.DEADLY_DEMISE_D3, ABILITIES.HOVER],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Strafing Run',
+          description: `Each time this model makes a ranged attack that targets a unit that cannot FLY, add 1 to the Hit roll.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.skyhammerMissileLauncher],
+      [rangedWeapons.twinAssaultCannon],
+      [rangedWeapons.twinHeavyBolter],
+      [rangedWeapons.twinLascannon],
+      [
+        rangedWeapons.typhoonMissileLauncherFrag,
+        rangedWeapons.typhoonMissileLauncherKrak
+      ]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.armouredHull, fixedAttacks: 3, strength: 6 }]
+    ],
+    keywords: [
+      KEYWORDS.VEHICLE,
+      KEYWORDS.FLY,
+      KEYWORDS.AIRCRAFT,
+      KEYWORDS.IMPERIUM,
+      'STORMTALON GUNSHIP'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 1, cost: 175 }
+  },
   suppressor_squad: {
     name: 'SUPPRESSOR SQUAD',
     move: 12,
@@ -2199,6 +3420,126 @@ export const troops: { [key: string]: Unit } = {
       { character: characters.techmarine }
     ]
   },
+  terminator_assault_squad: {
+    name: 'TERMINATOR ASSAULT SQUAD',
+    move: 5,
+    toughness: 5,
+    save: 2,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 1,
+    invulnerable: 4,
+    abilities: {
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Teleport Homer',
+          description: `At the start of the battle, you can set up one Teleport Homer token for this unit anywhere on the battlefield that is not in your opponent's deployment zone. If you do, once per battle, you can target this unit with the Rapid Ingress Stratagem for 0CP, but when resolving that Stratagem, you must set this unit up within 3" horizontally of that token and not within 9" horizontally of any enemy models. That token is then removed.`
+        },
+        {
+          title: 'Terminatus Assault',
+          description: `Each time this unit ends a Charge move, each enemy unit within Engagement Range of this unit must take a Battle-shock test.`
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Storm Shield',
+        description: 'The bearer has a Wounds characteristic of 4.'
+      }
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.thunderHammer, fixedAttacks: 3, weaponSkill: 4 }],
+      [{ ...meleeWeapons.twinLightningClaws, fixedAttacks: 5, weaponSkill: 3 }]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.TERMINATOR,
+      'TERMINATOR ASSAULT SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 200 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 200 },
+      { modelCount: 10, cost: 400 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain_in_terminator_armour,
+        secondLeader: [characters.ancient_in_terminator_armour]
+      },
+      { character: characters.librarian_in_terminator_armour },
+      { character: characters.chaplain_in_terminator_armour },
+      {
+        character: characters.ancient_in_terminator_armour,
+        secondLeader: [characters.captain_in_terminator_armour]
+      }
+    ]
+  },
+  terminator_squad: {
+    name: 'TERMINATOR SQUAD',
+    move: 5,
+    toughness: 5,
+    save: 2,
+    wounds: 3,
+    leadership: 6,
+    objectiveControl: 1,
+    invulnerable: 4,
+    abilities: {
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Teleport Homer',
+          description: `At the start of the battle, you can set up one Teleport Homer token for this unit anywhere on the battlefield that is not in your opponent's deployment zone. If you do, once per battle, you can target this unit with the Rapid Ingress Stratagem for 0CP, but when resolving that Stratagem, you must set this unit up within 3" horizontally of that token and not within 9" horizontally of any enemy models. That token is then removed.`
+        },
+        {
+          title: 'Fury of the First',
+          description: `Each time a model in this unit makes an attack, you can ignore any or all modifiers to that attack's Ballistic Skill or Weapon Skill characteristic and/or to the Hit roll. In addition, each time a model in this unit makes an attack that tagets the enemy unit you selected for the Oath of Moment ability this turn, add 1 to the Hit roll.`
+        }
+      ]
+    },
+    rangedWeapons: [
+      [rangedWeapons.assaultCannon],
+      [
+        rangedWeapons.cycloneMissileLauncherFrag,
+        rangedWeapons.cycloneMissileLauncherKrak
+      ],
+      [rangedWeapons.heavyFlamer],
+      [rangedWeapons.stormBolter]
+    ],
+    meleeWeapons: [
+      [{ ...meleeWeapons.chainFist, fixedAttacks: 3, weaponSkill: 4 }],
+      [{ ...meleeWeapons.powerFist, fixedAttacks: 3, weaponSkill: 3 }],
+      [{ ...meleeWeapons.powerWeapon, fixedAttacks: 4, weaponSkill: 3 }]
+    ],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.IMPERIUM,
+      KEYWORDS.TERMINATOR,
+      'TERMINATOR SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 205 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 205 },
+      { modelCount: 10, cost: 410 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain_in_terminator_armour,
+        secondLeader: [characters.ancient_in_terminator_armour]
+      },
+      { character: characters.librarian_in_terminator_armour },
+      { character: characters.chaplain_in_terminator_armour },
+      {
+        character: characters.ancient_in_terminator_armour,
+        secondLeader: [characters.captain_in_terminator_armour]
+      }
+    ]
+  },
   thunderfire_cannon: {
     name: 'THUNDERFIRE CANNON',
     move: 3,
@@ -2238,6 +3579,120 @@ export const troops: { [key: string]: Unit } = {
     ],
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 2, cost: 90 }
+  },
+  vanguard_veteran_squad: {
+    name: 'VANGUARD VETERAN SQUAD',
+    move: 6,
+    toughness: 4,
+    save: 3,
+    wounds: 2,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      core: [ABILITIES.SCOUTS_6],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Vanguard Assault',
+          description: `Each time this unit ends a Charge move, until the end of the turn, melee weapons equipped by models in this unit have the [LETHAL HITS] ability.`
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Storm Shield',
+        description: 'The bearer has a 4+ invulnerable save.'
+      }
+    ],
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.gravPistol],
+      [rangedWeapons.handFlamer],
+      [rangedWeapons.infernoPistol],
+      [
+        rangedWeapons.plasmaPistolStandard,
+        rangedWeapons.plasmaPistolSupercharge
+      ]
+    ],
+    meleeWeapons: [[meleeWeapons.heirloomWeapon]],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      'VANGUARD VETERAN SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 120 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 120 },
+      { modelCount: 10, cost: 240 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain,
+        secondLeader: [characters.lieutenant]
+      },
+      { character: characters.lieutenant, secondLeader: [characters.captain] },
+      { character: characters.librarian },
+      { character: characters.chaplain }
+    ]
+  },
+  vanguard_veteran_squad_with_jump_packs: {
+    name: 'VANGUARD VETERAN SQUAD WITH JUMP PACKS',
+    move: 12,
+    toughness: 4,
+    save: 3,
+    wounds: 2,
+    leadership: 6,
+    objectiveControl: 1,
+    abilities: {
+      core: [ABILITIES.DEEP_STRIKE],
+      faction: [ABILITIES.OATHS],
+      other: [
+        {
+          title: 'Vanguard Assault',
+          description: `Each time this unit ends a Charge move, until the end of the turn, melee weapons equipped by models in this unit have the [LETHAL HITS] ability.`
+        }
+      ]
+    },
+    wargearAbilities: [
+      {
+        title: 'Storm Shield',
+        description: 'The bearer has a 4+ invulnerable save.'
+      }
+    ],
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [rangedWeapons.gravPistol],
+      [rangedWeapons.handFlamer],
+      [rangedWeapons.infernoPistol],
+      [
+        rangedWeapons.plasmaPistolStandard,
+        rangedWeapons.plasmaPistolSupercharge
+      ]
+    ],
+    meleeWeapons: [[meleeWeapons.heirloomWeapon]],
+    keywords: [
+      KEYWORDS.INFANTRY,
+      KEYWORDS.GRENADES,
+      KEYWORDS.JUMP_PACK,
+      KEYWORDS.FLY,
+      KEYWORDS.IMPERIUM,
+      'VANGUARD VETERAN SQUAD WITH JUMP PACKS'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 5, cost: 130 },
+    possibleCompositions: [
+      { modelCount: 5, cost: 130 },
+      { modelCount: 10, cost: 260 }
+    ],
+    possibleLeaders: [
+      {
+        character: characters.captain_with_jump_pack
+      },
+      { character: characters.librarian_with_jump_pack },
+      { character: characters.chaplain_with_jump_pack }
+    ]
   },
   vindicator: {
     name: 'VINDICATOR',

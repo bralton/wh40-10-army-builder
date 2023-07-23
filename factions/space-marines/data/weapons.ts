@@ -64,6 +64,14 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     abilities: [WEAPON_ABILITIES.TWIN_LINKED],
     profile: true
   },
+  centurionFists: {
+    name: 'Centurion fists',
+    fixedAttacks: 3,
+    weaponSkill: 4,
+    strength: 5,
+    armourPiercing: -1,
+    fixedDamage: 2
+  },
   chainFist: {
     name: 'Chainfist',
     fixedAttacks: 5,
@@ -72,6 +80,15 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     armourPiercing: -2,
     fixedDamage: 2,
     abilities: [WEAPON_ABILITIES.ANTI_VEHICLE_3]
+  },
+  championsBlade: {
+    name: `Champion's blade`,
+    fixedAttacks: 4,
+    weaponSkill: 3,
+    strength: 5,
+    armourPiercing: -2,
+    fixedDamage: 2,
+    abilities: [WEAPON_ABILITIES.PRECISION]
   },
   closeCombatWeapon: {
     name: 'Close combat weapon',
@@ -114,6 +131,15 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     armourPiercing: -2,
     fixedDamage: 3
   },
+  eviscerator: {
+    name: 'Eviscerator',
+    fixedAttacks: 3,
+    weaponSkill: 4,
+    strength: 7,
+    armourPiercing: -2,
+    fixedDamage: 2,
+    abilities: [WEAPON_ABILITIES.SUSTAINED_HITS_1]
+  },
   executionerRelicBlade: {
     name: 'Executioner relic blade',
     fixedAttacks: 5,
@@ -141,6 +167,14 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     armourPiercing: -2,
     fixedDamage: 3,
     abilities: [WEAPON_ABILITIES.EXTRA_ATTACKS]
+  },
+  heirloomWeapon: {
+    name: 'Heirloom weapon',
+    fixedAttacks: 4,
+    weaponSkill: 3,
+    strength: 5,
+    armourPiercing: -1,
+    fixedDamage: 1
   },
   invictorFist: {
     name: 'Invictor fist',
@@ -252,6 +286,14 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     fixedDamage: 2,
     variableDamage: 'D6'
   },
+  servitorServoArm: {
+    name: 'Servitor servo-arm',
+    fixedAttacks: 1,
+    weaponSkill: 5,
+    strength: 6,
+    armourPiercing: -2,
+    fixedDamage: 3
+  },
   servoArm: {
     name: 'Servo-arm',
     fixedAttacks: 1,
@@ -260,6 +302,15 @@ export const meleeWeapons: { [key: string]: MeleeWeapon } = {
     armourPiercing: -2,
     fixedDamage: -3,
     abilities: [WEAPON_ABILITIES.EXTRA_ATTACKS]
+  },
+  siegeDrills: {
+    name: 'Siege drills',
+    fixedAttacks: 3,
+    weaponSkill: 3,
+    strength: 10,
+    armourPiercing: -2,
+    fixedDamage: 3,
+    abilities: [WEAPON_ABILITIES.TWIN_LINKED]
   },
   thunderHammer: {
     name: 'Thunder hammer',
@@ -359,6 +410,16 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     armourPiercing: 0,
     fixedDamage: 1,
     abilities: [WEAPON_ABILITIES.ASSAULT]
+  },
+  autoBoltstormGauntlets: {
+    name: 'Auto boltstorm gauntlets',
+    range: 18,
+    fixedAttacks: 3,
+    ballisticSkill: 3,
+    strength: 4,
+    armourPiercing: 0,
+    fixedDamage: 1,
+    abilities: [WEAPON_ABILITIES.TWIN_LINKED]
   },
   ballistusLascannon: {
     name: 'Ballistus lascannon',
@@ -497,6 +558,39 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     fixedDamage: 1,
     abilities: [WEAPON_ABILITIES.PISTOL]
   },
+  castellanLauncher: {
+    name: 'Castellan launcher',
+    range: 36,
+    fixedAttacks: 0,
+    variableAttacks: 'D3',
+    ballisticSkill: 3,
+    strength: 4,
+    armourPiercing: 0,
+    fixedDamage: 1,
+    abilities: [WEAPON_ABILITIES.BLAST, WEAPON_ABILITIES.INDIRECT_FIRE]
+  },
+  centurionBolters: {
+    name: 'Centurion bolters',
+    range: 24,
+    fixedAttacks: 3,
+    ballisticSkill: 3,
+    strength: 4,
+    armourPiercing: 0,
+    fixedDamage: 1,
+    abilities: [WEAPON_ABILITIES.RAPID_FIRE_3, WEAPON_ABILITIES.TWIN_LINKED]
+  },
+  centurionMissileLauncher: {
+    name: 'Centurion missile launcher',
+    range: 36,
+    fixedAttacks: 0,
+    variableAttacks: 'D3',
+    ballisticSkill: 3,
+    strength: 9,
+    armourPiercing: -2,
+    fixedDamage: 0,
+    variableDamage: 'D3',
+    abilities: [WEAPON_ABILITIES.BLAST]
+  },
   cerberusLauncher: {
     name: 'Cerberus launcher',
     range: 18,
@@ -531,6 +625,29 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
       WEAPON_ABILITIES.DEVASTATING_WOUNDS,
       WEAPON_ABILITIES.RAPID_FIRE_1
     ]
+  },
+  cycloneMissileLauncherFrag: {
+    name: 'Cyclone missile launcher - frag',
+    range: 36,
+    fixedAttacks: 0,
+    variableAttacks: '2D6',
+    ballisticSkill: 3,
+    strength: 4,
+    armourPiercing: 0,
+    fixedDamage: 1,
+    abilities: [WEAPON_ABILITIES.BLAST],
+    profile: true
+  },
+  cycloneMissileLauncherKrak: {
+    name: 'Cyclone missile launcher - krak',
+    range: 36,
+    fixedAttacks: 2,
+    ballisticSkill: 3,
+    strength: 9,
+    armourPiercing: -2,
+    fixedDamage: 0,
+    variableDamage: 'D6',
+    profile: true
   },
   deathwindLauncher: {
     name: 'Deathwind launcher',
@@ -577,6 +694,21 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     fixedDamage: 2,
     abilities: [WEAPON_ABILITIES.IGNORES_COVER, WEAPON_ABILITIES.TORRENT]
   },
+  flamestormGauntlets: {
+    name: 'Flamestorm gauntlets',
+    range: 12,
+    fixedAttacks: 1,
+    variableAttacks: 'D6',
+    ballisticSkill: 0,
+    strength: 4,
+    armourPiercing: 0,
+    fixedDamage: 1,
+    abilities: [
+      WEAPON_ABILITIES.IGNORES_COVER,
+      WEAPON_ABILITIES.TORRENT,
+      WEAPON_ABILITIES.TWIN_LINKED
+    ]
+  },
   forgeBolter: {
     name: 'Forge bolter',
     range: 24,
@@ -606,6 +738,16 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     armourPiercing: -3,
     fixedDamage: 1,
     variableDamage: 'D6'
+  },
+  gravCannon: {
+    name: 'Grav-cannon',
+    range: 24,
+    fixedAttacks: 3,
+    ballisticSkill: 3,
+    strength: 6,
+    armourPiercing: -1,
+    fixedDamage: 3,
+    abilities: [WEAPON_ABILITIES.ANTI_VEHICLE_2]
   },
   gravGun: {
     name: 'Grav-gun',
@@ -1060,6 +1202,17 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     variableDamage: 'D6',
     abilities: [WEAPON_ABILITIES.MELTA_2]
   },
+  meltaRifle: {
+    name: 'Melta rifle',
+    range: 18,
+    fixedAttacks: 1,
+    ballisticSkill: 3,
+    strength: 9,
+    armourPiercing: -4,
+    fixedDamage: 0,
+    variableDamage: 'D6',
+    abilities: [WEAPON_ABILITIES.HEAVY, WEAPON_ABILITIES.MELTA_2]
+  },
   missileLauncherFrag: {
     name: 'Missing launcher - frag',
     range: 48,
@@ -1124,6 +1277,53 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     armourPiercing: 0,
     fixedDamage: 1,
     abilities: [WEAPON_ABILITIES.DEVASTATING_WOUNDS]
+  },
+  plasmaBlasterStandard: {
+    name: 'Plasma blaster - standard',
+    range: 18,
+    fixedAttacks: 2,
+    ballisticSkill: 3,
+    strength: 7,
+    armourPiercing: -2,
+    fixedDamage: 1,
+    profile: true
+  },
+  plasmaBlasterSupercharge: {
+    name: 'Plasma blaster - supercharge',
+    range: 18,
+    fixedAttacks: 2,
+    ballisticSkill: 3,
+    strength: 8,
+    armourPiercing: -3,
+    fixedDamage: 2,
+    abilities: [WEAPON_ABILITIES.HAZARDOUS],
+    profile: true
+  },
+  PlasmaCannonStandard: {
+    name: 'Plasma cannon - standard',
+    range: 36,
+    fixedAttacks: 0,
+    variableAttacks: 'D3',
+    ballisticSkill: 4,
+    strength: 7,
+    armourPiercing: -2,
+    fixedDamage: 1,
+    abilities: [WEAPON_ABILITIES.BLAST, WEAPON_ABILITIES.HEAVY]
+  },
+  PlasmaCannonSupercharge: {
+    name: 'Plasma cannon - supercharge',
+    range: 36,
+    fixedAttacks: 0,
+    variableAttacks: 'D3',
+    ballisticSkill: 4,
+    strength: 8,
+    armourPiercing: -3,
+    fixedDamage: 2,
+    abilities: [
+      WEAPON_ABILITIES.BLAST,
+      WEAPON_ABILITIES.HAZARDOUS,
+      WEAPON_ABILITIES.HEAVY
+    ]
   },
   plasmaExterminatorsStandard: {
     name: 'Plasma exterminators - standard',
@@ -1258,6 +1458,19 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     fixedDamage: 1,
     abilities: [WEAPON_ABILITIES.IGNORES_COVER, WEAPON_ABILITIES.TORRENT]
   },
+  reaperAutocannon: {
+    name: 'Reaper autocannon',
+    range: 36,
+    fixedAttacks: 4,
+    ballisticSkill: 3,
+    strength: 7,
+    armourPiercing: -1,
+    fixedDamage: 1,
+    abilities: [
+      WEAPON_ABILITIES.DEVASTATING_WOUNDS,
+      WEAPON_ABILITIES.SUSTAINED_HITS_1
+    ]
+  },
   reductorPistol: {
     name: 'Reductor pistol',
     range: 3,
@@ -1295,6 +1508,17 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     armourPiercing: -2,
     fixedDamage: 2,
     abilities: [WEAPON_ABILITIES.HEAVY, WEAPON_ABILITIES.PRECISION]
+  },
+  skyhammerMissileLauncher: {
+    name: 'Skyspear missile launcher',
+    range: 48,
+    fixedAttacks: 3,
+    ballisticSkill: 3,
+    strength: 8,
+    armourPiercing: -1,
+    fixedDamage: 0,
+    variableDamage: 'D3',
+    abilities: [WEAPON_ABILITIES.ANTI_FLY_2, WEAPON_ABILITIES.TWIN_LINKED]
   },
   skyspearMissileLauncher: {
     name: 'Skyspear missile launcher',
@@ -1351,6 +1575,45 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     fixedDamage: 1,
     abilities: [WEAPON_ABILITIES.PISTOL, WEAPON_ABILITIES.PRECISION]
   },
+  sternguardBoltPistol: {
+    name: 'Sternguard bolt pistol',
+    range: 12,
+    fixedAttacks: 1,
+    ballisticSkill: 3,
+    strength: 4,
+    armourPiercing: 0,
+    fixedDamage: 1,
+    abilities: [WEAPON_ABILITIES.DEVASTATING_WOUNDS, WEAPON_ABILITIES.PISTOL]
+  },
+  sternguardBoltRifle: {
+    name: 'Sternguard bolt rifle',
+    range: 24,
+    fixedAttacks: 2,
+    ballisticSkill: 3,
+    strength: 4,
+    armourPiercing: -1,
+    fixedDamage: 1,
+    abilities: [
+      WEAPON_ABILITIES.ASSAULT,
+      WEAPON_ABILITIES.DEVASTATING_WOUNDS,
+      WEAPON_ABILITIES.HEAVY,
+      WEAPON_ABILITIES.RAPID_FIRE_1
+    ]
+  },
+  sternguardHeavyBolter: {
+    name: 'Sternguard heavy bolter',
+    range: 36,
+    fixedAttacks: 3,
+    ballisticSkill: 4,
+    strength: 5,
+    armourPiercing: -1,
+    fixedDamage: 2,
+    abilities: [
+      WEAPON_ABILITIES.DEVASTATING_WOUNDS,
+      WEAPON_ABILITIES.HEAVY,
+      WEAPON_ABILITIES.SUSTAINED_HITS_1
+    ]
+  },
   stormBolter: {
     name: 'Storm bolter',
     range: 24,
@@ -1370,6 +1633,37 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     armourPiercing: -3,
     fixedDamage: 1,
     variableDamage: 'D6'
+  },
+  stormstrikeMissileLauncher: {
+    name: 'Stormstrike missile laucher',
+    range: 48,
+    fixedAttacks: 1,
+    ballisticSkill: 3,
+    strength: 10,
+    armourPiercing: -2,
+    fixedDamage: 3
+  },
+  superfragRocketLaumcher: {
+    name: 'Superfrag rocket launcher',
+    range: 48,
+    fixedAttacks: 1,
+    variableAttacks: 'D6',
+    ballisticSkill: 4,
+    strength: 5,
+    armourPiercing: 0,
+    fixedDamage: 1,
+    abilities: [WEAPON_ABILITIES.BLAST, WEAPON_ABILITIES.HEAVY]
+  },
+  superkrakRocketLaumcher: {
+    name: 'Superkrak rocket launcher',
+    range: 48,
+    fixedAttacks: 1,
+    ballisticSkill: 4,
+    strength: 10,
+    armourPiercing: -2,
+    fixedDamage: 1,
+    variableDamage: 'D6',
+    abilities: [WEAPON_ABILITIES.HEAVY]
   },
   tempestBolter: {
     name: 'Tempest bolter',
@@ -1456,6 +1750,21 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     variableDamage: 'D6',
     abilities: [WEAPON_ABILITIES.TWIN_LINKED]
   },
+  twinFlamer: {
+    name: 'Twin flamer',
+    range: 12,
+    fixedAttacks: 0,
+    variableAttacks: 'D6',
+    ballisticSkill: 0,
+    strength: 4,
+    armourPiercing: 0,
+    fixedDamage: 1,
+    abilities: [
+      WEAPON_ABILITIES.IGNORES_COVER,
+      WEAPON_ABILITIES.TORRENT,
+      WEAPON_ABILITIES.TWIN_LINKED
+    ]
+  },
   twinFragstormGrenadeLauncher: {
     name: 'Twin fragstorm grenade launcher',
     range: 18,
@@ -1476,6 +1785,32 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     armourPiercing: -1,
     fixedDamage: 2,
     abilities: [WEAPON_ABILITIES.SUSTAINED_HITS_1, WEAPON_ABILITIES.TWIN_LINKED]
+  },
+  twinHeavyPlasmaCannonStandard: {
+    name: 'Twin heavy plasma cannon - standard',
+    range: 36,
+    fixedAttacks: 0,
+    variableAttacks: 'D3',
+    ballisticSkill: 3,
+    strength: 7,
+    armourPiercing: -2,
+    fixedDamage: 2,
+    abilities: [WEAPON_ABILITIES.BLAST, WEAPON_ABILITIES.TWIN_LINKED]
+  },
+  twinHeavyPlasmaCannonSupercharge: {
+    name: 'Twin heavy plasma cannon - supercharge',
+    range: 36,
+    fixedAttacks: 0,
+    variableAttacks: 'D3',
+    ballisticSkill: 3,
+    strength: 8,
+    armourPiercing: -3,
+    fixedDamage: 3,
+    abilities: [
+      WEAPON_ABILITIES.BLAST,
+      WEAPON_ABILITIES.HAZARDOUS,
+      WEAPON_ABILITIES.TWIN_LINKED
+    ]
   },
   twinHeavyOnslaughtGatlingCannon: {
     name: 'Twin heavy onslaught gatling cannon',
@@ -1557,6 +1892,17 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     variableDamage: 'D6',
     abilities: [WEAPON_ABILITIES.TWIN_LINKED]
   },
+  twinMeltagun: {
+    name: 'Twin meltagun',
+    range: 12,
+    fixedAttacks: 1,
+    ballisticSkill: 3,
+    strength: 9,
+    armourPiercing: -4,
+    fixedDamage: 0,
+    variableDamage: 'D6',
+    abilities: [WEAPON_ABILITIES.MELTA_2, WEAPON_ABILITIES.TWIN_LINKED]
+  },
   twinMultiMelta: {
     name: 'Twin multi-melta',
     range: 18,
@@ -1600,6 +1946,27 @@ export const rangedWeapons: { [key: string]: RangedWeapon } = {
     fixedDamage: 0,
     variableDamage: 'D6',
     profile: true
+  },
+  vengorLauncher: {
+    name: 'Vengor launcher',
+    range: 48,
+    fixedAttacks: 0,
+    variableAttacks: 'D6',
+    ballisticSkill: 2,
+    strength: 7,
+    armourPiercing: -1,
+    fixedDamage: 2,
+    abilities: [WEAPON_ABILITIES.BLAST, WEAPON_ABILITIES.INDIRECT_FIRE]
+  },
+  volkiteCharger: {
+    name: 'Volkite charger',
+    range: 18,
+    fixedAttacks: 2,
+    ballisticSkill: 3,
+    strength: 5,
+    armourPiercing: 0,
+    fixedDamage: 0,
+    abilities: [WEAPON_ABILITIES.DEVASTATING_WOUNDS]
   },
   whirlwindVengeanceLauncher: {
     name: 'Whirlwind vengeance launcher',

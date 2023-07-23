@@ -12,12 +12,5 @@ export const DETACHMENTS: { [key: string]: Detachment } = {
     stratagems: GLADIUS_TASK_FORCE_STRATAGEMS,
     detachmentRule: GLADIUS_TASK_FORCE_DETACHMENT_RULES,
     units: { ...characters, ...troops }
-  },
-  OTHER_DETACHMENT: {
-    name: 'OTHER DETACHMENT',
-    enhancements: GLADIUS_TASK_FORCE_ENHANCEMENTS,
-    stratagems: GLADIUS_TASK_FORCE_STRATAGEMS,
-    detachmentRule: GLADIUS_TASK_FORCE_DETACHMENT_RULES,
-    units: { ...characters, ...troops }
   }
 };

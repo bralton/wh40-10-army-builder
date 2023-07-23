@@ -22,6 +22,7 @@ export enum CORE_KEYWORDS {
 export enum CORE_ABILITIES {
   SCOUTS_6 = 'Scouts 6"',
   SCOUTS_8 = 'Scouts 8"',
+  SCOUTS_9 = 'Scouts 9"',
   LEADER = 'Leader',
   FIGHTS_FIRST = 'Fights First',
   INFILTRATORS = 'Infiltrators',
