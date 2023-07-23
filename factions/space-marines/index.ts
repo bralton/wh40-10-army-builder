@@ -1,8 +1,2 @@
-import { Faction } from '@/types';
-import { DETACHMENTS } from './data';
-
-export const SPACE_MARINES: Faction = {
-  factionName: 'SPACE MARINES',
-  armyRule: 'Oath of Moment',
-  detachments: DETACHMENTS
-};
+export { SPACE_MARINES } from './CORE';
+export { IMPERIAL_FISTS } from './IMPERIAL-FISTS';
