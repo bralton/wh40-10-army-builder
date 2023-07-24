@@ -110,6 +110,7 @@ export interface Stats {
     faction?: string[];
     core?: string[];
     other?: { title: string; description: string }[];
+    special?: { [key: string]: { title: string; description: string }[] };
   };
 }
 

@@ -690,6 +690,35 @@ export const BuildCard2: FC<{
                 </tbody>
               </Table>
             ) : null}
+            {unit.abilities.special
+              ? Object.keys(unit.abilities.special).map((special, index) => {
+                  return (
+                    <Table key={index} className={`${styles.weaponTable} py-3`}>
+                      <thead>
+                        <tr className={`${styles.weaponHeader}`}>
+                          <th></th>
+                          <th>{special}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {unit.abilities.special
+                          ? unit.abilities.special[special].map(
+                              (ability, key) => (
+                                <tr key={key} className={styles.abilityRow}>
+                                  <td></td>
+                                  <td>
+                                    <b>{ability.title}:</b>{' '}
+                                    {ability.description}
+                                  </td>
+                                </tr>
+                              )
+                            )
+                          : null}
+                      </tbody>
+                    </Table>
+                  );
+                })
+              : null}
           </Col>
           <Col sm="12" md="4" className="px-4">
             <Table className={`${styles.abilityTable}`}>

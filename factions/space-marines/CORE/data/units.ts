@@ -593,7 +593,13 @@ export const troops: { [key: string]: Unit } = {
       },
       { character: characters.primaris_company_champion },
       { character: characters.primaris_chaplain },
-      { character: characters.bladeguard_ancient },
+      {
+        character: characters.bladeguard_ancient,
+        secondLeader: [
+          characters.primaris_lieutenant,
+          characters.primaris_captain
+        ]
+      },
       { character: characters.judiciar }
     ]
   },
