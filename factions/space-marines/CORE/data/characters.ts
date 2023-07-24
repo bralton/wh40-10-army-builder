@@ -50,8 +50,7 @@ export const characters: { [key: string]: Unit } = {
       KEYWORDS.INFANTRY,
       KEYWORDS.CHARACTER,
       KEYWORDS.IMPERIUM,
-      KEYWORDS.TERMINATOR,
-      'ANCIENT'
+      KEYWORDS.TERMINATOR + ' ANCIENT'
     ],
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 1, cost: 90 }

@@ -6,3 +6,4 @@ export { RAVEN_GUARD } from './RAVEN-GUARD';
 export { WHITE_SCARS } from './WHITE-SCARS';
 export { SALAMANDERS } from './SALAMANDERS';
 export { CRIMSON_FISTS } from './CRIMSON-FISTS';
+export { DARK_ANGELS } from './DARK-ANGELS';

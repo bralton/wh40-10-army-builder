@@ -7,5 +7,6 @@ export {
   RAVEN_GUARD,
   WHITE_SCARS,
   SALAMANDERS,
-  CRIMSON_FISTS
+  CRIMSON_FISTS,
+  DARK_ANGELS
 } from './space-marines/';

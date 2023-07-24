@@ -1,0 +1,1 @@
+export { DETACHMENTS } from './detachments';

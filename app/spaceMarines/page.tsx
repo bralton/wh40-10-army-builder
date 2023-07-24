@@ -11,6 +11,10 @@ const SpaceMarines: FC<{}> = () => {
         route={'/spaceMarines/crimson-fists'}
       />
       <Faction
+        factionName={'Dark Angels'}
+        route={'/spaceMarines/dark-angels'}
+      />
+      <Faction
         factionName={'Imperial Fists'}
         route={'/spaceMarines/imperial-fists'}
       />
