@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Enhancement, Unit } from '@/types';
 import styles from './dataCard.module.scss';
 import { BuildCard } from './buildCard';
+import { BuildCard2 } from './buildCard2';
 
 export const DataCard: FC<{
   unit: Unit;
@@ -89,6 +90,17 @@ export const DataCard: FC<{
       updateUnit(tempUnit);
     }
   }, [unitComposition]);
+
+  const setSecondUnitComposition = (composition: {
+    modelCount: number;
+    cost: number;
+  }) => {
+    const tempUnit = { ...unit };
+    if (tempUnit.secondUnit) {
+      tempUnit.secondUnit.unitComposition = composition;
+      updateUnit(tempUnit);
+    }
+  };
 
   const applyEnhancement = (
     enhancement: Enhancement,
@@ -355,13 +367,16 @@ export const DataCard: FC<{
 
   return (
     <div
-      className={`${unit.leader ? styles.attachedUnit : ''} rounded-3 p-3 m-2`}>
-      <BuildCard
+      className={`${
+        unit.leader ? styles.attachedUnit + 'rounded-3 p-3 m-2' : ''
+      } `}>
+      <BuildCard2
         unit={unit}
         hidden={hidden}
         enhancements={enhancements}
         setLeader={addLeader}
         setUnitComposition={setUnitComposition}
+        setSecondUnitComposition={setSecondUnitComposition}
         applyEnhancement={(enhancement: Enhancement) =>
           applyEnhancement(enhancement, unit)
         }
@@ -369,12 +384,13 @@ export const DataCard: FC<{
         secondLeaders={secondaryLeaders}
       />
       {unit.leader ? (
-        <BuildCard
+        <BuildCard2
           unit={unit.leader}
           hidden={hidden}
           enhancements={enhancements}
           setLeader={addLeader}
           setUnitComposition={setUnitComposition}
+          setSecondUnitComposition={setSecondUnitComposition}
           applyEnhancement={(enhancement: Enhancement) =>
             unit.leader
               ? applyEnhancement(enhancement, unit.leader, unit)
@@ -384,12 +400,13 @@ export const DataCard: FC<{
         />
       ) : null}
       {unit.secondLeader ? (
-        <BuildCard
+        <BuildCard2
           unit={unit.secondLeader}
           hidden={hidden}
           enhancements={enhancements}
           setLeader={addLeader}
           setUnitComposition={setUnitComposition}
+          setSecondUnitComposition={setSecondUnitComposition}
           applyEnhancement={(enhancement: Enhancement) =>
             unit.secondLeader
               ? applyEnhancement(enhancement, unit.secondLeader, unit, false)

@@ -6,6 +6,7 @@
   background: black;
   color: white;
   width: 95%;
+  font-size: 0.9rem;
 
   .leaderChange {
     color: darkred;
@@ -29,11 +30,37 @@
       .statHeader {
         display: block;
       }
-      .statBox {
-        background: white;
-        color: black;
-        width: 40%;
+
+      .statsTable {
         text-align: center;
+        width: 100%;
+        tr {
+          td,
+          th {
+            background: none;
+            border-width: 0;
+          }
+
+          th {
+            color: white;
+          }
+
+          td {
+            .statBox {
+              background: white;
+              color: black;
+              text-align: center;
+              display: inline-block;
+              width: 50px;
+              height: 50px;
+            }
+          }
+          .individualName {
+            color: white;
+            text-align: left;
+            vertical-align: middle;
+          }
+        }
       }
     }
   }
@@ -61,21 +88,13 @@
         td {
           border-bottom-width: 0;
         }
-        .weaponAbilities {
-          display: block;
-          font-weight: 700;
-        }
+        .weaponAbilities,
+        .weaponEnhancementAbilities,
+        .weaponLeaderAbilities,
         .weaponDetachmentAbilities {
           display: block;
           font-weight: 700;
-        }
-        .weaponLeaderAbilities {
-          display: block;
-          font-weight: 700;
-        }
-        .weaponEnhancementAbilities {
-          display: block;
-          font-weight: 700;
+          font-size: 0.7rem;
         }
       }
       .oddWeaponGroup {
@@ -106,6 +125,8 @@
       .abilityRow {
         border-bottom-style: dotted;
         border-bottom: 1px;
+        font-size: 0.8rem;
+
         &:nth-child(even) {
           td {
             background: lightgray;

@@ -5,8 +5,9 @@ import { characters } from './characters';
 import { WEAPON_ABILITIES } from '@/enums';
 import { ABILITIES } from './abilities';
 import { troops as core_troops } from '../../CORE/data/units';
+import { cloneDeep } from 'lodash';
 
-const troops: { [key: string]: Unit } = { ...core_troops };
+const troops: { [key: string]: Unit } = cloneDeep(core_troops);
 
 troops.terminator_squad.possibleLeaders = [
   ...(troops.terminator_squad.possibleLeaders

@@ -3,6 +3,6 @@ import { KEYWORDS as core_keywords } from '../../CORE/data/keywords';
 
 const KEYWORDS: { [key: string]: any } = cloneDeep(core_keywords);
 
-KEYWORDS.CHAPTER = 'IMPERIAL FISTS';
+KEYWORDS.CHAPTER = 'ULTRAMARINES';
 
 export { KEYWORDS };

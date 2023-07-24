@@ -1,6 +1,17 @@
 'use client';
-import { ArmySheet } from '../components/ArmySheet';
+import { FC } from 'react';
+import { Faction } from '@/components';
 
-export default function Home() {
-  return <div>IT WORKS</div>;
-}
+const Home: FC<{}> = () => {
+  return (
+    <div className="container">
+      <h1>Warhammer 40K 10th Edition Army Builder</h1>
+
+      <Faction factionName={'Space Marines'} route={'/spaceMarines'} />
+
+      <Faction factionName={'Tyranids'} route={'/tyranids'} />
+    </div>
+  );
+};
+
+export default Home;

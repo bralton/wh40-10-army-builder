@@ -50,10 +50,10 @@ export const ArmySheet: FC<{ faction: Faction }> = ({ faction }) => {
   return (
     <div className="container">
       <Row>
-        <Col xs="9">
+        <Col xs="7">
           <h1>{army?.factionName}</h1>
         </Col>
-        <Col xs="3">
+        <Col xs="5">
           <Dropdown
             isOpen={detachmenDropdownOpen}
             toggle={() => setDetachmentDropdownOpen(!detachmenDropdownOpen)}
@@ -77,7 +77,7 @@ export const ArmySheet: FC<{ faction: Faction }> = ({ faction }) => {
       </Row>
       {detachment ? (
         <Row>
-          <Col sm="3">
+          <Col xs="12" lg="3">
             Detachment Rule:{' '}
             {showDetachmentOptions ? (
               <Dropdown
@@ -99,7 +99,7 @@ export const ArmySheet: FC<{ faction: Faction }> = ({ faction }) => {
               </Dropdown>
             ) : null}
           </Col>
-          <Col sm="9">
+          <Col xs="12" lg="9">
             {detachmentRule ? (
               <>
                 <p>

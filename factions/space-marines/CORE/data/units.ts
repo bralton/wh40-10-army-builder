@@ -5,65 +5,23 @@ import { characters } from './characters';
 import { WEAPON_ABILITIES } from '@/enums';
 import { ABILITIES } from './abilities';
 
-const invader_atv: Unit = {
+const invader_atv = {
   name: 'INVADER ATV',
   move: 12,
   toughness: 5,
   save: 3,
   wounds: 8,
   leadership: 6,
-  objectiveControl: 2,
-  abilities: {
-    faction: [ABILITIES.OATHS]
-  },
-  rangedWeapons: [
-    [rangedWeapons.heavyBoltPistol],
-    [rangedWeapons.multiMelta],
-    [rangedWeapons.onslaughtGatlingCannon],
-    [rangedWeapons.twinBoltRifle]
-  ],
-  meleeWeapons: [[{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 5 }]],
-  keywords: [
-    KEYWORDS.MOUNTED,
-    KEYWORDS.GRENADES,
-    KEYWORDS.IMPERIUM,
-    'INVADER ATV'
-  ],
-  factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
-  unitComposition: { modelCount: 1, cost: 80 }
+  objectiveControl: 2
 };
-const attack_bike_squad: Unit = {
+const attack_bike_squad = {
   name: 'ATTACK BIKE SQUAD',
   move: 12,
   toughness: 5,
   save: 3,
   wounds: 5,
   leadership: 6,
-  objectiveControl: 2,
-  abilities: {
-    faction: [ABILITIES.OATHS]
-  },
-  rangedWeapons: [
-    [rangedWeapons.boltPistol],
-    [
-      {
-        ...rangedWeapons.heavyBolter,
-        ballisticSkill: 3,
-        abilities: [WEAPON_ABILITIES.SUSTAINED_HITS_1]
-      }
-    ],
-    [rangedWeapons.multiMelta],
-    [{ ...rangedWeapons.twinBoltgun, ballisticSkill: 3 }]
-  ],
-  meleeWeapons: [[{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 3 }]],
-  keywords: [
-    KEYWORDS.MOUNTED,
-    KEYWORDS.GRENADES,
-    KEYWORDS.IMPERIUM,
-    'ATTACK BIKE SQUAD'
-  ],
-  factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
-  unitComposition: { modelCount: 1, cost: 55 }
+  objectiveControl: 2
 };
 
 export const troops: { [key: string]: Unit } = {
@@ -415,7 +373,28 @@ export const troops: { [key: string]: Unit } = {
       { modelCount: 1, cost: 55 },
       { modelCount: 2, cost: 110 },
       { modelCount: 3, cost: 165 }
-    ]
+    ],
+    rangedWeapons: [
+      [rangedWeapons.boltPistol],
+      [
+        {
+          ...rangedWeapons.heavyBolter,
+          ballisticSkill: 3,
+          abilities: [WEAPON_ABILITIES.SUSTAINED_HITS_1]
+        }
+      ],
+      [rangedWeapons.multiMelta],
+      [{ ...rangedWeapons.twinBoltgun, ballisticSkill: 3 }]
+    ],
+    meleeWeapons: [[{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 3 }]],
+    keywords: [
+      KEYWORDS.MOUNTED,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      'ATTACK BIKE SQUAD'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 1, cost: 55 }
   },
   ballistus_dreadnought: {
     name: 'BALLISTUS DREADNOUGHT',
@@ -460,6 +439,17 @@ export const troops: { [key: string]: Unit } = {
   },
   bike_squad: {
     name: 'BIKE SQUAD',
+    individualName: 'SPACE MARINE BIKE',
+    secondUnit: {
+      ...attack_bike_squad,
+      name: 'ATTACK BIKE',
+      unitComposition: { modelCount: 1, cost: 55 },
+      possibleCompositions: [
+        { modelCount: 0, cost: 0 },
+        { modelCount: 1, cost: 55 }
+      ],
+      abilities: {}
+    },
     move: 12,
     toughness: 5,
     save: 3,
@@ -484,7 +474,15 @@ export const troops: { [key: string]: Unit } = {
         rangedWeapons.plasmaPistolStandard,
         rangedWeapons.plasmaPistolSupercharge
       ],
-      [{ ...rangedWeapons.twinBoltgun, ballisticSkill: 3 }]
+      [{ ...rangedWeapons.twinBoltgun, ballisticSkill: 3 }],
+      [
+        {
+          ...rangedWeapons.heavyBolter,
+          ballisticSkill: 3,
+          abilities: [WEAPON_ABILITIES.SUSTAINED_HITS_1]
+        }
+      ],
+      [rangedWeapons.multiMelta]
     ],
     meleeWeapons: [
       [
@@ -507,19 +505,16 @@ export const troops: { [key: string]: Unit } = {
     ],
     factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
     unitComposition: { modelCount: 3, cost: 80 },
-    possibleCompositions: [{ modelCount: 3, cost: 160 }],
+    possibleCompositions: [
+      { modelCount: 3, cost: 80 },
+      { modelCount: 6, cost: 160 }
+    ],
     possibleLeaders: [
       {
-        character: attack_bike_squad,
-        secondLeader: [characters.captain_on_bike, characters.chaplain_on_bike]
+        character: characters.captain_on_bike
       },
       {
-        character: characters.captain_on_bike,
-        secondLeader: [attack_bike_squad]
-      },
-      {
-        character: characters.chaplain_on_bike,
-        secondLeader: [attack_bike_squad]
+        character: characters.chaplain_on_bike
       }
     ]
   },
@@ -1898,7 +1893,22 @@ export const troops: { [key: string]: Unit } = {
           description: `Once per turn, in your opponent's Shooting phase, when a friendly ADEPTUS ASTARTES MOUNTED unit within 6" of this model is selected as the target of an attack, this model can use this ability. If it does, after that enemy unit has finished making its attacks, this model can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target).`
         }
       ]
-    }
+    },
+    rangedWeapons: [
+      [rangedWeapons.heavyBoltPistol],
+      [rangedWeapons.multiMelta],
+      [rangedWeapons.onslaughtGatlingCannon],
+      [rangedWeapons.twinBoltRifle]
+    ],
+    meleeWeapons: [[{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 5 }]],
+    keywords: [
+      KEYWORDS.MOUNTED,
+      KEYWORDS.GRENADES,
+      KEYWORDS.IMPERIUM,
+      'INVADER ATV'
+    ],
+    factionKeywords: [KEYWORDS.FACTION.ADEPTUS_ASTARTES],
+    unitComposition: { modelCount: 1, cost: 80 }
   },
   invictor_tactical_warsuit: {
     name: 'INVICTOR TACTICAL WARSUIT',
@@ -2384,6 +2394,16 @@ export const troops: { [key: string]: Unit } = {
   },
   outrider_squad: {
     name: 'OUTRIDER SQUAD',
+    individualName: 'OUTRIDER',
+    secondUnit: {
+      ...invader_atv,
+      unitComposition: { modelCount: 1, cost: 80 },
+      possibleCompositions: [
+        { modelCount: 0, cost: 0 },
+        { modelCount: 1, cost: 80 }
+      ],
+      abilities: {}
+    },
     move: 12,
     toughness: 5,
     save: 3,
@@ -2401,7 +2421,9 @@ export const troops: { [key: string]: Unit } = {
     },
     rangedWeapons: [
       [rangedWeapons.heavyBoltPistol],
-      [rangedWeapons.twinBoltRifle]
+      [rangedWeapons.twinBoltRifle],
+      [rangedWeapons.multiMelta],
+      [rangedWeapons.onslaughtGatlingCannon]
     ],
     meleeWeapons: [
       [
@@ -2410,7 +2432,8 @@ export const troops: { [key: string]: Unit } = {
           fixedAttacks: 4,
           weaponSkill: 3
         }
-      ]
+      ],
+      [{ ...meleeWeapons.closeCombatWeapon, fixedAttacks: 5 }]
     ],
     keywords: [
       KEYWORDS.MOUNTED,
@@ -2426,14 +2449,9 @@ export const troops: { [key: string]: Unit } = {
     ],
     possibleLeaders: [
       {
-        character: invader_atv,
-        secondLeader: [characters.captain_on_bike, characters.chaplain_on_bike]
+        character: characters.captain_on_bike
       },
-      {
-        character: characters.captain_on_bike,
-        secondLeader: [invader_atv]
-      },
-      { character: characters.chaplain_on_bike, secondLeader: [invader_atv] }
+      { character: characters.chaplain_on_bike }
     ]
   },
   razorback: {
