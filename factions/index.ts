@@ -10,3 +10,4 @@ export {
   CRIMSON_FISTS,
   DARK_ANGELS
 } from './space-marines/';
+export { DEATH_GUARD } from './death-guard';

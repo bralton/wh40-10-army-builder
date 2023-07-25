@@ -7,6 +7,8 @@ const Home: FC<{}> = () => {
     <div className="container">
       <h1>Warhammer 40K 10th Edition Army Builder</h1>
 
+      <Faction factionName={'Death Guard'} route={'/death-guard'} />
+
       <Faction factionName={'Space Marines'} route={'/spaceMarines'} />
 
       <Faction factionName={'Tyranids'} route={'/tyranids'} />

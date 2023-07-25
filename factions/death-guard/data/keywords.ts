@@ -1,0 +1,10 @@
+import { CORE_KEYWORDS } from '@/enums';
+
+export const KEYWORDS = {
+  ...CORE_KEYWORDS,
+  CHAOS: 'CHAOS',
+  NURGLE: 'NURGLE',
+  DAEMON: 'DAEMON',
+  TERMINATOR: 'TERMINATOR',
+  FACTION: { DEATH_GUARD: 'DEATH GUARD' }
+};
