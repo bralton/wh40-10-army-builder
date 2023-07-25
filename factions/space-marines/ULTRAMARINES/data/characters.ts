@@ -341,6 +341,10 @@ characters.roboute_guilliman = {
         title: 'Armour of Fate',
         description:
           'The first time this model is destroyed, rolle one D6 at the end of the phase: on a 3+, set this model back up on the battlefield as close as possible to where it was destroyed and not within Engagement Range of any enemy models, with 6 wounds remaining.'
+      },
+      {
+        title: 'SUPREME COMMANDER',
+        description: 'If this model is in your army, it must be your WARLORD.'
       }
     ],
     special: {
